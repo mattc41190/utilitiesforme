@@ -4,6 +4,7 @@ from binascii import Error
 USER_ERROR_MESSAGE = "cannot transform content"
 UTF_8 = "utf-8"
 
+
 def echo(_str: str) -> str:
     return _str
 
