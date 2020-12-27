@@ -1,6 +1,6 @@
 import os
 
-from flask import Flask, request
+from flask import Flask, blueprints, request
 
 
 def create_app(test_config=None):
@@ -19,9 +19,7 @@ def create_app(test_config=None):
     except OSError:
         pass
 
-    @app.route('/echo/echo', methods=['POST'])
-    def echo():
-        from utilities_for_me.utilities._echo.echo import echo
-        return echo(request.form.get("contents", ""))
+    from .blueprints.echo import bp as echo_bp
+    app.register_blueprint(echo_bp.bp)
 
     return app
