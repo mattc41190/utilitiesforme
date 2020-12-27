@@ -2,11 +2,11 @@
 
 ## What is this
 
-This is a repository that contains the source code for the utilities for me application
+This is a repository that contains the source code for the _utilitiesfor.me_ application.
 
 ## Why make this?
 
-Your utility site is gross and insecure and full of ads...
+Your utility site is gross, and insecure, and full of ads and trackers 😿.
 
 ## How do I use this?
 
