@@ -1,4 +1,4 @@
-from flask import Blueprint, request
+from flask import Blueprint, render_template, request
 
 from utilities_for_me.utilities._echo.echo import (
     echo,
@@ -9,6 +9,11 @@ from utilities_for_me.utilities._echo.echo import (
 )
 
 bp = Blueprint("echo", __name__, url_prefix="/echo")
+
+
+@bp.route("/", methods=["GET"])
+def echo_page_handler():
+    return render_template("echo.jinja2.html")
 
 
 @bp.route("/echo", methods=["POST"])

@@ -1,0 +1,17 @@
+{% extends 'layout.jinja2.html' %}
+
+{% block header %}
+  <h1>{% block title %}Echo{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <form method="post" action="/echo/echo">
+    <label for="contents">Text To Echo</label>
+    <input name="contents" id="contents" required>
+    <input type="submit" value="Echo">
+    <input type="submit" formaction="/echo/upper" value="Upper">
+    <input type="submit" formaction="/echo/lower" value="Lower">
+    <input type="submit" formaction="/echo/encode_b64" value="Base 64 Encode">
+    <input type="submit" formaction="/echo/decode_b64" value="Base 64 Decode">
+  </form>
+{% endblock %}
