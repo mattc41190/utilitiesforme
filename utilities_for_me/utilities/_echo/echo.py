@@ -18,7 +18,8 @@ def _lower(_str: str) -> str:
 
 
 def encode_b64(_str: str) -> str:
-    return b64encode(bytes(_str, UTF_8))
+    encoded_bytes = b64encode(bytes(_str, UTF_8))
+    return str(encoded_bytes)
 
 
 def decode_b64(_str: str) -> str:
