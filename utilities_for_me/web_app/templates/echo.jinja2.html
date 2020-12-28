@@ -7,7 +7,7 @@
 {% block content %}
   <form method="post" action="/echo/echo">
     <label for="contents">Text To Echo</label>
-    <input name="contents" id="contents" required>
+    <textarea name="contents" id="contents" required> </textarea>
     <input type="submit" value="Echo">
     <input type="submit" formaction="/echo/upper" value="Upper">
     <input type="submit" formaction="/echo/lower" value="Lower">
