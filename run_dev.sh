@@ -1,3 +1,4 @@
 export FLASK_APP=utilities_for_me.web_app.server
 export FLASK_ENV=development
-flask run
+flask run \
+    --host=0.0.0.0 # Needed for docker 

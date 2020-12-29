@@ -18,7 +18,7 @@ typecheck_python:
 
 .PHONY: test_python
 test_python:
-	pytest
+	coverage run -m pytest utilities_for_me && coverage html
 
 .PHONY: check_python
 check_python: typecheck_python format_python test_python
@@ -27,3 +27,11 @@ check_python: typecheck_python format_python test_python
 
 .PHONY: check
 check: check_python
+
+.PHONY: build_image
+build_image:
+	docker build -t utilities-for-me:latest .
+
+.PHONY: run_image
+run_image: build_image
+	docker run -d -p 5000:5000 utilities-for-me:latest
