@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request
+from flask import Blueprint, redirect, render_template, request, url_for
 
 from utilities_for_me.utilities._echo.echo import (
     echo,
@@ -16,26 +16,46 @@ def echo_page_handler():
     return render_template("echo.jinja2.html")
 
 
-@bp.route("/echo", methods=["POST"])
+@bp.route("/echo", methods=["GET","POST"])
 def echo_handler():
-    return echo(request.form.get("contents", ""))
+    if request.method == 'POST':
+        prev_data = request.form.get("contents", "")
+        data = echo(prev_data)
+        return render_template("echo.jinja2.html", prev_data=prev_data ,data=data)
+    return redirect(url_for('echo_page_handler'))
+    
 
-
-@bp.route("/upper", methods=["POST"])
+@bp.route("/upper", methods=["GET","POST"])
 def upper_handler():
-    return _upper(request.form.get("contents", ""))
+    if request.method == 'POST':
+        prev_data = request.form.get("contents", "")
+        data =  _upper(prev_data)
+        return render_template("echo.jinja2.html", prev_data=prev_data ,data=data)
+    return redirect(url_for('echo_page_handler'))
 
 
-@bp.route("/lower", methods=["POST"])
+@bp.route("/lower", methods=["GET","POST"])
 def lower_handler():
-    return _lower(request.form.get("contents", ""))
+    if request.method == 'POST':
+        prev_data = request.form.get("contents", "")
+        data =  _lower(prev_data)
+        return render_template("echo.jinja2.html", prev_data=prev_data ,data=data)
+    return redirect(url_for('echo_page_handler'))
 
 
-@bp.route("/encode_b64", methods=["POST"])
+@bp.route("/encode_b64", methods=["GET","POST"])
 def encode_b64_handler():
-    return encode_b64(request.form.get("contents", ""))
+    if request.method == 'POST':
+        prev_data = request.form.get("contents", "")
+        data =  encode_b64(prev_data)
+        return render_template("echo.jinja2.html", prev_data=prev_data ,data=data)
+    return redirect(url_for('echo_page_handler'))
 
 
-@bp.route("/decode_b64", methods=["POST"])
+@bp.route("/decode_b64", methods=["GET","POST"])
 def b64_decode_handler():
-    return decode_b64(request.form.get("contents", ""))
+    if request.method == 'POST':
+        prev_data = request.form.get("contents", "")
+        data =  decode_b64(prev_data)
+        return render_template("echo.jinja2.html", prev_data=prev_data ,data=data)
+    return redirect(url_for('echo_page_handler'))

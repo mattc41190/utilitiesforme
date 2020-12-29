@@ -7,11 +7,17 @@
 {% block content %}
   <form method="post" action="/echo/echo">
     <label for="contents">Text To Echo</label>
-    <textarea name="contents" id="contents" required> </textarea>
+    <textarea name="contents" id="contents" required>{% if prev_data %}{{prev_data}}{% endif %}</textarea>
     <input type="submit" value="Echo">
     <input type="submit" formaction="/echo/upper" value="Upper">
     <input type="submit" formaction="/echo/lower" value="Lower">
     <input type="submit" formaction="/echo/encode_b64" value="Base 64 Encode">
     <input type="submit" formaction="/echo/decode_b64" value="Base 64 Decode">
   </form>
+  {% if data %}
+  <h1>Result:</h1>
+  <code>
+    {{data}}
+  </code>
+  {% endif %}
 {% endblock %}
