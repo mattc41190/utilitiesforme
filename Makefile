@@ -16,8 +16,12 @@ format_python:
 typecheck_python:
 	mypy utilities_for_me/ 
 
+.PHONY: test_python
+test_python:
+	pytest
+
 .PHONY: check_python
-check_python: typecheck_python format_python
+check_python: typecheck_python format_python test_python
 
 # UNIVERSAL TARGETS
 
