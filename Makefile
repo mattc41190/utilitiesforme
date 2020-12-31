@@ -32,6 +32,10 @@ check: check_python
 build_image: check
 	docker build -t utilities-for-me:latest .
 
-.PHONY: run_image
-run_image: build_image
-	docker run run -e "ENV_ENV=development" -d -p 5000:5000 utilities-for-me:latest
+.PHONY: run_dev_image
+run_dev_image: build_image
+	docker run -d -p 5000:5000 utilities-for-me:latest
+
+.PHONY: run_prod_image
+run_prod_image: build_image
+	docker run -e "APP_ENV=production" -e "APP_PORT=80" -d -p 80:80 utilities-for-me:latest

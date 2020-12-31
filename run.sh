@@ -1,14 +1,14 @@
 PRODUCTION="production"
 DEVELOPMENT="development"
 
-ENV=$1
+ENV=$APP_ENV
 ENV="${ENV:-$DEVELOPMENT}"
-PORT=$2
-PORT="${PORT:-8080}"
+PORT=$APP_PORT
+PORT="${PORT:-5000}"
 
 if [ $ENV == "production" ]
 then
-    gunicorn -w 4 utilities_for_me.web_app.server:create_app
+    gunicorn -b 0.0.0.0:$PORT -w 4 utilities_for_me.web_app.wsgi:app
 else
     export FLASK_APP=utilities_for_me.web_app.server
     export FLASK_ENV=$DEVELOPMENT
