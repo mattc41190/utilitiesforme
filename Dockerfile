@@ -25,12 +25,8 @@ EXPOSE 5000
 EXPOSE 80
 
 # Create settable enviornment variables
-ENV APP_ENV="development"
-ENV APP_PORT="5000"
-
-# Set the starting program to shell
-ENTRYPOINT [ "sh" ]
+ENV SCRIPT="run_dev.sh"
+ENV PORT="5000"
 
 # Run the start server command 
-RUN echo ${APP_ENV} ${APP_PORT}
-CMD [ "run.sh", "${APP_ENV} ${APP_PORT}"]
+CMD sh $SCRIPT

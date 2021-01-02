@@ -32,10 +32,18 @@ check: check_python
 build_image: check
 	docker build -t utilities-for-me:latest .
 
+.PHONY: run_dev_local
+run_dev_local: check
+	export PORT=5000 && sh run_dev.sh
+
+.PHONY: run_prod_local
+run_prod_local:
+	export PORT=80 && sh run_prod.sh
+
 .PHONY: run_dev_image
 run_dev_image: build_image
-	docker run -d -p 5000:5000 utilities-for-me:latest
+	docker run -e "SCRIPT=run_dev.sh" -d -p 5000:5000 utilities-for-me:latest
 
 .PHONY: run_prod_image
 run_prod_image: build_image
-	docker run -e "APP_ENV=production" -e "APP_PORT=80" -d -p 80:80 utilities-for-me:latest
+	docker run -e "PORT=80" -e "SCRIPT=run_prod.sh" -d -p 80:80 utilities-for-me:latest
