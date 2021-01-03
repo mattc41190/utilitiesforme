@@ -24,3 +24,12 @@ This is a collection of documentation items pertaining to the Utilities for Me a
     - [Pass Args](https://www.lifewire.com/pass-arguments-to-bash-script-2200571)
 - Gunicorn
     - [Gunicorn Reference Docs](https://docs.gunicorn.org/en/latest/install.html)
+- Marx (Temporary CSS Solution)
+    - [Marx Reference Docs](https://mblode.github.io/marx/)
+
+- https://blog.logrocket.com/create-react-app-and-tailwindcss/
+- https://medium.com/javascript-in-plain-english/a-guide-to-creating-a-react-app-without-create-react-app-5337c5ac2ea0
+- https://webpack.js.org/
+- https://cloudstack.ninja/prk_passion01/how-to-solve-support-for-the-experimental-syntax-jsx-isnt-currently-enabled-61-issue/
+- https://stackoverflow.com/questions/40379139/cannot-find-module-webpack-bin-config-yargs
+- https://www.freecodecamp.org/news/structuring-a-flask-restplus-web-service-for-production-builds-c2ec676de563/
