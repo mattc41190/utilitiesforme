@@ -23,6 +23,12 @@ test_python:
 .PHONY: check_python
 check_python: typecheck_python format_python test_python
 
+# NODE TARGET
+
+.PHONY: run_dev_ui_local
+run_dev_ui_local: 
+	npm run dev-ui
+
 # UNIVERSAL TARGETS
 
 .PHONY: check
