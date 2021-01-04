@@ -12,6 +12,7 @@
   "scripts": {
     "dev-ui": "webpack --watch",
     "test": "echo \"Error: no test specified\" && exit 1",
+    "standard": "standard --fix",
     "create": "webpack"
   },
   "keywords": [],
@@ -24,6 +25,7 @@
     "babel-loader": "^8.2.2",
     "css-loader": "^5.0.1",
     "html-webpack-plugin": "^4.5.0",
+    "standard": "^16.0.3",
     "style-loader": "^2.0.0",
     "webpack": "^5.11.1",
     "webpack-cli": "^4.3.1",

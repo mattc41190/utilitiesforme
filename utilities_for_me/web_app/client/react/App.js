@@ -4,18 +4,16 @@ import Home from './Home'
 import Echo from './Echo'
 import Error from './Error'
 
-
-function App() {
-    return (
-        <main className="container">
-            <Switch>
-                <Route exact path='/' component={Home} />
-                <Route path='/echo' component={Echo} />
-                <Route component={Error} />
-            </Switch>
-        </main>
-    )
+function App () {
+  return (
+    <main className='container'>
+      <Switch>
+        <Route exact path='/' component={Home} />
+        <Route path='/echo' component={Echo} />
+        <Route component={Error} />
+      </Switch>
+    </main>
+  )
 }
 
-
-export default App;
+export default App
