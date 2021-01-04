@@ -21,12 +21,12 @@ COPY . /app
 RUN pip install --upgrade pip && pip install -r requirements.txt
 
 # Expose ports
-EXPOSE 5000
+EXPOSE 5050
 EXPOSE 80
 
 # Create settable enviornment variables
 ENV SCRIPT="run_dev.sh"
-ENV PORT="5000"
+ENV PORT="5050"
 
 # Run the start server command 
 CMD sh $SCRIPT

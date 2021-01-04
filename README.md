@@ -1,8 +1,11 @@
 # Utilities For Me
 
+[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+
+
 ## What is this
 
-This is a repository that contains the source code for the _utilitiesfor.me_ application.
+This is a repository that contains the source code for the _utilitiesfor.me_ application. See: http://bit.ly/utilities-for-me
 
 ## Why make this?
 
@@ -48,7 +51,7 @@ def echo():
 - Test it!
 
 ```
-curl -X POST -F "contents=hello" http://localhost:5000/echo/echo
+curl -X POST -F "contents=hello" http://localhost:5050/echo/echo
 ```
 
 - Publish Endpoint

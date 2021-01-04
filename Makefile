@@ -23,7 +23,7 @@ test_python:
 .PHONY: check_python
 check_python: typecheck_python format_python test_python
 
-# NODE TARGET
+# NODE TARGETS
 
 .PHONY: run_dev_ui_local
 run_dev_ui_local: 
@@ -40,7 +40,7 @@ build_image: check
 
 .PHONY: run_dev_local
 run_dev_local: check
-	export PORT=5000 && sh run_dev.sh
+	export PORT=5050 && sh run_dev.sh
 
 .PHONY: run_prod_local
 run_prod_local:
@@ -48,7 +48,7 @@ run_prod_local:
 
 .PHONY: run_dev_image
 run_dev_image: build_image
-	docker run -e "SCRIPT=run_dev.sh" -d -p 5000:5000 utilities-for-me:latest
+	docker run -e "SCRIPT=run_dev.sh" -d -p 5050:5050 utilities-for-me:latest
 
 .PHONY: run_prod_image
 run_prod_image: build_image
