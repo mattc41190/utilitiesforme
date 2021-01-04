@@ -22,9 +22,8 @@ const EchoHeader = () => {
   return (
     <section className='row mt-4'>
       <div className='col'>
-        <div className='d-flex flex-column p-2 text-center'>
-          <h1>Utilities For Me</h1>
-          <h2>Echo</h2>
+        <div className='d-flex flex-column p-2 '>
+          <h1>Echo</h1>
           <p>The <i>Echo</i> utility contains utilities related to the transformation of a particular selection of text.</p>
         </div>
       </div>
@@ -45,11 +44,13 @@ const EchoBody = ({ contents, handleChange, handleClick }) => {
             value={contents}
             onChange={handleChange}
           />
-          <button className='btn btn-primary mb-3' onClick={handleClick} type='submit' value='echo'>Echo</button>
-          <button className='btn btn-primary mb-3' onClick={handleClick} type='submit' value='upper'>Upper</button>
-          <button className='btn btn-primary mb-3' onClick={handleClick} type='submit' value='lower'>Lower</button>
-          <button className='btn btn-primary mb-3' onClick={handleClick} type='submit' value='base-64-encode'>Base 64 Encode</button>
-          <button className='btn btn-primary mb-3' onClick={handleClick} type='submit' value='base-64-decode'>Base 64 Decode</button>
+        </div>
+        <div className='p-2'>
+          <button className='btn btn-secondary me-2 mb-3' onClick={handleClick} type='submit' value='echo'>Echo</button>
+          <button className='btn btn-secondary me-2 mb-3' onClick={handleClick} type='submit' value='upper'>Upper</button>
+          <button className='btn btn-secondary me-2 mb-3' onClick={handleClick} type='submit' value='lower'>Lower</button>
+          <button className='btn btn-secondary me-2 mb-3' onClick={handleClick} type='submit' value='base-64-encode'>Base 64 Encode</button>
+          <button className='btn btn-secondary me-2 mb-3' onClick={handleClick} type='submit' value='base-64-decode'>Base 64 Decode</button>
         </div>
       </div>
     </section>
@@ -57,24 +58,20 @@ const EchoBody = ({ contents, handleChange, handleClick }) => {
 }
 
 const EchoResult = ({ result, setResult }) => {
-  if (result !== '') {
-    return (
-      <section>
-        <div className='d-flex flex-column p-2'>
-          <h2 className='text-start'>Result</h2>
-          <input
-            required
-            className='form-control my-3'
-            placeholder='Results will go here...'
-            value={result}
-            onChange={(e) => setResult(e.target.value)}
-          />
-        </div>
-      </section>
-    )
-  }
-
-  return <div />
+  return (
+    <section>
+      <div className='d-flex flex-column p-2'>
+        <h2 className='text-start'>Result</h2>
+        <input
+          required
+          className='form-control my-3'
+          placeholder='Results will go here...'
+          value={result}
+          onChange={(e) => setResult(e.target.value)}
+        />
+      </div>
+    </section>
+  )
 }
 
 function Echo () {
