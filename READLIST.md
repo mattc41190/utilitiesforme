@@ -8,6 +8,7 @@ This is a collection of documentation items pertaining to the Utilities for Me a
 
 - Flask
     - [Flask Reference Docs](https://flask.palletsprojects.com/en/1.1.x/)
+    - [Flask and React Router](https://blog.miguelgrinberg.com/post/how-to-deploy-a-react-router-flask-application)
 - Docker
     - [Dockerfile Reference](https://docs.docker.com/engine/reference/builder/)
 - Pytest
@@ -30,12 +31,20 @@ This is a collection of documentation items pertaining to the Utilities for Me a
     - [React + Tailwind Blog](https://blog.logrocket.com/create-react-app-and-tailwindcss/)
 - React
     - [React Sans Create React App](https://medium.com/javascript-in-plain-english/a-guide-to-creating-a-react-app-without-create-react-app-5337c5ac2ea0)
+    - [Data Fetching in React Hooks](https://blog.bitsrc.io/fetching-data-in-react-using-hooks-c6fdd71cb24a)
+    - [Quick Guide to Setting Up React Router](https://www.freecodecamp.org/news/react-router-in-5-minutes/) ✅
+    - [Onclick Fetch React](https://stackoverflow.com/questions/55001372/correct-way-to-create-event-handlers-using-hooks-in-react)
+    - [React Does NOT Go In Brackets](https://stackoverflow.com/questions/39423054/react-jsx-file-giving-error-cannot-read-property-createelement-of-undefined)
+    - [Good Example of Fetch](https://googlechrome.github.io/samples/fetch-api/fetch-post.html)
 - Webpack (General Bundling Solution)
     - [Webpack Reference Docs](https://webpack.js.org/)
     - [Babel + React + JSX Support Bug](https://cloudstack.ninja/prk_passion01/how-to-solve-support-for-the-experimental-syntax-jsx-isnt-currently-enabled-61-issue/) ✅
     - [Webpack + Dev Server](https://stackoverflow.com/questions/40379139/cannot-find-module-webpack-bin-config-yargs) ✅ (Use `webpack server` now)
+    - [Why Async Doesn't Work In React App](https://stackoverflow.com/questions/33527653/babel-6-regeneratorruntime-is-not-defined) ✅
 
 
 ## The Proposals
 
 - [How To Structure a Flask RESTPlus App](https://www.freecodecamp.org/news/structuring-a-flask-restplus-web-service-for-production-builds-c2ec676de563/)
+- [How To Use Flask RESTPlus](https://medium.com/@preslavrachev/designing-well-structured-rest-apis-with-flask-restplus-part-1-7e96f2da8850)
+- [Custom Hooks for React Data Fetching](https://dev.to/nicomartin/the-right-way-to-fetch-data-with-react-hooks-48gc)
