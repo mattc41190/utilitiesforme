@@ -13,34 +13,34 @@ bp = Blueprint("echo", __name__, url_prefix="/api/v1/echo")
 
 @bp.route("/echo", methods=["POST"])
 def echo_handler():
-    prev_data = request.get_json().get("contents", "")
+    prev_data = request.get_json(silent=True).get("contents", "")
     data = echo(prev_data)
     return {"data": data}
 
 
 @bp.route("/upper", methods=["POST"])
 def upper_handler():
-    prev_data = request.get_json().get("contents", "")
+    prev_data = request.get_json(silent=True).get("contents", "")
     data = _upper(prev_data)
     return {"data": data}
 
 
 @bp.route("/lower", methods=["POST"])
 def lower_handler():
-    prev_data = request.get_json().get("contents", "")
+    prev_data = request.get_json(silent=True).get("contents", "")
     data = _lower(prev_data)
     return {"data": data}
 
 
 @bp.route("/encode_b64", methods=["POST"])
 def encode_b64_handler():
-    prev_data = request.get_json().get("contents", "")
+    prev_data = request.get_json(silent=True).get("contents", "")
     data = encode_b64(prev_data)
     return {"data": data}
 
 
 @bp.route("/decode_b64", methods=["POST"])
 def b64_decode_handler():
-    prev_data = request.get_json().get("contents", "")
+    prev_data = request.get_json(silent=True).get("contents", "")
     data = decode_b64(prev_data)
     return {"data": data}

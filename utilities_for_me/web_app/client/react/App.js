@@ -7,7 +7,7 @@ import Error from './Error'
 
 function App() {
     return (
-        <main className="row">
+        <main className="container">
             <Switch>
                 <Route exact path='/' component={Home} />
                 <Route path='/echo' component={Echo} />

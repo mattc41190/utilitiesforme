@@ -23,8 +23,6 @@ def create_app(test_config=None):
     from .blueprints.app import bp as app_bp
     from .blueprints.api.echo import bp as echo_bp
 
-    # from .blueprints.echo import bp as echo_bp
-
     app.register_blueprint(app_bp.bp)
     app.register_blueprint(echo_bp.bp)
 
