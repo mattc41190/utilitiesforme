@@ -1,26 +1,20 @@
 import React, { useCallback, useState } from 'react'
 
-function mapValueToEndpoint(command) {
-    const valuesToEndpoint = {
-        "echo": "echo",
-        "upper": "upper",
-        "lower": "lower",
-        "base-64-encode": "encode_b64",
-        "base-64-decode": "decode_b64",
-    }
-    return valuesToEndpoint[command]
+const valuesToEndpoint = {
+    "echo": "echo",
+    "upper": "upper",
+    "lower": "lower",
+    "base-64-encode": "encode_b64",
+    "base-64-decode": "decode_b64",
 }
 
-function sendRequest(command, contents) {
+const sendRequest = (command, contents) => {
     const args = {
         method: 'post',
         body: JSON.stringify({ contents }),
-        headers: {
-            'Content-Type': 'application/json'
-        },
+        headers: { 'Content-Type': 'application/json'},
     }
-    const url = `/api/v1/echo/${mapValueToEndpoint(command)}`
-    console.log("sending request...", command);
+    const url = `/api/v1/echo/${valuesToEndpoint[command]}`
     return fetch(url, args).then(res => res.json())
 }
 
@@ -35,7 +29,6 @@ const EchoResult = ({result}) => {
     }
 
     return <div />
-
 }
 
 function Echo() {
@@ -44,11 +37,10 @@ function Echo() {
     const [result, setResult] = useState("")
 
     const handleClick = useCallback((e) => {
-        console.log(contents);
         e.preventDefault()
-        sendRequest(e.target.value.toLowerCase(), contents).then(json => {
-            setResult(json["data"])
-        })
+        sendRequest(e.target.value.toLowerCase(), contents)
+            .then(json => setResult(json["data"]))
+            .catch(err => console.error(err))
     }, [contents])
 
     return (
@@ -68,6 +60,7 @@ function Echo() {
                     <div className="d-flex flex-column p-2 text-center">
                         <h3 className="text-start">Text To Echo</h3>
                         <input
+                            required
                             className="form-control my-3"
                             placeholder="Contents here..."
                             value={contents}
@@ -88,4 +81,5 @@ function Echo() {
 
     )
 }
+
 export default Echo;
