@@ -6,6 +6,8 @@ from utilities_for_me.utilities._echo.echo import (
     _lower,
     encode_b64,
     decode_b64,
+    kebab_case,
+    snake_case,
 )
 
 bp = Blueprint("echo", __name__, url_prefix="/api/v1/echo")
@@ -43,4 +45,18 @@ def encode_b64_handler():
 def b64_decode_handler():
     prev_data = request.get_json(silent=True).get("contents", "")
     data = decode_b64(prev_data)
+    return {"data": data}
+
+
+@bp.route("/kebab_case", methods=["POST"])
+def kebab_case_handler():
+    prev_data = request.get_json(silent=True).get("contents", "")
+    data = kebab_case(prev_data)
+    return {"data": data}
+
+
+@bp.route("/snake_case", methods=["POST"])
+def snake_case_handler():
+    prev_data = request.get_json(silent=True).get("contents", "")
+    data = snake_case(prev_data)
     return {"data": data}

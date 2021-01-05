@@ -5,7 +5,9 @@ const valuesToEndpoint = {
   upper: 'upper',
   lower: 'lower',
   'base-64-encode': 'encode_b64',
-  'base-64-decode': 'decode_b64'
+  'base-64-decode': 'decode_b64',
+  'kebab-case': 'kebab_case',
+  'snake-case': 'snake_case'
 }
 
 const sendRequest = (command, contents) => {
@@ -37,8 +39,9 @@ const EchoBody = ({ contents, handleChange, handleClick }) => {
       <div className='col'>
         <div className='d-flex flex-column p-2 text-center'>
           <h3 className='text-start'>Text To Echo</h3>
-          <input
+          <textarea
             required
+            rows='8'
             className='form-control my-3'
             placeholder='Contents here...'
             value={contents}
@@ -46,11 +49,15 @@ const EchoBody = ({ contents, handleChange, handleClick }) => {
           />
         </div>
         <div className='p-2'>
-          <button className='btn btn-secondary me-2 mb-3' onClick={handleClick} type='submit' value='echo'>Echo</button>
-          <button className='btn btn-secondary me-2 mb-3' onClick={handleClick} type='submit' value='upper'>Upper</button>
-          <button className='btn btn-secondary me-2 mb-3' onClick={handleClick} type='submit' value='lower'>Lower</button>
-          <button className='btn btn-secondary me-2 mb-3' onClick={handleClick} type='submit' value='base-64-encode'>Base 64 Encode</button>
-          <button className='btn btn-secondary me-2 mb-3' onClick={handleClick} type='submit' value='base-64-decode'>Base 64 Decode</button>
+          <button className='btn btn-secondary me-2 mb-3' onClick={handleClick} value='echo'>Echo 🗣</button>
+          <button className='btn btn-danger me-2 mb-3' onClick={handleClick} value='upper'>Upper 🔠</button>
+          <button className='btn btn-success me-2 mb-3' onClick={handleClick} value='lower'>Lower 🔡</button>
+          <button className='btn btn-info me-2 mb-3' onClick={handleClick} value='base-64-encode'>Base 64 Encode 💽</button>
+          <button className='btn btn-warning me-2 mb-3' onClick={handleClick} value='base-64-decode'>Base 64 Decode 📀</button>
+          <button className='btn btn-success me-2 mb-3' onClick={handleClick} value='kebab-case'>Kebab Case 🍢</button>
+
+          <button className='btn btn-info me-2 mb-3' onClick={handleClick} value='snake-case'>Snake Case 🐍</button>
+
         </div>
       </div>
     </section>
@@ -62,8 +69,8 @@ const EchoResult = ({ result, setResult }) => {
     <section>
       <div className='d-flex flex-column p-2'>
         <h2 className='text-start'>Result</h2>
-        <input
-          required
+        <textarea
+          rows='8'
           className='form-control my-3'
           placeholder='Results will go here...'
           value={result}

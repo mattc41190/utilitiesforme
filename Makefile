@@ -23,7 +23,15 @@ test_python:
 .PHONY: check_python
 check_python: typecheck_python format_python test_python
 
-# NODE TARGETS
+# JAVASCRIPT TARGETS
+
+.PHONY: format_js
+format_js:
+	npm run standard
+
+.PHONY: check_js
+check_js: format_js
+
 
 .PHONY: run_dev_ui_local
 run_dev_ui_local: 
@@ -32,7 +40,7 @@ run_dev_ui_local:
 # UNIVERSAL TARGETS
 
 .PHONY: check
-check: check_python
+check: check_python check_js
 
 .PHONY: build_image
 build_image: check
@@ -44,7 +52,7 @@ run_dev_local: check
 
 .PHONY: run_prod_local
 run_prod_local:
-	export PORT=80 && sh run_prod.sh
+	export PORT=5151 && sh run_prod.sh
 
 .PHONY: run_dev_image
 run_dev_image: build_image

@@ -26,3 +26,13 @@ def test_encode_b64_returns_base64_encoded_input():
 def test_decode_b64_returns_base64_decoded_input():
     expected = HELLO
     assert echo.decode_b64(BASE_64_HELLO) == expected
+
+
+def test_kebab_case_returns_base64_decoded_input():
+    expected = "hello-there"
+    assert echo.kebab_case("hello there") == expected
+
+
+def test_snake_case_returns_base64_decoded_input():
+    expected = "hello_there"
+    assert echo.snake_case("hello there") == expected

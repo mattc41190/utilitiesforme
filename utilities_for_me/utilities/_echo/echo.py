@@ -28,3 +28,15 @@ def decode_b64(_str: str) -> str:
         return str(result, UTF_8)
     except Error as e:
         return USER_ERROR_MESSAGE
+
+
+def kebab_case(_str: str) -> str:
+    str_arr = _str.split(" ")
+    result = "-".join(str_arr)
+    return result
+
+
+def snake_case(_str: str) -> str:
+    str_arr = _str.split(" ")
+    result = "_".join(str_arr)
+    return result
