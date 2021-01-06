@@ -4,7 +4,7 @@ module.exports = {
   entry: './utilities_for_me/web_app/client/react/index.js',
   output: {
     path: path.resolve(__dirname, 'utilities_for_me/web_app/static'),
-    filename: 'index_bundle.js'
+    filename: 'index-bundle.js'
   },
   module: {
     rules: [

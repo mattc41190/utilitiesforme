@@ -39,4 +39,4 @@ yarn-debug.log*
 yarn-error.log*
 
 # React App
-utilities_for_me/web_app/static/index_bundle.js
+utilities_for_me/web_app/static/

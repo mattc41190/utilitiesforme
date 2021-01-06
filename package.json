@@ -3,14 +3,9 @@
   "version": "1.0.0",
   "description": "## What is this",
   "main": "index.js",
-  "babel": {
-    "presets": [
-      "@babel/preset-env",
-      "@babel/preset-react"
-    ]
-  },
   "scripts": {
-    "dev-ui": "webpack --watch",
+    "parcel-watch": "parcel watch utilities_for_me/web_app/client/react/index.js --out-dir utilities_for_me/web_app/static --out-file index-bundle.js",
+    "parcel-build": "parcel build utilities_for_me/web_app/client/react/index.js --out-dir utilities_for_me/web_app/static --out-file index-bundle.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "standard": "standard --fix",
     "create": "webpack"
@@ -25,6 +20,7 @@
     "babel-loader": "^8.2.2",
     "css-loader": "^5.0.1",
     "html-webpack-plugin": "^4.5.0",
+    "parcel-bundler": "^1.12.4",
     "standard": "^16.0.3",
     "style-loader": "^2.0.0",
     "webpack": "^5.11.1",

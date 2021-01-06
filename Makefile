@@ -23,6 +23,9 @@ test_python:
 .PHONY: check_python
 check_python: typecheck_python format_python test_python
 
+.PHONY: build_python
+build_python: check_python
+
 # JAVASCRIPT TARGETS
 
 .PHONY: format_js
@@ -32,26 +35,32 @@ format_js:
 .PHONY: check_js
 check_js: format_js
 
+.PHONY: run_dev_ui
+run_dev_ui: 
+	npm run parcel-watch
 
-.PHONY: run_dev_ui_local
-run_dev_ui_local: 
-	npm run dev-ui
+.PHONY: build_js
+build_js: check_js
+	npm run parcel-build
 
 # UNIVERSAL TARGETS
 
-.PHONY: check
-check: check_python check_js
+.PHONY: check_only
+check_only: check_python check_js
+
+.PHONY: build
+build: build_python build_js
 
 .PHONY: build_image
-build_image: check
+build_image: build
 	docker build -t utilities-for-me:latest .
 
-.PHONY: run_dev_local
-run_dev_local: check
+.PHONY: run_dev_server
+run_dev_server: check_python
 	export PORT=5050 && sh run_dev.sh
 
 .PHONY: run_prod_local
-run_prod_local:
+run_prod_local: build
 	export PORT=5151 && sh run_prod.sh
 
 .PHONY: run_dev_image
@@ -63,5 +72,5 @@ run_prod_image: build_image
 	docker run -e "PORT=80" -e "SCRIPT=run_prod.sh" -d -p 80:80 utilities-for-me:latest
 
 .PHONY: deploy_prod
-deploy_prod: check
+deploy_prod: build
 	gcloud app deploy
