@@ -71,6 +71,10 @@ run_dev_image: build_image
 run_prod_image: build_image
 	docker run -e "PORT=80" -e "SCRIPT=run_prod.sh" -d -p 80:80 utilities-for-me:latest
 
+.PHONY: deploy_prod_cdn:
+deploy_prod_cdn: build_js
+	gsutil -m rsync -r utilities_for_me/web_app/static  gs://utilities-for-me/static
+
 .PHONY: deploy_prod
 deploy_prod: build
 	gcloud app deploy

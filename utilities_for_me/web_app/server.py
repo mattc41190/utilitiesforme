@@ -13,10 +13,15 @@ def create_app(test_config=None):
         SECRET_KEY="dev",
     )
 
+
     if test_config is None:
         app.config.from_pyfile("config.py", silent=True)
     else:
         app.config.from_mapping(test_config)
+
+    # static_root = "https://storage.googleapis.com/utilities-for-me"  # config based on env
+    static_root = ""
+    app.config["STATIC_ROOT"] = static_root
 
     try:
         os.makedirs(app.instance_path)
