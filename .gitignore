@@ -24,7 +24,7 @@ build/
 
 /coverage
 /build
-# /.cache
+.cache
 
 
 ## Misc
@@ -40,3 +40,4 @@ yarn-error.log*
 
 # React App
 utilities_for_me/web_app/static/
+!utilities_for_me/web_app/static/favicon.ico

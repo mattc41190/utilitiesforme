@@ -1,7 +1,7 @@
 import os
 import logging
 
-from flask import Flask
+from flask import Flask, url_for
 
 logging.basicConfig(level=logging.INFO)
 

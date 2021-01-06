@@ -34,6 +34,7 @@ build/
 ## Node 
 
 node_modules
+.cache
 
 # Ignored by the build system
 /setup.cfg
@@ -42,3 +43,5 @@ node_modules
 *.md
 Makefile
 run.sh
+utilities_for_me/web_app/raw_assets
+

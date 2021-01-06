@@ -55,7 +55,6 @@ const EchoBody = ({ contents, handleChange, handleClick }) => {
           <button className='btn btn-info me-2 mb-3' onClick={handleClick} value='base-64-encode'>Base 64 Encode 💽</button>
           <button className='btn btn-warning me-2 mb-3' onClick={handleClick} value='base-64-decode'>Base 64 Decode 📀</button>
           <button className='btn btn-success me-2 mb-3' onClick={handleClick} value='kebab-case'>Kebab Case 🍢</button>
-
           <button className='btn btn-info me-2 mb-3' onClick={handleClick} value='snake-case'>Snake Case 🐍</button>
 
         </div>
@@ -68,7 +67,7 @@ const EchoResult = ({ result, setResult }) => {
   return (
     <section>
       <div className='d-flex flex-column p-2'>
-        <h2 className='text-start'>Result</h2>
+        <h3 className='text-start'>Result</h3>
         <textarea
           rows='8'
           className='form-control my-3'
