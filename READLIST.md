@@ -9,6 +9,7 @@ This is a collection of documentation items pertaining to the Utilities for Me a
 - Flask
     - [Flask Reference Docs](https://flask.palletsprojects.com/en/1.1.x/)
     - [Flask and React Router](https://blog.miguelgrinberg.com/post/how-to-deploy-a-react-router-flask-application)
+    - [Flask Configuration](https://exploreflask.com/en/latest/configuration.html#)
 - Docker
     - [Dockerfile Reference](https://docs.docker.com/engine/reference/builder/)
 - Pytest
@@ -43,6 +44,8 @@ This is a collection of documentation items pertaining to the Utilities for Me a
     - [Why Async Doesn't Work In React App](https://stackoverflow.com/questions/33527653/babel-6-regeneratorruntime-is-not-defined) ✅
 - Google App Engine
     -[Deploy](https://cloud.google.com/appengine/docs/standard/python/getting-started/deploying-the-application)
+    - [Cheaper Static Asset Hosting](https://cloud.google.com/appengine/docs/standard/python3/serving-static-files)
+
 
 ## The Proposals
 

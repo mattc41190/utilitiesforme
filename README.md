@@ -7,6 +7,9 @@
 
 This is a repository that contains the source code for the _utilitiesfor.me_ application. See: http://bit.ly/utilities-for-me
 
+![demo](meta/demo.png)
+
+
 ## Why make this?
 
 Your utility site is gross, and insecure, and full of ads and trackers 😿.
