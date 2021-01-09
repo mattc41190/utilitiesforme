@@ -3,7 +3,6 @@ import React, { useState } from 'react'
 import { prettify } from './lib/prettify'
 
 const _prettify = (contents, type) => {
-  console.log(`prettifying for type: ${type}`)
   return prettify(contents, type)
 }
 
@@ -20,7 +19,7 @@ const PrettifyHeader = () => {
   )
 }
 
-const PrettifyBody = ({ contents, handleChange, handleClick }) => {
+const PrettifyBody = ({ contents, handleChange, handleClick, ignoreClick }) => {
   return (
     <section className='row mt-4'>
       <div className='col'>
@@ -36,7 +35,10 @@ const PrettifyBody = ({ contents, handleChange, handleClick }) => {
           />
         </div>
         <div className='p-2'>
-          <button className='btn btn-primary me-2 mb-3' onClick={handleClick} value='json'>JSON <strong>&#123;&#125;</strong></button>
+          <button className='btn btn-primary me-2 mb-3' onClick={handleClick} value='json'>JSON <strong onClick={ignoreClick}>&#123;&#125;</strong></button>
+          <button className='btn btn-warning me-2 mb-3' onClick={handleClick} value='html'>HTML <strong onClick={ignoreClick}>&lt;&gt;</strong></button>
+          <button className='btn btn-success me-2 mb-3' onClick={handleClick} value='js'>JS <strong onClick={ignoreClick}>()</strong></button>
+          <button className='btn btn-danger me-2 mb-3' onClick={handleClick} value='css'>CSS <strong onClick={ignoreClick}>#</strong></button>
         </div>
       </div>
     </section>
@@ -49,7 +51,7 @@ const PrettifyResult = ({ result, setResult }) => {
       <div className='d-flex flex-column p-2'>
         <h3 className='text-start'>Result</h3>
         <textarea
-          rows='8'
+          rows='16'
           className='form-control my-3'
           placeholder='Results will go here...'
           value={result}
@@ -65,9 +67,11 @@ function Prettify () {
   const [result, setResult] = useState('')
 
   const handleChange = (e) => setContents(e.target.value)
+  const ignoreClick = (e) => e.stopPropagation()
 
   const handleClick = (e) => {
     e.preventDefault()
+    console.log(e.target.value)
     const type = e.target.value.toLowerCase()
     const _result = _prettify(contents, type)
     setResult(_result)
@@ -77,7 +81,7 @@ function Prettify () {
     <div>
       <PrettifyHeader />
       <hr />
-      <PrettifyBody contents={contents} handleChange={handleChange} handleClick={handleClick} />
+      <PrettifyBody contents={contents} handleChange={handleChange} handleClick={handleClick} ignoreClick={ignoreClick} />
       <PrettifyResult result={result} setResult={setResult} />
     </div>
   )
