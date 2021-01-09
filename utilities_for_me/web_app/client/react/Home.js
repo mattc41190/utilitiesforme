@@ -18,6 +18,7 @@ function Home () {
           <h2>Utilities:</h2>
           <ul>
             <li> <span> <Link to='/echo' className='utility-link'>Echo</Link> &mdash; A collection of utilities associated with general text transformations 🗣</span></li>
+            <li> <span> <Link to='/prettify' className='utility-link'>Prettify</Link> &mdash; A collection of utilities associated with making structured data easier on the eyes ✨</span></li>
           </ul>
         </div>
       </section>

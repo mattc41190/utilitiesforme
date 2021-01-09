@@ -6,14 +6,30 @@
 # For more information, run:
 #   $ gcloud topic gcloudignore
 #
-.gcloudignore
 # If you would like to upload your .git directory, .gitignore file or files
 # from your .gitignore file, remove the corresponding line
 # below:
+
+## Meta Files and OS Files
+
+.DS_Store
+.gcloudignore
 .git
 .gitignore
 
-# Python
+*.md
+Makefile
+Dockerfile
+
+examples
+meta
+
+run_dev.sh
+run_prod.sh
+setup.cfg
+
+
+## Python
 
 .venv/
 
@@ -31,17 +47,15 @@ dist/
 build/
 *.egg-info/
 
-## Node 
 
-node_modules
+## JavaScript, Node, And Client Assets
+.babelrc
 .cache
 
-# Ignored by the build system
-/setup.cfg
+node_modules
+package-lock.json
+package.json
 
-# Others
-*.md
-Makefile
-run.sh
 utilities_for_me/web_app/raw_assets
-meta
+utilities_for_me/web_app/static
+utilities_for_me/web_app/client

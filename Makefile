@@ -18,7 +18,7 @@ typecheck_python:
 
 .PHONY: test_python
 test_python:
-	coverage run -m pytest utilities_for_me && coverage html
+	coverage run -m pytest -s utilities_for_me && coverage html
 
 .PHONY: check_python
 check_python: typecheck_python format_python test_python
