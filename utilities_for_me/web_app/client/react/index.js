@@ -4,5 +4,6 @@ import './index.css'
 import App from './App'
 
 import { BrowserRouter } from 'react-router-dom'
+import { DarkModeProvider } from './app/DarkMode';
 
-ReactDOM.render(<BrowserRouter><App /></BrowserRouter>, document.getElementById('root'))
+ReactDOM.render(<BrowserRouter> <DarkModeProvider><App /></DarkModeProvider> </BrowserRouter>, document.getElementById('root'))

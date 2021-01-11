@@ -2,6 +2,40 @@
   font-family: 'Inconsolata', monospace;
 }
 
+#root {
+  height: 100vh;
+}
+
 .utility-link {
   color: #0DCAF0;
 }
+
+/* A So So Color Pallette  */
+
+/* 
+.dark-mode {
+  background: #281A59!important;
+  color: #EDEDED!important;
+}
+
+.dark-mode textarea {
+  background: #432F8A;
+  color: #EDEDED;
+  border-color: #432F8A;
+}
+
+.dark-mode textarea:focus {
+  background: #432F8A;
+  color: #EDEDED;
+  border-color: #432F8A;
+}
+
+.dark-mode textarea::placeholder {
+  color: #EDEDED;
+  opacity: 1; 
+}
+
+.dark-mode .utility-link {
+  color: #fff152!important;
+} 
+*/

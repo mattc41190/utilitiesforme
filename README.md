@@ -69,3 +69,21 @@ make deploy
 - Find the utility you need
 - Use said utility 
 - Profit 🤑
+
+## Ideas
+
+- Date & Time Calculator
+- Number Calculator
+- Code Case Transformer
+- Random String Generator
+- Fake Data Creator
+- Data Hashing 
+- Data Encryption 
+- Secret Santa Generator
+- Data Structure Analyzer 
+- Priority Queue Simulator 
+- Image / Avatar Creator
+- Site Scraper (_$?_)
+- Percent Calculator
+- Page Scraper
+- Timer

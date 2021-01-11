@@ -6,7 +6,7 @@
   "scripts": {
     "parcel-watch": "parcel watch utilities_for_me/web_app/client/react/index.js --out-dir utilities_for_me/web_app/static --out-file index-bundle.js",
     "parcel-build": "parcel build utilities_for_me/web_app/client/react/index.js --out-dir utilities_for_me/web_app/static --out-file index-bundle.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "standard": "standard --fix",
     "create": "webpack"
   },
@@ -17,6 +17,7 @@
     "@babel/core": "^7.12.10",
     "@babel/preset-env": "^7.12.11",
     "@babel/preset-react": "^7.12.10",
+    "jest": "^26.6.3",
     "parcel-bundler": "^1.12.4",
     "standard": "^16.0.3"
   },

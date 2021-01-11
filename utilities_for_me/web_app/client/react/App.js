@@ -1,5 +1,7 @@
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
+
+
 import Home from './Home'
 import Echo from './Echo'
 import Prettify from './Prettify'
@@ -9,7 +11,7 @@ import Error from './Error'
 
 function App () {
   return (
-    <main>
+    <main className="min-vh-100">
       <Navbar />
       <div className='container'>
         <Switch>
