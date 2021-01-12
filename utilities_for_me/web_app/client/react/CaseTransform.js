@@ -1,22 +1,29 @@
 import React, { useCallback, useState } from 'react'
 
-const valuesToEndpoint = {
-  echo: 'echo',
-  upper: 'upper',
-  lower: 'lower',
-  'base-64-encode': 'encode_b64',
-  'base-64-decode': 'decode_b64',
+const frontEndToBackendCasings = {
+  'space-case': 'space_case',
+  'camel-case': 'camel_case',
+  'pascal-case': 'pascal_case',
   'kebab-case': 'kebab_case',
   'snake-case': 'snake_case'
 }
 
-const sendRequest = (command, contents) => {
+const sendRequest = (contents, fromCase, toCase) => {
+  fromCase = frontEndToBackendCasings[fromCase]
+  toCase = frontEndToBackendCasings[toCase]
+
+  const body = {
+    contents: contents,
+    from_case: fromCase,
+    to_case: toCase
+  }
+
   const args = {
     method: 'post',
-    body: JSON.stringify({ contents }),
+    body: JSON.stringify(body),
     headers: { 'Content-Type': 'application/json' }
   }
-  const url = `/api/v1/echo/${valuesToEndpoint[command]}`
+  const url = '/api/v1/case-transform/'
   return window.fetch(url, args).then(res => res.json())
 }
 
@@ -33,7 +40,35 @@ const CaseTransformHeader = () => {
   )
 }
 
-const CaseTransformBody = ({ contents, handleChange, handleClick }) => {
+const CaseButton = ({ value, currentSelection, content, onClickHandler }) => {
+  const buttonClass = value === currentSelection ? 'success fw-bold' : 'secondary'
+  return (
+    <button className={`mx-2 my-1 btn btn-${buttonClass}`} type='button' value={value} readOnly onClick={onClickHandler}>{content}</button>
+  )
+}
+
+const ButtonSection = ({ title, currentSelection, handleChange }) => {
+  return (
+    <div>
+      <h3>{title}</h3>
+      <CaseButton value='space-case' currentSelection={currentSelection} content='Space Delimited 💫' onClickHandler={handleChange} />
+      <CaseButton value='camel-case' currentSelection={currentSelection} content='Camel Case 🐪' onClickHandler={handleChange} />
+      <CaseButton value='snake-case' currentSelection={currentSelection} content='Snake Case 🐍' onClickHandler={handleChange} />
+      <CaseButton value='pascal-case' currentSelection={currentSelection} content='Pascal Case 🧪' onClickHandler={handleChange} />
+      <CaseButton value='kebab-case' currentSelection={currentSelection} content='Kebab Case 🍢' onClickHandler={handleChange} />
+    </div>
+  )
+}
+
+const CaseTransformBody = ({
+  contents,
+  currentFromSelection,
+  currentToSelection,
+  handleContentsChange,
+  handleFromChange,
+  handleToChange,
+  handleSubmit
+}) => {
   return (
     <section className='row mt-4'>
       <div className='col'>
@@ -45,12 +80,12 @@ const CaseTransformBody = ({ contents, handleChange, handleClick }) => {
             className='form-control my-3'
             placeholder='Contents here...'
             value={contents}
-            onChange={handleChange}
+            onChange={handleContentsChange}
           />
         </div>
-        <div className='p-2'>
-          <button className='btn btn-secondary me-2 mb-3' onClick={handleClick} value='camel'>Camel Case 🐪</button>
-          <button className='btn btn-info me-2 mb-3' onClick={handleClick} value='snake-case'>Snake Case 🐍</button>
+        <div className='d-flex justify-content-between align-items-center p-2 my-4'>
+          <ButtonSection title='From' currentSelection={currentFromSelection} handleChange={handleFromChange} />
+          <ButtonSection title='To' currentSelection={currentToSelection} handleChange={handleToChange} />
         </div>
       </div>
     </section>
@@ -75,13 +110,18 @@ const CaseTransformResult = ({ result, setResult }) => {
 }
 
 function CaseTransform () {
-  const [contents, setContents] = useState('')
-  const [result, setResult] = useState('')
+  const [contents, setContents] = useState('Hello there')
+  const [fromCase, setFromCase] = useState('space-case')
+  const [toCase, setToCase] = useState('space-case')
+  const [result, setResult] = useState('Hello there')
 
-  const handleChange = (e) => setContents(e.target.value)
+  const handleContentsChange = (e) => setContents(e.target.value)
 
-  const handleClick = useCallback((e) => {
+  const handleFromChange = (e) => { setFromCase(e.target.value) }
+
+  const handleToChange = useCallback((e) => {
     e.preventDefault()
+    setToCase(e.target.value)
     sendRequest(e.target.value.toLowerCase(), contents)
       .then(json => { setResult(json.data) })
       .catch(err => console.error(err))
@@ -91,7 +131,14 @@ function CaseTransform () {
     <div>
       <CaseTransformHeader />
       <hr />
-      <CaseTransformBody contents={contents} handleChange={handleChange} handleClick={handleClick} />
+      <CaseTransformBody
+        contents={contents}
+        currentFromSelection={fromCase}
+        currentToSelection={toCase}
+        handleContentsChange={handleContentsChange}
+        handleFromChange={handleFromChange}
+        handleToChange={handleToChange}
+      />
       <CaseTransformResult result={result} setResult={setResult} />
     </div>
   )
