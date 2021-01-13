@@ -117,7 +117,6 @@ function CaseTransform () {
   const [fromCase, setFromCase] = useState('space-case')
   const [toCase, setToCase] = useState('space-case')
   const [result, setResult] = useState('Hello there')
-  // const [data, isLoading, error, loadData] = useAsyncData()
 
   const handleContentsChange = (e) => setContents(e.target.value)
 
