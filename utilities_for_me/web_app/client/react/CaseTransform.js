@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react'
+import React, { useState } from 'react'
 
 const sendRequest = ({ fromCase, toCase, contents }) => {
   const frontEndToBackendCasings = {
@@ -87,7 +87,7 @@ const CaseTransformBody = ({
           <ButtonSection title='From' currentSelection={currentFromSelection} handleChange={handleFromChange} />
           <ButtonSection title='To' currentSelection={currentToSelection} handleChange={handleToChange} />
         </div>
-        <div className="p-2">
+        <div className='p-2'>
           <button className='btn btn-lg btn-success' onClick={handleSubmit}>Submit</button>
         </div>
       </div>

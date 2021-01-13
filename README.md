@@ -76,7 +76,7 @@ make deploy
 - Prettify ✅
 - Date & Time Calculator
 - Number Calculator
-- Code Case Transformer 🧗‍♂️
+- Code Case Transformer ✅
 - Random String Generator
 - Fake Data Creator
 - Data Hashing 
@@ -87,7 +87,7 @@ make deploy
 - Priority Queue Simulator 
 - Image / Avatar Creator
 - Site Scraper (_$?_)
-- Percent Calculator
+- Percent Calculator 🧗‍♂️
 - Page Scraper
 - Timer
 - GIF database
