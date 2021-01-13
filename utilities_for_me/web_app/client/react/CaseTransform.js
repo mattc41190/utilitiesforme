@@ -23,7 +23,7 @@ const sendRequest = ({ fromCase, toCase, contents }) => {
     body: JSON.stringify(body),
     headers: { 'Content-Type': 'application/json' }
   }
-  const url = '/api/v1/code-transform'
+  const url = '/api/v1/case-transform'
   return window.fetch(url, args).then(res => res.json())
 }
 

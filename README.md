@@ -70,7 +70,7 @@ make deploy
 - Use said utility 
 - Profit 🤑
 
-## Ideas
+## Ideas For Utils
 
 - Echo ✅
 - Prettify ✅
@@ -91,3 +91,9 @@ make deploy
 - Page Scraper
 - Timer
 - GIF database
+
+## Ideas For App 
+
+- Offer client only (where possible) so that user can disconnect from web and everything would still work 🔮
+- Offer theme picker with local web storage backing it 
+- Offer ability to "hash" state so that a user can share something like a secret santa generator
