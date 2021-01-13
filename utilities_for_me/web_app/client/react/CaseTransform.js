@@ -1,14 +1,14 @@
 import React, { useCallback, useState } from 'react'
 
-const frontEndToBackendCasings = {
-  'space-case': 'space_case',
-  'camel-case': 'camel_case',
-  'pascal-case': 'pascal_case',
-  'kebab-case': 'kebab_case',
-  'snake-case': 'snake_case'
-}
+const sendRequest = ({ fromCase, toCase, contents }) => {
+  const frontEndToBackendCasings = {
+    'space-case': 'space_case',
+    'camel-case': 'camel_case',
+    'pascal-case': 'pascal_case',
+    'kebab-case': 'kebab_case',
+    'snake-case': 'snake_case'
+  }
 
-const sendRequest = (contents, fromCase, toCase) => {
   fromCase = frontEndToBackendCasings[fromCase]
   toCase = frontEndToBackendCasings[toCase]
 
@@ -23,7 +23,7 @@ const sendRequest = (contents, fromCase, toCase) => {
     body: JSON.stringify(body),
     headers: { 'Content-Type': 'application/json' }
   }
-  const url = '/api/v1/case-transform/'
+  const url = '/api/v1/code-transform'
   return window.fetch(url, args).then(res => res.json())
 }
 
@@ -43,7 +43,7 @@ const CaseTransformHeader = () => {
 const CaseButton = ({ value, currentSelection, content, onClickHandler }) => {
   const buttonClass = value === currentSelection ? 'success fw-bold' : 'secondary'
   return (
-    <button className={`mx-2 my-1 btn btn-${buttonClass}`} type='button' value={value} readOnly onClick={onClickHandler}>{content}</button>
+    <button className={`me-2 my-1 btn btn-${buttonClass}`} type='button' value={value} readOnly onClick={onClickHandler}>{content}</button>
   )
 }
 
@@ -70,7 +70,7 @@ const CaseTransformBody = ({
   handleSubmit
 }) => {
   return (
-    <section className='row mt-4'>
+    <section className='row my-4'>
       <div className='col'>
         <div className='d-flex flex-column p-2 text-center'>
           <h3 className='text-start'>Text To Transform</h3>
@@ -86,6 +86,9 @@ const CaseTransformBody = ({
         <div className='d-flex justify-content-between align-items-center p-2 my-4'>
           <ButtonSection title='From' currentSelection={currentFromSelection} handleChange={handleFromChange} />
           <ButtonSection title='To' currentSelection={currentToSelection} handleChange={handleToChange} />
+        </div>
+        <div className="p-2">
+          <button className='btn btn-lg btn-success' onClick={handleSubmit}>Submit</button>
         </div>
       </div>
     </section>
@@ -114,18 +117,19 @@ function CaseTransform () {
   const [fromCase, setFromCase] = useState('space-case')
   const [toCase, setToCase] = useState('space-case')
   const [result, setResult] = useState('Hello there')
+  // const [data, isLoading, error, loadData] = useAsyncData()
 
   const handleContentsChange = (e) => setContents(e.target.value)
 
   const handleFromChange = (e) => { setFromCase(e.target.value) }
 
-  const handleToChange = useCallback((e) => {
-    e.preventDefault()
-    setToCase(e.target.value)
-    sendRequest(e.target.value.toLowerCase(), contents)
+  const handleToChange = (e) => { setToCase(e.target.value) }
+
+  const handleSubmit = (e) => {
+    sendRequest({ fromCase, toCase, contents })
       .then(json => { setResult(json.data) })
-      .catch(err => console.error(err))
-  }, [contents])
+      .catch(e => console.error(e))
+  }
 
   return (
     <div>
@@ -138,6 +142,7 @@ function CaseTransform () {
         handleContentsChange={handleContentsChange}
         handleFromChange={handleFromChange}
         handleToChange={handleToChange}
+        handleSubmit={handleSubmit}
       />
       <CaseTransformResult result={result} setResult={setResult} />
     </div>
