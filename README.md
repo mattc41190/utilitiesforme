@@ -72,12 +72,15 @@ make deploy
 
 ## Ideas
 
+- Echo ✅
+- Prettify ✅
 - Date & Time Calculator
 - Number Calculator
-- Code Case Transformer
+- Code Case Transformer 🧗‍♂️
 - Random String Generator
 - Fake Data Creator
 - Data Hashing 
+- Regex Tester
 - Data Encryption 
 - Secret Santa Generator
 - Data Structure Analyzer 
@@ -87,3 +90,4 @@ make deploy
 - Percent Calculator
 - Page Scraper
 - Timer
+- GIF database

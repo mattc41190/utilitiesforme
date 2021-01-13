@@ -20,6 +20,10 @@ typecheck_python:
 test_python:
 	coverage run -m pytest -s utilities_for_me && coverage html
 
+.PHONY: test_single_python
+test_single_python:
+	coverage run -m pytest -s utilities_for_me/utilities/_case_transform && coverage html
+
 .PHONY: check_python
 check_python: typecheck_python format_python test_python
 

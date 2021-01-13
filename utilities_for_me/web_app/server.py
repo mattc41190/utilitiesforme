@@ -34,8 +34,10 @@ def create_app(test_config=None):
 
     from .blueprints.app import bp as app_bp
     from .blueprints.api.echo import bp as echo_bp
+    from .blueprints.api.code_transform import bp as code_transform_bp
 
     app.register_blueprint(app_bp.bp)
     app.register_blueprint(echo_bp.bp)
+    app.register_blueprint(code_transform_bp.bp)
 
     return app
