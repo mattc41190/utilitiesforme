@@ -19,7 +19,7 @@ def calculate_percent_of(percent: float, of: float):
 
 
 def _get_steps_for_calculate_num_is_what_percent_of(num, of, num_over_of, result):
-    step_1 = f"To begin we divide {num} / {of} which is {num_over_of}"
+    step_1 = f"To begin we divide {num} / {of} which is {num_over_of}."
     step_2 = f"Then we multiply that number by {ONE_HUNDRED}, and that's it!"
     step_3 = f"So, {num} is {result}% of {of}."
     steps = {"step_1": step_1, "step_2": step_2, "step_3": step_3}

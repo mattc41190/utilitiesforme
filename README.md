@@ -97,3 +97,8 @@ make deploy
 - Offer client only (where possible) so that user can disconnect from web and everything would still work 🔮
 - Offer theme picker with local web storage backing it 
 - Offer ability to "hash" state so that a user can share something like a secret santa generator
+
+## Conventions
+
+- URLs are kebab cased
+- Utilities are written FIRST and test first in the utilities directory
