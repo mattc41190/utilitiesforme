@@ -29,5 +29,7 @@ def _get_steps_for_calculate_num_is_what_percent_of(num, of, num_over_of, result
 def calculate_num_is_what_percent_of(num: float, of: float):
     num_over_of = num / of
     result = num_over_of * ONE_HUNDRED
-    steps = _get_steps_for_calculate_num_is_what_percent_of(num, of, num_over_of, result)
+    steps = _get_steps_for_calculate_num_is_what_percent_of(
+        num, of, num_over_of, result
+    )
     return {"result": result, "steps": steps}

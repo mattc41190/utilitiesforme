@@ -4,10 +4,10 @@ const valuesToEndpoint = {
   echo: 'echo',
   upper: 'upper',
   lower: 'lower',
-  'base-64-encode': 'encode_b64',
-  'base-64-decode': 'decode_b64',
-  'kebab-case': 'kebab_case',
-  'snake-case': 'snake_case'
+  'base-64-encode': 'encode-b64',
+  'base-64-decode': 'decode-b64',
+  'kebab-case': 'kebab-case',
+  'snake-case': 'snake-case'
 }
 
 const sendRequest = (command, contents) => {

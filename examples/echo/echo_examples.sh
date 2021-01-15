@@ -20,10 +20,10 @@ echo -----
 curl --header "Content-Type: application/json" \
   --request POST \
   --data '{"contents":"Hello"}' \
-  http://localhost:5050/api/v1/echo/encode_b64
+  http://localhost:5050/api/v1/echo/encode-b64
 
 echo -----
 curl --header "Content-Type: application/json" \
   --request POST \
   --data '{"contents":"Hello"}' \
-  http://localhost:5050/api/v1/echo/decode_b64
+  http://localhost:5050/api/v1/echo/decode-b64

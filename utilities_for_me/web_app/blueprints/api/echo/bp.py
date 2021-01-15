@@ -34,28 +34,28 @@ def lower_handler():
     return {"data": data}
 
 
-@bp.route("/encode_b64", methods=["POST"])
+@bp.route("/encode-b64", methods=["POST"])
 def encode_b64_handler():
     prev_data = request.get_json(silent=True).get("contents", "")
     data = encode_b64(prev_data)
     return {"data": data}
 
 
-@bp.route("/decode_b64", methods=["POST"])
+@bp.route("/decode-b64", methods=["POST"])
 def b64_decode_handler():
     prev_data = request.get_json(silent=True).get("contents", "")
     data = decode_b64(prev_data)
     return {"data": data}
 
 
-@bp.route("/kebab_case", methods=["POST"])
+@bp.route("/kebab-case", methods=["POST"])
 def kebab_case_handler():
     prev_data = request.get_json(silent=True).get("contents", "")
     data = kebab_case(prev_data)
     return {"data": data}
 
 
-@bp.route("/snake_case", methods=["POST"])
+@bp.route("/snake-case", methods=["POST"])
 def snake_case_handler():
     prev_data = request.get_json(silent=True).get("contents", "")
     data = snake_case(prev_data)
