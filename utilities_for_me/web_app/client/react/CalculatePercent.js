@@ -6,11 +6,9 @@ const valuesToEndpoint = {
 }
 
 const sendRequest = (command, data) => {
-  console.log(data);
   const percent = data.percent
   const _of = data.of
 
-  console.log(percent);
   const args = {
     method: 'post',
     body: JSON.stringify({ percent: percent, of: _of }),
@@ -112,7 +110,6 @@ function CalculatePercent () {
   const handlePercentOfSubmit = (e) => {
     sendRequest('percentOf', percentOf )
       .then(json => {
-        console.log(json)
         setPercentOfResult(json.data.result)
       })
       .catch(e => console.error(e))
