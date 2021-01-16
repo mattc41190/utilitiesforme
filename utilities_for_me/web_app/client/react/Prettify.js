@@ -71,7 +71,6 @@ function Prettify () {
 
   const handleClick = (e) => {
     e.preventDefault()
-    console.log(e.target.value)
     const type = e.target.value.toLowerCase()
     const _result = _prettify(contents, type)
     setResult(_result)
