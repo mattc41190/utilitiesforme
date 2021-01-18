@@ -1,17 +1,31 @@
 import React, { useCallback, useState } from 'react'
 
+const PERCENT_OF = "percentOf"
+const NUM_IS_WHAT_PERCENT_OF = "numIsWhatPercentOf"
+
 const valuesToEndpoint = {
   percentOf: 'calculate-percent-of',
   numIsWhatPercentOf: 'calculate-num-is-what-percent-of'
 }
 
 const sendRequest = (command, data) => {
-  const percent = data.percent
-  const _of = data.of
+  let body = {}
+
+  if (command === PERCENT_OF) {
+    body = {
+      percent: data.percent,
+      of: data.of
+    }
+  } else if (command === NUM_IS_WHAT_PERCENT_OF) {
+    body = {
+      num: data.num,
+      of: data.of
+    }
+  }
 
   const args = {
     method: 'post',
-    body: JSON.stringify({ percent: percent, of: _of }),
+    body: JSON.stringify(body),
     headers: { 'Content-Type': 'application/json' }
   }
   const url = `/api/v1/calculate-percent/${valuesToEndpoint[command]}`
@@ -31,21 +45,19 @@ const CalculatePercentHeader = () => {
   )
 }
 
-const CalculatePercentBody = ({
+const PercentOf = ({
   percentOf,
   handlePercentOfChange,
-  percentOfResult,
   handlePercentOfSubmit,
-  numIsWhatPercentOf
-}
-) => {
+  percentOfResult
+}) => {
   const percentOf_Percent = percentOf.percent
   const percentOf_Of = percentOf.of
 
   return (
-    <section className='row g-3 mt-4 align-items-center'>
+    <section className='row g-3 my-4 align-items-center d-flex justify-content-center'>
       <div className='col-auto'>
-        <span>What is</span>
+        <h4>What is</h4>
       </div>
       <div className='col-auto'>
         <input
@@ -57,7 +69,7 @@ const CalculatePercentBody = ({
         />
       </div>
       <div className='col-auto'>
-        <span>% of</span>
+        <h4>% of</h4>
       </div>
       <div className='col-auto'>
         <input
@@ -72,14 +84,86 @@ const CalculatePercentBody = ({
         <button className='btn btn-info' onClick={handlePercentOfSubmit}>?</button>
       </div>
       <div className='col-auto'>
-        <strong>{percentOfResult}</strong>
+        <h4><strong>{percentOfResult}</strong></h4>
       </div>
     </section>
   )
 }
 
+const NumIsWhatPercentOf = ({
+  numIsWhatPercentOf,
+  handleNumIsWhatPercentOfChange,
+  numIsWhatPercentOfResult,
+  handleNumIsWhatPercentOfSubmit,
+}) => {
+  const numIsWhatPercentOf_Num = numIsWhatPercentOf.num
+  const numIsWhatPercentOf_Of = numIsWhatPercentOf.of
 
-function CalculatePercent () {
+  return (
+    <section className='row g-3 my-4 align-items-center d-flex justify-content-center'>
+      <div className='col-auto'>
+        <input
+          type='number'
+          className='form-control'
+          name='num'
+          value={numIsWhatPercentOf_Num}
+          onChange={handleNumIsWhatPercentOfChange}
+        />
+      </div>
+      <div className='col-auto'>
+        <h4>is what percent of</h4>
+      </div>
+      <div className='col-auto'>
+        <input
+          type='number'
+          className='form-control'
+          name='of'
+          value={numIsWhatPercentOf_Of}
+          onChange={handleNumIsWhatPercentOfChange}
+        />
+      </div>
+      <div className='col-auto'>
+        <button className='btn btn-info' onClick={handleNumIsWhatPercentOfSubmit}>?</button>
+      </div>
+      <div className='col-auto'>
+        <h4><strong>{numIsWhatPercentOfResult}</strong></h4>
+      </div>
+    </section>
+  )
+}
+
+const CalculatePercentBody = ({
+  percentOf,
+  handlePercentOfChange,
+  percentOfResult,
+  handlePercentOfSubmit,
+  numIsWhatPercentOf,
+  handleNumIsWhatPercentOfChange,
+  numIsWhatPercentOfResult,
+  handleNumIsWhatPercentOfSubmit,
+}
+) => {
+  return (
+    <section className='row g-3 my-4 align-items-center d-flex justify-content-center'>
+      <PercentOf
+        percentOf={percentOf}
+        handlePercentOfChange={handlePercentOfChange}
+        handlePercentOfSubmit={handlePercentOfSubmit}
+        percentOfResult={percentOfResult}
+      />
+      <hr />
+      <NumIsWhatPercentOf
+        numIsWhatPercentOf={numIsWhatPercentOf}
+        handleNumIsWhatPercentOfChange={handleNumIsWhatPercentOfChange}
+        numIsWhatPercentOfResult={numIsWhatPercentOfResult}
+        handleNumIsWhatPercentOfSubmit={handleNumIsWhatPercentOfSubmit}
+      />
+    </section>
+  )
+}
+
+
+function CalculatePercent() {
   const percentOfDefault = {
     percent: '10',
     of: '50'
@@ -90,14 +174,11 @@ function CalculatePercent () {
     of: '80'
   }
 
-  const [percentOf, setPercentOf] = useState(
-    Object.assign({}, percentOfDefault)
-  )
-  const [numIsWhatPercentOf, setNumIsWhatPercentOf] = useState(
-    Object.assign({}, numIsWhatPercentOfDefault)
-  )
+  const [percentOf, setPercentOf] = useState(percentOfDefault)
+  const [numIsWhatPercentOf, setNumIsWhatPercentOf] = useState(numIsWhatPercentOfDefault)
 
   const [percentOfResult, setPercentOfResult] = useState('5')
+  const [numIsWhatPercentOfResult, setNumIsWhatPercentOfResult] = useState('25')
 
   const handlePercentOfChange = (e) => {
     const { name, value } = e.target
@@ -107,10 +188,26 @@ function CalculatePercent () {
     }))
   }
 
+  const handleNumIsWhatPercentOfChange = (e) => {
+    const { name, value } = e.target
+    setNumIsWhatPercentOf(prevState => ({
+      ...prevState,
+      [name]: value
+    }))
+  }
+
   const handlePercentOfSubmit = (e) => {
-    sendRequest('percentOf', percentOf )
+    sendRequest(PERCENT_OF, percentOf)
       .then(json => {
         setPercentOfResult(json.data.result)
+      })
+      .catch(e => console.error(e))
+  }
+
+  const handleNumIsWhatPercentOfSubmit = (e) => {
+    sendRequest(NUM_IS_WHAT_PERCENT_OF, numIsWhatPercentOf)
+      .then(json => {
+        setNumIsWhatPercentOfResult(json.data.result)
       })
       .catch(e => console.error(e))
   }
@@ -125,6 +222,9 @@ function CalculatePercent () {
         percentOfResult={percentOfResult}
         handlePercentOfSubmit={handlePercentOfSubmit}
         numIsWhatPercentOf={numIsWhatPercentOf}
+        handleNumIsWhatPercentOfChange={handleNumIsWhatPercentOfChange}
+        numIsWhatPercentOfResult={numIsWhatPercentOfResult}
+        handleNumIsWhatPercentOfSubmit={handleNumIsWhatPercentOfSubmit}
       />
     </div>
   )
