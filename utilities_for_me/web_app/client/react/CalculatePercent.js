@@ -1,11 +1,13 @@
-import React, { useCallback, useState } from 'react'
+/* eslint-disable camelcase */
 
-const PERCENT_OF = "percentOf"
-const NUM_IS_WHAT_PERCENT_OF = "numIsWhatPercentOf"
+import React, { useState } from 'react'
 
-const valuesToEndpoint = {
-  percentOf: 'calculate-percent-of',
-  numIsWhatPercentOf: 'calculate-num-is-what-percent-of'
+const PERCENT_OF = 'percentOf'
+const NUM_IS_WHAT_PERCENT_OF = 'numIsWhatPercentOf'
+
+const valueToFormula = {
+  percentOf: 'percent_of',
+  numIsWhatPercentOf: 'num_is_what_percent_of'
 }
 
 const sendRequest = (command, data) => {
@@ -13,11 +15,13 @@ const sendRequest = (command, data) => {
 
   if (command === PERCENT_OF) {
     body = {
+      formula: valueToFormula[PERCENT_OF],
       percent: data.percent,
       of: data.of
     }
   } else if (command === NUM_IS_WHAT_PERCENT_OF) {
     body = {
+      formula: valueToFormula[NUM_IS_WHAT_PERCENT_OF],
       num: data.num,
       of: data.of
     }
@@ -28,7 +32,7 @@ const sendRequest = (command, data) => {
     body: JSON.stringify(body),
     headers: { 'Content-Type': 'application/json' }
   }
-  const url = `/api/v1/calculate-percent/${valuesToEndpoint[command]}`
+  const url = '/api/v1/calculate-percent'
   return window.fetch(url, args).then(res => res.json())
 }
 
@@ -55,7 +59,8 @@ const PercentOf = ({
   const percentOf_Of = percentOf.of
 
   return (
-    <section className='row g-3 my-4 align-items-center d-flex justify-content-center'>
+    <section className='row g-3 my-4 align-items-center d-flex'>
+      <h2><strong>What is X percent of Y?</strong></h2>
       <div className='col-auto'>
         <h4>What is</h4>
       </div>
@@ -94,13 +99,14 @@ const NumIsWhatPercentOf = ({
   numIsWhatPercentOf,
   handleNumIsWhatPercentOfChange,
   numIsWhatPercentOfResult,
-  handleNumIsWhatPercentOfSubmit,
+  handleNumIsWhatPercentOfSubmit
 }) => {
   const numIsWhatPercentOf_Num = numIsWhatPercentOf.num
   const numIsWhatPercentOf_Of = numIsWhatPercentOf.of
 
   return (
-    <section className='row g-3 my-4 align-items-center d-flex justify-content-center'>
+    <section className='row g-3 my-4 align-items-center d-flex'>
+      <h2><strong>X is what percent of Y?</strong></h2>
       <div className='col-auto'>
         <input
           type='number'
@@ -140,11 +146,11 @@ const CalculatePercentBody = ({
   numIsWhatPercentOf,
   handleNumIsWhatPercentOfChange,
   numIsWhatPercentOfResult,
-  handleNumIsWhatPercentOfSubmit,
+  handleNumIsWhatPercentOfSubmit
 }
 ) => {
   return (
-    <section className='row g-3 my-4 align-items-center d-flex justify-content-center'>
+    <section className='row g-3 my-4 align-items-center d-flex'>
       <PercentOf
         percentOf={percentOf}
         handlePercentOfChange={handlePercentOfChange}
@@ -162,8 +168,7 @@ const CalculatePercentBody = ({
   )
 }
 
-
-function CalculatePercent() {
+function CalculatePercent () {
   const percentOfDefault = {
     percent: '10',
     of: '50'
@@ -177,8 +182,8 @@ function CalculatePercent() {
   const [percentOf, setPercentOf] = useState(percentOfDefault)
   const [numIsWhatPercentOf, setNumIsWhatPercentOf] = useState(numIsWhatPercentOfDefault)
 
-  const [percentOfResult, setPercentOfResult] = useState('5')
-  const [numIsWhatPercentOfResult, setNumIsWhatPercentOfResult] = useState('25')
+  const [percentOfResult, setPercentOfResult] = useState('5.00')
+  const [numIsWhatPercentOfResult, setNumIsWhatPercentOfResult] = useState('25.00')
 
   const handlePercentOfChange = (e) => {
     const { name, value } = e.target
@@ -199,7 +204,7 @@ function CalculatePercent() {
   const handlePercentOfSubmit = (e) => {
     sendRequest(PERCENT_OF, percentOf)
       .then(json => {
-        setPercentOfResult(json.data.result)
+        setPercentOfResult(String(parseFloat(json.data.result).toFixed(2)))
       })
       .catch(e => console.error(e))
   }
@@ -207,7 +212,7 @@ function CalculatePercent() {
   const handleNumIsWhatPercentOfSubmit = (e) => {
     sendRequest(NUM_IS_WHAT_PERCENT_OF, numIsWhatPercentOf)
       .then(json => {
-        setNumIsWhatPercentOfResult(json.data.result)
+        setNumIsWhatPercentOfResult(String(parseFloat(json.data.result).toFixed(2)))
       })
       .catch(e => console.error(e))
   }
