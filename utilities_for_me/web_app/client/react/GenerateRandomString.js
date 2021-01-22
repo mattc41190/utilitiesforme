@@ -42,7 +42,6 @@ const GenerateRandomStringOptions = ({ length, selectedCategories, setSelectedCa
 
   const handleClick = (e) => {
     const category = e.target.value
-    console.log(`toggling character category for ${category}`)
     if (selectedCategories.includes(category)) {
       setSelectedCategories(selectedCategories.filter((c) => c !== category))
     } else {
@@ -79,8 +78,9 @@ const GenerateRandomStringOptions = ({ length, selectedCategories, setSelectedCa
         <button className={`btn btn-${getBtnColorClass('symbols')} me-2 mb-3`} onClick={(handleClick)} value='symbols'>Symbols❗️</button>
       </div>
       <hr />
-      <div className='p-2'>
-        <button className='btn btn-lg btn-success me-2 mb-3' onClick={handleSubmit} value='generate'>Generate 🏁</button>
+
+      <div className='d-grid p-2'>
+        <button className='btn btn-lg btn-block btn-success me-2 mb-3' onClick={handleSubmit} value='generate'>Generate 🏁</button>
       </div>
     </div>
   )
@@ -102,11 +102,19 @@ const GenerateRandomStringBody = ({ length, selectedCategories, setSelectedCateg
 }
 
 const GenerateRandomStringResult = ({ result }) => {
+  const copy = (e) => {
+    console.log(e)
+    navigator.clipboard.writeText(result)
+  }
+
   return (
     <div className='col-md-6'>
-      <div className='d-flex flex-column p-2 text-center'>
+      <div className='p-2 text-center'>
         <h3 className='text-start'>Result</h3>
-        <h4><code>{result}</code></h4>
+        <div className="card bg-dark my-4 p-4">
+          <h4><code className="text-success">{result}</code></h4>
+        </div>
+        <button className="btn btn-success" onClick={copy}>Copy 📋</button>
       </div>
     </div>
   )
@@ -115,7 +123,7 @@ const GenerateRandomStringResult = ({ result }) => {
 function GenerateRandomString () {
   const [_length, setLength] = useState(10)
   const [selectedCategories, setSelectedCategories] = useState([CAPITAL_LETTERS, LOWERCASE_LETTERS, NUMBERS, SYMBOLS])
-  const [result, setResult] = useState('')
+  const [result, setResult] = useState('Random String Here')
 
   const handleChange = (e) => setLength(e.target.value)
 

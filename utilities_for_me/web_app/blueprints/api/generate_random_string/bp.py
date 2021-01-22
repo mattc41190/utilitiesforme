@@ -33,7 +33,6 @@ def calculate_percent_of_handler():
         print(e)  # TODO: Use logger
         return {"result": f"{raw_length} is not a usable number"}, 400
 
-    
     body_categories = request.get_json(silent=True).get("categories", [])
 
     for category in body_categories:
@@ -41,7 +40,9 @@ def calculate_percent_of_handler():
             provided_categories.append(category)
 
     if len(provided_categories) == 0:
-        return {"result": "no usable characters categories provided for string generation"}, 400
+        return {
+            "result": "no usable characters categories provided for string generation"
+        }, 400
 
     result = generate(length, provided_categories)
     data = {"result": result}
