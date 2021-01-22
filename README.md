@@ -77,17 +77,16 @@ make deploy
 - Date & Time Calculator
 - Number Calculator
 - Code Case Transformer ✅
-- Random String Generator
+- Random String Generator 🧗‍♂️
 - Fake Data Creator
 - Data Hashing 
-- Regex Tester
 - Data Encryption 
+- Regex Tester
 - Secret Santa Generator
 - Data Structure Analyzer 
 - Priority Queue Simulator 
 - Image / Avatar Creator
-- Site Scraper (_$?_)
-- Percent Calculator 🧗‍♂️
+- Percent Calculator ✅
 - Page Scraper
 - Timer
 - GIF database

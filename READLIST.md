@@ -45,6 +45,7 @@ This is a collection of documentation items pertaining to the Utilities for Me a
 - Google App Engine
     -[Deploy](https://cloud.google.com/appengine/docs/standard/python/getting-started/deploying-the-application)
     - [Cheaper Static Asset Hosting](https://cloud.google.com/appengine/docs/standard/python3/serving-static-files)
+    - [Google Cloud Project Kill Switch](https://cloud.google.com/billing/docs/how-to/notify#functions_billing_auth-python)
 
 
 ## The Proposals

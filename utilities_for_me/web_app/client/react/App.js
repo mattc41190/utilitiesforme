@@ -1,13 +1,14 @@
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
 import Home from './Home'
+import Navbar from './Navbar'
+import Error from './Error'
+
 import Echo from './Echo'
 import Prettify from './Prettify'
 import CaseTransform from './CaseTransform'
 import CalculatePercent from './CalculatePercent'
-
-import Navbar from './Navbar'
-import Error from './Error'
+import GenerateRandomString from './GenerateRandomString'
 
 function App () {
   return (
@@ -20,6 +21,8 @@ function App () {
           <Route path='/prettify' component={Prettify} />
           <Route path='/case-transform' component={CaseTransform} />
           <Route path='/calculate-percent' component={CalculatePercent} />
+          <Route path='/generate-random-string' component={GenerateRandomString} />
+
           <Route component={Error} />
         </Switch>
       </div>
