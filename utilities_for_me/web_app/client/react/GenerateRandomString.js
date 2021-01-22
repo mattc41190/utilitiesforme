@@ -36,8 +36,6 @@ const GenerateRandomStringHeader = () => {
 }
 
 const GenerateRandomStringOptions = ({ length, selectedCategories, setSelectedCategories, handleChange, handleSubmit }) => {
-  console.log(selectedCategories)
-
   const handleClick = (e) => {
     const category = e.target.value
     if (selectedCategories.includes(category)) {
@@ -101,7 +99,6 @@ const GenerateRandomStringBody = ({ length, selectedCategories, setSelectedCateg
 
 const GenerateRandomStringResult = ({ result }) => {
   const copy = (e) => {
-    console.log(e)
     navigator.clipboard.writeText(result)
   }
 
@@ -112,7 +109,7 @@ const GenerateRandomStringResult = ({ result }) => {
         <div className='card bg-dark my-4 p-4'>
           <h4><code className='text-success'>{result}</code></h4>
         </div>
-        <button className='btn btn-success' onClick={copy}>Copy 📋</button>
+        {/* <button className='btn btn-success' onClick={copy}>Copy 📋</button> */}
       </div>
     </div>
   )
