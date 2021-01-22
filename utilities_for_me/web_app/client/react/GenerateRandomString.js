@@ -1,7 +1,5 @@
 import React, { useState } from 'react'
 
-import { prettify } from './lib/prettify'
-
 const CAPITAL_LETTERS = 'capital-letters'
 const LOWERCASE_LETTERS = 'lowercase-letters'
 const NUMBERS = 'numbers'
@@ -111,10 +109,10 @@ const GenerateRandomStringResult = ({ result }) => {
     <div className='col-md-6'>
       <div className='p-2 text-center'>
         <h3 className='text-start'>Result</h3>
-        <div className="card bg-dark my-4 p-4">
-          <h4><code className="text-success">{result}</code></h4>
+        <div className='card bg-dark my-4 p-4'>
+          <h4><code className='text-success'>{result}</code></h4>
         </div>
-        <button className="btn btn-success" onClick={copy}>Copy 📋</button>
+        <button className='btn btn-success' onClick={copy}>Copy 📋</button>
       </div>
     </div>
   )
