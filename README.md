@@ -80,7 +80,7 @@ make deploy
 - Random String Generator ✅
 - Fake Data Creator
 - Data Hashing 
-- Data Encryption 
+- Data Encryption 🧗‍♂️
 - Regex Tester
 - Secret Santa Generator
 - Data Structure Analyzer 

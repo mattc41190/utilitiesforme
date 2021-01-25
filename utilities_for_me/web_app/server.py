@@ -23,7 +23,7 @@ def create_app(test_config=None):
 
     if app.config["ENV"] == "production":
         static_root = (
-            "https://storage.googleapis.com/utilities-for-me"  # config based on env
+            "https://storage.googleapis.com/utilities-for-me"  # config based on env!
         )
     app.config["STATIC_ROOT"] = static_root
 

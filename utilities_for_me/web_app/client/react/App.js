@@ -9,6 +9,7 @@ import Prettify from './Prettify'
 import CaseTransform from './CaseTransform'
 import CalculatePercent from './CalculatePercent'
 import GenerateRandomString from './GenerateRandomString'
+import EncryptDecrypt from './EncryptDecrypt'
 
 function App () {
   return (
@@ -22,7 +23,7 @@ function App () {
           <Route path='/case-transform' component={CaseTransform} />
           <Route path='/calculate-percent' component={CalculatePercent} />
           <Route path='/generate-random-string' component={GenerateRandomString} />
-
+          <Route path='/encrypt-decrypt' component={EncryptDecrypt} />
           <Route component={Error} />
         </Switch>
       </div>
