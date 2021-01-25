@@ -98,9 +98,9 @@ const GenerateRandomStringBody = ({ length, selectedCategories, setSelectedCateg
 }
 
 const GenerateRandomStringResult = ({ result }) => {
-  const copy = (e) => {
-    navigator.clipboard.writeText(result)
-  }
+  // const copy = (e) => {
+  //   navigator.clipboard.writeText(result)
+  // }
 
   return (
     <div className='col-md-6'>
