@@ -55,3 +55,8 @@ This is a collection of documentation items pertaining to the Utilities for Me a
 - [Custom Hooks for React Data Fetching](https://dev.to/nicomartin/the-right-way-to-fetch-data-with-react-hooks-48gc)
 - [Ethical Ads](https://www.ethicalads.io/)
 - [Make a WYSIWYG](https://codepen.io/saigowthamr/pen/OZmWqW)
+
+
+## Good Articles For Developers
+
+- [Python Basic Encryption](https://devqa.io/encrypt-decrypt-data-python/)

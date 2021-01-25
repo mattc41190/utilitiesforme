@@ -1,20 +1,19 @@
 import React, { useCallback, useState } from 'react'
 
-const sendEncryptRequest = (contents) => {
+const sendEncryptRequest = (message) => {
   const args = {
     method: 'post',
-    body: JSON.stringify({ message: contents }),
+    body: JSON.stringify({ message }),
     headers: { 'Content-Type': 'application/json' }
   }
   const url = '/api/v1/encrypt-decrypt/encrypt'
   return window.fetch(url, args).then(res => res.json())
 }
 
-const sendDecryptRequest = (contents, key) => {
-  console.log(key)
+const sendDecryptRequest = (encrypted_message, key) => {
   const args = {
     method: 'post',
-    body: JSON.stringify({ encrypted_message: contents, key: key }),
+    body: JSON.stringify({ encrypted_message, key }),
     headers: { 'Content-Type': 'application/json' }
   }
   const url = '/api/v1/encrypt-decrypt/decrypt'
@@ -31,6 +30,14 @@ const EncryptDecryptHeader = () => {
         </div>
       </div>
     </section>
+  )
+}
+
+const ResultCard = ({text}) => {
+  return (
+    <div className='card bg-dark my-2 p-4'>
+      <h6><code className='text-success'>{text}</code></h6>
+    </div>
   )
 }
 
@@ -55,20 +62,33 @@ const EncryptBody = ({ messageToEncrypt, handleChange, handleClick }) => {
   )
 }
 
-const EncryptResult = ({ encryptedMessage, _key }) => {
+const EncryptResult = ({ encryptedMessage, encryptionKey }) => {
   return (
     <div className='col-md-6'>
       <div className='d-flex flex-column p-2'>
         <h3>Encrypted Message</h3>
-        <div className='card bg-dark my-2 p-4'>
-          <h6><code className='text-success'>{encryptedMessage}</code></h6>
-        </div>
+        <ResultCard text={encryptedMessage} />
         <h3>Encryption Key</h3>
-        <div className='card bg-dark my-2 p-4'>
-          <h6><code className='text-success'>{_key}</code></h6>
-        </div>
+        <ResultCard text={encryptionKey} />
       </div>
     </div>
+  )
+}
+
+const Encrypt = ({ messageToEncrypt, handleChange, handleClick, encryptedMessage, encryptionKey }) => {
+  return (
+    <div>
+      <h2>Encrypt</h2>
+      <section className='row mt-4'>
+        <EncryptBody 
+          messageToEncrypt={messageToEncrypt} 
+          handleChange={handleChange} 
+          handleClick={handleClick} 
+        />
+        <EncryptResult encryptedMessage={encryptedMessage} encryptionKey={encryptionKey} />
+      </section>
+    </div>
+
   )
 }
 
@@ -111,35 +131,23 @@ const DecryptResult = ({ decryptedMessage }) => {
     <div className='col-md-6'>
       <div className='d-flex flex-column p-2'>
         <h3>Decrypted Message</h3>
-        <div className='card bg-dark my-2 p-4'>
-          <h6><code className='text-success'>{decryptedMessage}</code></h6>
-        </div>
+        <ResultCard text={decryptedMessage} />
       </div>
     </div>
   )
 }
 
-const Encrypt = ({ messageToEncrypt, handleChange, handleClick, encryptedMessage, _key }) => {
+const Decrypt = ({ 
+  messageToDecrypt, 
+  decryptionKey, 
+  handleMessageToDecryptChange, 
+  handleDecryptionKeyChange, 
+  handleClick, 
+  decryptedMessage 
+}) => {
   return (
     <div>
-      <h2>
-        Encrypt
-      </h2>
-      <section className='row mt-4'>
-        <EncryptBody messageToEncrypt={messageToEncrypt} handleChange={handleChange} handleClick={handleClick} />
-        <EncryptResult encryptedMessage={encryptedMessage} _key={_key} />
-      </section>
-    </div>
-
-  )
-}
-
-const Decrypt = ({ messageToDecrypt, decryptionKey, handleMessageToDecryptChange, handleDecryptionKeyChange, handleClick, decryptedMessage }) => {
-  return (
-    <div>
-      <h2>
-        Decrypt
-      </h2>
+      <h2>Decrypt</h2>
       <section className='row mt-4'>
         <DecryptBody
           messageToDecrypt={messageToDecrypt}
@@ -161,13 +169,14 @@ function EncryptDecrypt () {
   const [decryptionKey, setDecryptionKey] = useState('')
 
   const [encryptedMessage, setEncryptedMessage] = useState('Encrypted Message Goes Here...')
-  const [_key, setKey] = useState('Encryption Key Goes Here...')
+  const [encryptionKey, setEncryptionKey] = useState('Encryption Key Goes Here...')
   const [decryptedMessage, setDecryptedMessage] = useState('Decrypted Message Goes Here...')
 
-  const handleChange = (e) => setMessageToEncrypt(e.target.value)
+  const handleMessageToEncryptChange = (e) => setMessageToEncrypt(e.target.value)
+  
   const handleMessageToDecryptChange = (e) => setMessageToDecrypt(e.target.value)
+  
   const handleDecryptionKeyChange = (e) => {
-    console.log(e.target.value)
     setDecryptionKey(e.target.value)
   }
 
@@ -176,18 +185,15 @@ function EncryptDecrypt () {
     sendEncryptRequest(messageToEncrypt)
       .then(json => {
         setEncryptedMessage(json.data.encrypted_message)
-        setKey(json.data.key)
+        setEncryptionKey(json.data.key)
       })
       .catch(err => console.error(err))
   }, [messageToEncrypt])
 
   const handleDecryptClick = useCallback((e) => {
-    console.log(decryptionKey)
     e.preventDefault()
     sendDecryptRequest(messageToDecrypt, decryptionKey)
-      .then(json => {
-        setDecryptedMessage(json.data)
-      })
+      .then(json => setDecryptedMessage(json.data))
       .catch(err => console.error(err))
   }, [messageToDecrypt, decryptionKey])
 
@@ -197,10 +203,10 @@ function EncryptDecrypt () {
       <hr />
       <Encrypt
         messageToEncrypt={messageToEncrypt}
-        handleChange={handleChange}
+        handleChange={handleMessageToEncryptChange}
         handleClick={handleEncryptClick}
         encryptedMessage={encryptedMessage}
-        _key={_key}
+        encryptionKey={encryptionKey}
       />
       <hr />
       <Decrypt
