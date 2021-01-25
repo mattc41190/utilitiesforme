@@ -39,13 +39,11 @@ def create_app(test_config=None):
     from .blueprints.api.generate_random_string import bp as generate_random_string_bp
     from .blueprints.api.encrypt_decrypt import bp as encrypt_decrypt_bp
 
-
     app.register_blueprint(app_bp.bp)
     app.register_blueprint(echo_bp.bp)
     app.register_blueprint(case_transform_bp.bp)
     app.register_blueprint(calculate_percent_bp.bp)
     app.register_blueprint(generate_random_string_bp.bp)
     app.register_blueprint(encrypt_decrypt_bp.bp)
-
 
     return app

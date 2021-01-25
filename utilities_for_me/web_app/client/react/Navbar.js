@@ -5,7 +5,7 @@ function Navbar () {
     <nav className='navbar navbar-light bg-light border-bottom border-info'>
       <div className='container-fluid'>
         <a className='navbar-brand' href='/'><span className='navbar-brand mb-0 h1'>UtilitiesFor.me</span></a>
-        <span className="navbar-text me-4"> <a href="https://github.com/mattc41190/utilitiesforme"><i class="bi bi-github"></i></a> </span>
+        <span className='navbar-text me-4'> <a href='https://github.com/mattc41190/utilitiesforme'><i class='bi bi-github' /></a> </span>
       </div>
     </nav>
   )
