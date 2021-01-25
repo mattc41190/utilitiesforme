@@ -15,7 +15,7 @@ bp = Blueprint(
 
 
 @bp.route("", methods=["POST"])
-def calculate_percent_of_handler():
+def generate_random_string_handler():
     acceptable_categories = [
         CAPITAL_LETTERS_TITLE,
         LOWERCASE_LETTERS_TITLE,

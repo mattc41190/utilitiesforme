@@ -20,7 +20,7 @@ function Home () {
             <li> <span> <Link to='/echo' className='text-info'>Echo</Link> &mdash; A collection of utilities associated with general text transformations 🗣</span></li>
             <li> <span> <Link to='/prettify' className='text-info'>Prettify</Link> &mdash; A collection of utilities associated with making structured data easier on the eyes ✨</span></li>
             <li> <span> <Link to='/case-transform' className='text-info'>Case Transform</Link> &mdash; A collection of utilities associated with switching one code casing with another 💻</span></li>
-            <li> <span> <Link to='/calculate-percent' className='text-info'>Calculate Percent</Link> &mdash; A collection of utilities associated with computing percents %</span></li>
+            <li> <span> <Link to='/calculate-percent' className='text-info'>Calculate Percent</Link> &mdash; A collection of utilities associated with computing percents 💯</span></li>
             <li> <span> <Link to='/generate-random-string' className='text-info'>Generate Random String</Link> &mdash; A utility that will get you reasonably random strings if you ask it nicely. 🔮</span></li>
           </ul>
         </div>

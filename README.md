@@ -77,7 +77,7 @@ make deploy
 - Date & Time Calculator
 - Number Calculator
 - Code Case Transformer ✅
-- Random String Generator 🧗‍♂️
+- Random String Generator ✅
 - Fake Data Creator
 - Data Hashing 
 - Data Encryption 
