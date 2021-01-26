@@ -5,7 +5,7 @@
 
 ## What is this
 
-This is a repository that contains the source code for the _utilitiesfor.me_ application. See: http://bit.ly/utilities-for-me
+This is a repository that contains the source code for the _utilitiesfor.me_ application. See: http://www.utilitiesfor.me
 
 ![demo](meta/demo.png)
 
