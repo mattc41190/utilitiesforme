@@ -10,10 +10,10 @@ const sendEncryptRequest = (message) => {
   return window.fetch(url, args).then(res => res.json())
 }
 
-const sendDecryptRequest = (encrypted_message, key) => {
+const sendDecryptRequest = (encryptedMessage, key) => {
   const args = {
     method: 'post',
-    body: JSON.stringify({ encrypted_message, key }),
+    body: JSON.stringify({ encrypted_message: encryptedMessage, key: key }),
     headers: { 'Content-Type': 'application/json' }
   }
   const url = '/api/v1/encrypt-decrypt/decrypt'
@@ -33,7 +33,7 @@ const EncryptDecryptHeader = () => {
   )
 }
 
-const ResultCard = ({text}) => {
+const ResultCard = ({ text }) => {
   return (
     <div className='card bg-dark my-2 p-4'>
       <h6><code className='text-success'>{text}</code></h6>
@@ -80,10 +80,10 @@ const Encrypt = ({ messageToEncrypt, handleChange, handleClick, encryptedMessage
     <div>
       <h2>Encrypt</h2>
       <section className='row mt-4'>
-        <EncryptBody 
-          messageToEncrypt={messageToEncrypt} 
-          handleChange={handleChange} 
-          handleClick={handleClick} 
+        <EncryptBody
+          messageToEncrypt={messageToEncrypt}
+          handleChange={handleChange}
+          handleClick={handleClick}
         />
         <EncryptResult encryptedMessage={encryptedMessage} encryptionKey={encryptionKey} />
       </section>
@@ -137,13 +137,13 @@ const DecryptResult = ({ decryptedMessage }) => {
   )
 }
 
-const Decrypt = ({ 
-  messageToDecrypt, 
-  decryptionKey, 
-  handleMessageToDecryptChange, 
-  handleDecryptionKeyChange, 
-  handleClick, 
-  decryptedMessage 
+const Decrypt = ({
+  messageToDecrypt,
+  decryptionKey,
+  handleMessageToDecryptChange,
+  handleDecryptionKeyChange,
+  handleClick,
+  decryptedMessage
 }) => {
   return (
     <div>
@@ -173,9 +173,9 @@ function EncryptDecrypt () {
   const [decryptedMessage, setDecryptedMessage] = useState('Decrypted Message Goes Here...')
 
   const handleMessageToEncryptChange = (e) => setMessageToEncrypt(e.target.value)
-  
+
   const handleMessageToDecryptChange = (e) => setMessageToDecrypt(e.target.value)
-  
+
   const handleDecryptionKeyChange = (e) => {
     setDecryptionKey(e.target.value)
   }
