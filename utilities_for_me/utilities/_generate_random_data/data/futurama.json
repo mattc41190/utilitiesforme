@@ -1,0 +1,39 @@
+{
+    "characters": [
+        {
+            "firstName": "Phillip",
+            "lastName": "Fry",
+            "birthDate": "Wed, 14 Aug 1974 18:00:00 GMT"
+        },
+        {
+            "firstName": "Turanga",
+            "lastName": "Leela",
+            "birthDate": "Sat, 29 Jul 2975 00:00:00 GMT"
+        },
+        {
+            "firstName": "Hubert",
+            "lastName": "Farnsworth",
+            "birthDate": "Tue, 09 Apr 2841 00:00:00 GMT"
+        },
+        {
+            "firstName": "Hermes",
+            "lastName": "Conrad",
+            "birthDate": "Sun, 15 Jul 2959 00:00:00 GMT"
+        },
+        {
+            "firstName": "Amy",
+            "lastName": "Wong (Kroker)",
+            "birthDate": "Thu, 03 Dec 2978 00:00:00 GMT"
+        }, 
+        {
+            "firstName": "John",
+            "lastName": "Zoidberg",
+            "birthDate": "Sat, 05 May 2914 00:00:00 GMT"
+        },
+        {
+            "firstName": "Bender",
+            "lastName": "Rodriguez",
+            "birthDate": "Sun, 04 Sep 2996 00:00:00 GMT"
+        }
+    ]
+}

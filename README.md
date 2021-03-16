@@ -78,9 +78,9 @@ make deploy
 - Number Calculator
 - Code Case Transformer ✅
 - Random String Generator ✅
-- Fake Data Creator
+- Fake Data Creator 🧗‍♂️
 - Data Hashing 
-- Data Encryption 🧗‍♂️
+- Data Encryption ✅
 - Regex Tester
 - Secret Santa Generator
 - Data Structure Analyzer 
