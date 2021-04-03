@@ -1,0 +1,217 @@
+import React, { useCallback, useState, useEffect } from 'react'
+
+import { getMinutes, getSeconds, translateFromSeconds, translateToSeconds } from './lib/timer'
+
+const AUDIO = new Audio(`${window.staticRoot}/static/sounds/alarm-clock.mp3`)
+
+const THIRTY_SECONDS_STR = "THIRTY_SECONDS"
+const FIVE_MINUTES_STR = "FIVE_MINUTES"
+const TEN_MINUTES_STR = "TEN_MINUTES"
+const TWENTY_FIVE_MINUTES_STR = "TWENTY_FIVE_MINUTES"
+
+const THIRTY_SECONDS = 3
+const FIVE_MINUTES = 5 * 60
+const TEN_MINUTES = FIVE_MINUTES * 2
+const TWENTY_FIVE_MINUTES = FIVE_MINUTES * 5
+
+const TIMER_MAP = {
+  THIRTY_SECONDS,
+  FIVE_MINUTES,
+  TEN_MINUTES,
+  TWENTY_FIVE_MINUTES,
+  custom: null,
+}
+
+const TimerHeader = () => {
+  return (
+    <section className='row mt-4'>
+      <div className='col'>
+        <div className='d-flex flex-column p-2 '>
+          <h1>Timer</h1>
+          <p>The <i>Timer</i> utility contains a settable timer. Set a time and walk away, when the <i>timer</i>  finishes it will beep and change colors</p>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+const TimerSelectorButton = ({ resetTimer, timerDurationValue, timerDurationDisplay }) => {
+  return <button
+    className={`btn btn-primary me-2 mb-3`}
+    onClick={resetTimer}
+    value={timerDurationValue}>
+    {timerDurationDisplay}
+  </button>
+}
+
+const TimerSelectorButtons = ({ timerIdentifiers, resetTimer }) => {
+
+  const timerButtons = timerIdentifiers.map((timerIdentifier, i) => {
+    return <TimerSelectorButton
+      key={i}
+      resetTimer={resetTimer}
+      timerDurationValue={timerIdentifier.timerDurationValue}
+      timerDurationDisplay={timerIdentifier.timerDurationDisplay}
+    />
+  })
+
+  return (
+    <div>{timerButtons}</div>
+  )
+}
+
+const TimerSelectorSection = ({ resetTimer }) => {
+
+  const timerIdentifiers = [
+    { timerDurationValue: THIRTY_SECONDS_STR, timerDurationDisplay: "00:30" },
+    { timerDurationValue: FIVE_MINUTES_STR, timerDurationDisplay: "05:00" },
+    { timerDurationValue: TEN_MINUTES_STR, timerDurationDisplay: "10:00" },
+    { timerDurationValue: TWENTY_FIVE_MINUTES_STR, timerDurationDisplay: "25:00" },
+  ]
+
+  return (
+    <div>
+      <section className='row mt-4'>
+        <div className="text-center">
+          <TimerSelectorButtons resetTimer={resetTimer} timerIdentifiers={timerIdentifiers} />
+        </div>
+      </section>
+    </div>
+  )
+}
+
+
+const TimerDisplay = ({ timeRemaining }) => {
+  const displayTime = translateFromSeconds(timeRemaining)
+  return (
+    <h2>{displayTime}</h2>
+  )
+}
+
+const TimerBody = ({
+  timeRemaining,
+  setTimeRemaining,
+  isRunning,
+  toggleTimer,
+  selectedTimer,
+  resetTimer,
+  timerComplete
+}) => {
+
+  const buttonText = isRunning ? "STOP" : "START"
+  const colorClass = isRunning ? "warning" : "success"
+  const timerCompleteText = timerComplete ? "Done!" : ""
+
+  return (
+    <div>
+      <TimerSelectorSection resetTimer={resetTimer} />
+      <section className='row mt-4'>
+        <div className="text-center">
+          <TimerDisplay timeRemaining={timeRemaining} isRunning={isRunning} setTimeRemaining={setTimeRemaining} />
+        </div>
+      </section>
+      <section className='row mt-4'>
+        <div className="text-center">
+          <button className={`btn btn-${colorClass} me-2 mb-3`} onClick={toggleTimer} value='toggle'>{buttonText}</button>
+          <button className={`btn btn-danger me-2 mb-3`} onClick={resetTimer} value={selectedTimer}>RESET</button>
+          <p>{timerCompleteText}</p>
+        </div>
+      </section>
+    </div>
+  )
+}
+
+
+function Timer() {
+  const [isRunning, setIsRunning] = useState(false)
+  const [selectedTimer, setSelectedTimer] = useState(TWENTY_FIVE_MINUTES_STR)
+  const [timeRemaining, setTimeRemaining] = useState(TWENTY_FIVE_MINUTES)
+  const [timerComplete, setTimerComplete] = useState(false)
+  const [alarmPlaying, setAlarmPlaying] = useState(false)
+
+  const finishTimer = () => {
+    setIsRunning(false)
+    setTimerComplete(true)
+    setAlarmPlaying(true)
+  }
+
+  const tick = () => {
+    if (isRunning) {
+      if (timeRemaining >= 1) {
+        setTimeRemaining(timeRemaining - 1)
+      } else {
+        finishTimer()
+      }
+    }
+  }
+
+  const toggleTimer = () => setIsRunning(!isRunning)
+
+  const resetTimer = (e) => {
+    setAlarmPlaying(false)
+    const desiredTimer = e.target.value
+    desiredTimer === selectedTimer ? null : setSelectedTimer(desiredTimer)
+    setIsRunning(false)
+    setTimeRemaining(TIMER_MAP[desiredTimer])
+    setTimerComplete(false)
+  }
+
+  useEffect(() => {
+    const timer = setInterval(tick, 1000)
+    return () => clearInterval(timer)
+  })
+
+  useEffect(() => {
+    alarmPlaying ? AUDIO.play() : (AUDIO.pause() && (AUDIO.currentTime = 0))
+  }, [alarmPlaying])
+
+  return (
+    <div>
+      <TimerHeader />
+      <hr />
+      <TimerBody
+        timeRemaining={timeRemaining}
+        setTimeRemaining={setTimeRemaining}
+        isRunning={isRunning}
+        toggleTimer={toggleTimer}
+        selectedTimer={selectedTimer}
+        resetTimer={resetTimer}
+        timerComplete={timerComplete}
+      />
+      <hr />
+    </div>
+  )
+}
+
+export default Timer
+
+
+// Undone! Finish this to allow users to set a custom timer
+// TODO: Make settable timer
+const TimerSetter = () => {
+  // const [minutes, setMinutes] = useState(getMinutes(timeRemaining))
+  // const [seconds, setSeconds] = useState(getSeconds(timeRemaining))
+  // const updateTime = (_minutes, _seconds) => {
+  //   console.log(`Setting time to: ${translateToSeconds(_minutes, _seconds)}`)
+  //   setTimeRemaining(translateToSeconds(_minutes, _seconds))
+  // }
+
+  // const updateMinutes = (e) => {
+  //   let localMinutes = parseInt(e.target.value) || 0
+  //   localMinutes = localMinutes > 99 ? 99 : localMinutes
+  //   setMinutes(localMinutes)
+  //   updateTime(localMinutes, seconds)
+  // }
+  // const updateSeconds = (e) => {
+  //   let localSeconds = parseInt(e.target.value) || 0
+  //   localSeconds = localSeconds > 59 ? 59 : localSeconds
+  //   setSeconds(localSeconds)
+  //   updateTime(minutes, localSeconds)
+  // }
+  // return (
+  //   <h2> 
+  //     <input type="number" onChange={updateMinutes} value={minutes}></input> 
+  //     <input type="number" onChange={updateSeconds} value={seconds}></input> 
+  //   </h2>
+  // )
+}

@@ -23,6 +23,7 @@ function Home () {
             <li> <span> <Link to='/calculate-percent' className='text-info'>Calculate Percent</Link> &mdash; A collection of utilities associated with computing percents 💯</span></li>
             <li> <span> <Link to='/generate-random-string' className='text-info'>Generate Random String</Link> &mdash; A utility that will get you reasonably random strings if you ask it nicely 🔮</span></li>
             <li> <span> <Link to='/encrypt-decrypt' className='text-info'>Encrypt / Decrypt</Link> &mdash; A utility that allows to you encrypt and decrypt sensitive information 🔐</span></li>
+            <li> <span> <Link to='/timer' className='text-info'>Timer</Link> &mdash; A utility that allows to you create timers, because who doesn't wanna know how long things take? ⏲</span></li>
           </ul>
         </div>
       </section>
