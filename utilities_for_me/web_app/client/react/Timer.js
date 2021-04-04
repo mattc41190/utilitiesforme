@@ -7,7 +7,7 @@ const FIVE_MINUTES_STR = 'FIVE_MINUTES'
 const TEN_MINUTES_STR = 'TEN_MINUTES'
 const TWENTY_FIVE_MINUTES_STR = 'TWENTY_FIVE_MINUTES'
 
-const THIRTY_SECONDS = 3
+const THIRTY_SECONDS = 30
 const FIVE_MINUTES = 5 * 60
 const TEN_MINUTES = FIVE_MINUTES * 2
 const TWENTY_FIVE_MINUTES = FIVE_MINUTES * 5
@@ -58,7 +58,7 @@ const TimerSelectorButtons = ({ timerIdentifiers, resetTimer }) => {
   })
 
   return (
-    <div className='btn-group' role='group'>{timerButtons}</div>
+    <div>{timerButtons}</div>
   )
 }
 
