@@ -36,7 +36,7 @@ const TimerHeader = () => {
 const TimerSelectorButton = ({ resetTimer, timerDurationValue, timerDurationDisplay }) => {
   return (
     <button
-      className='btn btn-outline-dark px-5'
+      className='btn btn-outline-dark mx-2 mt-2 px-5 '
       onClick={resetTimer}
       value={timerDurationValue}
     >
