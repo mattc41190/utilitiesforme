@@ -65,10 +65,24 @@ make deploy
 
 ### As a User?
 
-- Go to the site (TBD)
+- Go to the site (https://utilitiesfor.me/)
 - Find the utility you need
 - Use said utility 
 - Profit 🤑
+
+## Common Developer Make Targets
+
+- Build and Run Server
+
+```sh
+make run_dev_server
+```
+
+- Run Client Bundler 
+
+```sh
+make run_dev_ui
+```
 
 ## Ideas For Utils
 
@@ -80,7 +94,7 @@ make deploy
 - Random String Generator ✅
 - Fake Data Creator
 - Data Hashing 
-- Data Encryption 🧗‍♂️
+- Data Encryption ✅
 - Regex Tester
 - Secret Santa Generator
 - Data Structure Analyzer 
@@ -88,7 +102,7 @@ make deploy
 - Image / Avatar Creator
 - Percent Calculator ✅
 - Page Scraper
-- Timer
+- Timer 🧗‍♂️
 - GIF database
 
 ## Ideas For App 

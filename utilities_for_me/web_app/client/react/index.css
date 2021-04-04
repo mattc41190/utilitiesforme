@@ -2,6 +2,23 @@
   font-family: 'Inconsolata', monospace;
 }
 
+.display-large {
+  font-size: 9rem;
+}
+
 .utility-link {
   color: #0DCAF0;
+}
+
+
+.timer-blinking{
+  animation:blinkingText 1.2s infinite;
+}
+
+@keyframes blinkingText{
+  0%{     color: #212529;    }
+  49%{    color: #212529; }
+  60%{    color: transparent; }
+  99%{    color:transparent;  }
+  100%{   color: #212529;    }
 }

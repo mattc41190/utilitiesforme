@@ -10,6 +10,7 @@ import CaseTransform from './CaseTransform'
 import CalculatePercent from './CalculatePercent'
 import GenerateRandomString from './GenerateRandomString'
 import EncryptDecrypt from './EncryptDecrypt'
+import Timer from './Timer'
 
 function App () {
   return (
@@ -24,6 +25,7 @@ function App () {
           <Route path='/calculate-percent' component={CalculatePercent} />
           <Route path='/generate-random-string' component={GenerateRandomString} />
           <Route path='/encrypt-decrypt' component={EncryptDecrypt} />
+          <Route path='/timer' component={Timer} />
           <Route component={Error} />
         </Switch>
       </div>
