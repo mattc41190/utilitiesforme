@@ -58,7 +58,7 @@ const TimerSelectorButtons = ({ timerIdentifiers, resetTimer }) => {
   })
 
   return (
-    <div className="btn-group" role="group">{timerButtons}</div>
+    <div className='btn-group' role='group'>{timerButtons}</div>
   )
 }
 
@@ -82,7 +82,7 @@ const TimerSelectorSection = ({ resetTimer }) => {
 }
 
 const TimerDisplay = ({ timeRemaining, timerComplete }) => {
-  const blinkClass = timerComplete ? "timer-blinking" : ""
+  const blinkClass = timerComplete ? 'timer-blinking' : ''
   const displayTime = translateFromSeconds(timeRemaining)
   return (
     <h2 className={`display-1 display-large ${blinkClass}`}>{displayTime}</h2>
@@ -100,17 +100,16 @@ const TimerBody = ({
 }) => {
   const buttonText = isRunning ? 'STOP' : 'START'
   const colorClass = isRunning ? 'warning' : 'success'
-  const timerCompleteText = timerComplete ? 'Done!' : ''
 
   return (
     <div>
       <TimerSelectorSection resetTimer={resetTimer} />
       <section className='row mt-4'>
         <div className='text-center'>
-          <TimerDisplay 
-            timeRemaining={timeRemaining} 
-            isRunning={isRunning} 
-            setTimeRemaining={setTimeRemaining} 
+          <TimerDisplay
+            timeRemaining={timeRemaining}
+            isRunning={isRunning}
+            setTimeRemaining={setTimeRemaining}
             timerComplete={timerComplete}
           />
         </div>
@@ -163,12 +162,12 @@ function Timer () {
   useEffect(() => {
     const timer = setInterval(tick, 1000)
     return () => clearInterval(timer)
-  }) 
+  })
 
   useEffect(() => {
-    alarmPlaying 
-    ? audio.current.play() 
-    : (audio.current.pause() && (audio.current.currentTime = 0))
+    alarmPlaying
+      ? audio.current.play()
+      : (audio.current.pause() && (audio.current.currentTime = 0))
   }, [alarmPlaying])
 
   return (
