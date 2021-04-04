@@ -12,7 +12,6 @@ import GenerateRandomString from './GenerateRandomString'
 import EncryptDecrypt from './EncryptDecrypt'
 import Timer from './Timer'
 
-
 function App () {
   return (
     <main>
