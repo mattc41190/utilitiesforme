@@ -71,12 +71,8 @@ const TimerSelectorSection = ({ resetTimer }) => {
   ]
 
   return (
-    <div>
-      <section className='row my-4'>
-        <div className='text-center'>
-          <TimerSelectorButtons resetTimer={resetTimer} timerIdentifiers={timerIdentifiers} />
-        </div>
-      </section>
+    <div className='text-center'>
+      <TimerSelectorButtons resetTimer={resetTimer} timerIdentifiers={timerIdentifiers} />
     </div>
   )
 }
@@ -85,7 +81,22 @@ const TimerDisplay = ({ timeRemaining, timerComplete }) => {
   const blinkClass = timerComplete ? 'timer-blinking' : ''
   const displayTime = translateFromSeconds(timeRemaining)
   return (
-    <h2 className={`display-1 display-large ${blinkClass}`}>{displayTime}</h2>
+    <div className='text-center'>
+      <h2 className={`display-1 display-large ${blinkClass}`}>{displayTime}</h2>
+    </div>
+
+  )
+}
+
+const TimerManager = ({ isRunning, timerComplete, toggleTimer, selectedTimer, resetTimer }) => {
+  const buttonText = isRunning ? 'STOP' : 'START'
+  const colorClass = isRunning ? 'warning' : 'success'
+
+  return (
+    <div className='text-center'>
+      <button disabled={timerComplete} className={`btn btn-lg btn-${colorClass} me-2 mb-3 px-5`} onClick={toggleTimer} value='toggle'>{buttonText}</button>
+      <button className='btn btn-lg btn-danger me-2 mb-3 px-5' onClick={resetTimer} value={selectedTimer}>RESET</button>
+    </div>
   )
 }
 
@@ -93,32 +104,32 @@ const TimerBody = ({
   timeRemaining,
   setTimeRemaining,
   isRunning,
-  toggleTimer,
   selectedTimer,
+  toggleTimer,
   resetTimer,
   timerComplete
 }) => {
-  const buttonText = isRunning ? 'STOP' : 'START'
-  const colorClass = isRunning ? 'warning' : 'success'
-
   return (
     <div>
-      <TimerSelectorSection resetTimer={resetTimer} />
-      <section className='row mt-4'>
-        <div className='text-center'>
-          <TimerDisplay
-            timeRemaining={timeRemaining}
-            isRunning={isRunning}
-            setTimeRemaining={setTimeRemaining}
-            timerComplete={timerComplete}
-          />
-        </div>
+      <section className='row my-4'>
+        <TimerSelectorSection resetTimer={resetTimer} />
       </section>
       <section className='row mt-4'>
-        <div className='text-center'>
-          <button disabled={timerComplete} className={`btn btn-lg btn-${colorClass} me-2 mb-3 px-5`} onClick={toggleTimer} value='toggle'>{buttonText}</button>
-          <button className='btn btn-lg btn-danger me-2 mb-3 px-5' onClick={resetTimer} value={selectedTimer}>RESET</button>
-        </div>
+        <TimerDisplay
+          timeRemaining={timeRemaining}
+          isRunning={isRunning}
+          setTimeRemaining={setTimeRemaining}
+          timerComplete={timerComplete}
+        />
+      </section>
+      <section className='row mt-4'>
+        <TimerManager
+          timerComplete={timerComplete}
+          isRunning={isRunning}
+          selectedTimer={selectedTimer}
+          toggleTimer={toggleTimer}
+          resetTimer={resetTimer}
+        />
       </section>
     </div>
   )

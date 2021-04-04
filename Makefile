@@ -38,6 +38,7 @@ format_js:
 
 .PHONY: check_js
 check_js: format_js
+	npm test
 
 .PHONY: run_dev_ui
 run_dev_ui: 

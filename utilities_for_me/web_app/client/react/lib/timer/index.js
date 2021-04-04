@@ -1,11 +1,11 @@
-const getMinutes = (totalTime) => {
-  let minutes = Math.floor(totalTime / 60)
+const getMinutesOnly = (totalTimeInSeconds) => {
+  let minutes = Math.floor(totalTimeInSeconds / 60)
   minutes = minutes > 99 ? 99 : minutes
   return minutes
 }
 
-const getSeconds = (totalTime) => {
-  const seconds = Math.floor(totalTime % 60)
+const getSecondsOnly = (totalTimeInSeconds) => {
+  const seconds = Math.floor(totalTimeInSeconds % 60)
   return seconds
 }
 
@@ -15,7 +15,7 @@ const translateFromSeconds = (intTime) => {
     return 'Error'
   }
 
-  let minutes = getMinutes(intTime)
+  let minutes = getMinutesOnly(intTime)
   minutes = minutes > 99 ? 99 : minutes
   if (minutes < 10 && minutes >= 1) {
     minutes = `0${minutes}`
@@ -23,7 +23,7 @@ const translateFromSeconds = (intTime) => {
     minutes = '00'
   }
 
-  let seconds = getSeconds(intTime)
+  let seconds = getSecondsOnly(intTime)
   if (seconds < 10 && seconds >= 1) {
     seconds = `0${seconds}`
   } else if (seconds < 1) {
@@ -38,8 +38,8 @@ const translateToSeconds = (minutes, seconds) => {
 }
 
 module.exports = {
-  getMinutes,
-  getSeconds,
+  getMinutesOnly,
+  getSecondsOnly,
   translateFromSeconds,
   translateToSeconds
 }
