@@ -136,6 +136,8 @@ const TimerBody = ({
 }
 
 function Timer () {
+  const defaultTitle = "Utilities For Me"
+  const [title, setTitle] = useState(defaultTitle)
   const [isRunning, setIsRunning] = useState(false)
   const [selectedTimer, setSelectedTimer] = useState(TWENTY_FIVE_MINUTES_STR)
   const [timeRemaining, setTimeRemaining] = useState(TWENTY_FIVE_MINUTES)
@@ -180,6 +182,11 @@ function Timer () {
       ? audio.current.play()
       : (audio.current.pause() && (audio.current.currentTime = 0))
   }, [alarmPlaying])
+
+  useEffect(() => {
+    document.title = `${defaultTitle} - ${translateFromSeconds(timeRemaining)}`
+    return () => document.title = defaultTitle
+  }, [timeRemaining])
 
   return (
     <div>

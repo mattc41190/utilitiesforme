@@ -88,22 +88,21 @@ make run_dev_ui
 
 - Echo ✅
 - Prettify ✅
-- Date & Time Calculator
+- Date & Time Calculator 🧗‍♂️
 - Number Calculator
 - Code Case Transformer ✅
 - Random String Generator ✅
-- Fake Data Creator
-- Data Hashing 
+- Fake Data Creator V-2
 - Data Encryption ✅
-- Regex Tester
-- Secret Santa Generator
-- Data Structure Analyzer 
-- Priority Queue Simulator 
+- Regex Tester V-N
+- Secret Santa Generator V-2
+- Data Structure Analyzer V-2
+- Priority Queue Simulator V-2
 - Image / Avatar Creator
 - Percent Calculator ✅
-- Page Scraper
-- Timer 🧗‍♂️
-- GIF database
+- Page Scraper V-N
+- Timer ✅
+- GIF database V-2
 
 ## Ideas For App 
 
