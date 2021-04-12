@@ -11,6 +11,7 @@ import CalculatePercent from './CalculatePercent'
 import GenerateRandomString from './GenerateRandomString'
 import EncryptDecrypt from './EncryptDecrypt'
 import Timer from './Timer'
+import CountdownClock from './CountdownClock'
 
 function App () {
   return (
@@ -26,6 +27,7 @@ function App () {
           <Route path='/generate-random-string' component={GenerateRandomString} />
           <Route path='/encrypt-decrypt' component={EncryptDecrypt} />
           <Route path='/timer' component={Timer} />
+          <Route path='/countdown-clock' component={CountdownClock} />
           <Route component={Error} />
         </Switch>
       </div>

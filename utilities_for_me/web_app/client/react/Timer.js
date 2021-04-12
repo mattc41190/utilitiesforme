@@ -84,7 +84,6 @@ const TimerDisplay = ({ timeRemaining, timerComplete }) => {
     <div className='text-center'>
       <h2 className={`display-1 display-large ${blinkClass}`}>{displayTime}</h2>
     </div>
-
   )
 }
 
@@ -136,8 +135,7 @@ const TimerBody = ({
 }
 
 function Timer () {
-  const defaultTitle = "Utilities For Me"
-  const [title, setTitle] = useState(defaultTitle)
+  const defaultTitle = 'Utilities For Me'
   const [isRunning, setIsRunning] = useState(false)
   const [selectedTimer, setSelectedTimer] = useState(TWENTY_FIVE_MINUTES_STR)
   const [timeRemaining, setTimeRemaining] = useState(TWENTY_FIVE_MINUTES)
@@ -185,7 +183,7 @@ function Timer () {
 
   useEffect(() => {
     document.title = `${defaultTitle} - ${translateFromSeconds(timeRemaining)}`
-    return () => document.title = defaultTitle
+    return () => { document.title = defaultTitle }
   }, [timeRemaining])
 
   return (
