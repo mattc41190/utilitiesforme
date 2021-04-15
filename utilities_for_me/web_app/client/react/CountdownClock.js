@@ -1,15 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react'
 
-import { isDateInPast, createDisplayTime } from './lib/calculate-duration'
+import { isDateInPast, createDisplayTime, getDefaultDates } from './lib/calculate-duration'
 
-const now = new Date()
-const year = now.getFullYear()
-const nextYear = now.getFullYear() + 1
-
-const XMAS = isDateInPast(new Date(`12/25/${year}`)) 
-  ? new Date(`12/25/${nextYear}`) 
-  : new Date(`12/25/${year}`)
-
+const DEFAULT_DATES = getDefaultDates()
 
 const CountdownClockHeader = () => {
   return (
@@ -33,20 +26,74 @@ const CountdownClockDisplay = ({ displayTime }) => {
   )
 }
 
-const CountdownClockBody = ({displayTime}) => {
+const CountdownClockSelectorButton = ({ title, label, chooseDate }) => {
+  return (
+    <button
+      className='btn btn-outline-dark mx-2 mt-2 px-5 '
+      onClick={ chooseDate }
+      value={label}
+    >
+      {title}
+    </button>
+  )
+}
+
+const CountdownClockSelectorButtons = ({ presetDates, chooseDate }) => {
+  console.log(presetDates);
+  const dateKeys = Object.keys(presetDates)
+  const dateButtons = dateKeys.map((dateKey, i) => {
+    const dateInfo = presetDates[dateKey]
+    return (
+      <CountdownClockSelectorButton
+        key={i}
+        label={dateInfo.label}
+        title={dateInfo.title}
+        chooseDate={chooseDate}
+      />
+    )
+  })
+
+  return (
+    <div>{dateButtons}</div>
+  )
+}
+
+const CountdownClockSelectorSection = ({ presetDates, chooseDate }) => {
+  return (
+    <div className='text-center'>
+      <CountdownClockSelectorButtons presetDates={presetDates} chooseDate={chooseDate} />
+    </div>
+  )
+}
+
+const CountdownClockBody = ({displayTime, presetDates, chooseDate}) => {
   return (
     <div>
+      <CountdownClockSelectorSection presetDates={presetDates} chooseDate={chooseDate}  />
       <CountdownClockDisplay displayTime={displayTime} />
     </div>
   )
 }
 
 function CountdownClock () {
-  const [_date, setDate] = useState(XMAS)
-  const [displayTime, setDisplayTime] = useState(createDisplayTime(_date))
+  const [_date, setDate] = useState(DEFAULT_DATES.christmas)
+  const [displayTime, setDisplayTime] = useState(createDisplayTime(_date.date))
+
+  const chooseDate = (e) => {
+    const chosenDateLabel = e.target.value
+    for (const key in DEFAULT_DATES) {
+      console.log(DEFAULT_DATES[key])
+      console.log(chosenDateLabel);
+      console.log(DEFAULT_DATES[key]["label"]);
+      if (DEFAULT_DATES[key]["label"] === chosenDateLabel) {
+        setDate(DEFAULT_DATES[key])
+        return
+      }
+    }
+  }
   
   const tick = () => {
-    setDisplayTime(createDisplayTime(_date))
+    setDisplayTime(createDisplayTime(_date.date))
   }
 
   useEffect(() => {
@@ -58,7 +105,11 @@ function CountdownClock () {
     <div>
       <CountdownClockHeader />
       <hr />
-      <CountdownClockBody displayTime={displayTime} />
+      <CountdownClockBody 
+        displayTime={displayTime}
+        presetDates={DEFAULT_DATES}
+        chooseDate={chooseDate}
+       />
     </div>
   )
 }

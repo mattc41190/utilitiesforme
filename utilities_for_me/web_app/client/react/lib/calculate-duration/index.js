@@ -1,7 +1,3 @@
-
-// Based On This Article:
-// https://www.digitalocean.com/community/tutorials/react-countdown-timer-react-hooks
-//
 // Key Insights: 
 // https://gist.github.com/mattc41190/9a59fef9a66c4e0f230a6e3c1f81c755
 
@@ -11,19 +7,16 @@ const calculateTimeLeft = (month, day, year) => {
   const nowInt = Date.parse(now)
 
   year = year ? year : now.getFullYear()
-  const oneHour = 60 * 60
-  const oneDay = oneHour * 24
 
   const toDate = new Date(`${month}/${day}/${year}`)
   const toDateInt = Date.parse(toDate)
   
   const diff = toDateInt - nowInt
-  const diffInSeconds = diff / 1000
 
-  days =  Math.floor(diffInSeconds / oneDay)
-  hours =  Math.floor((diffInSeconds / oneHour) % 24)
-  minutes =  Math.floor((diffInSeconds / 60) % 60)
-  seconds =  Math.floor(diffInSeconds % 60)
+  const days = Math.floor(diff / (1000 * 60 * 60 * 24))
+  const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
+  const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))
+  const seconds = Math.floor((diff % (1000 * 60)) / 1000)
 
   return {
     days,
@@ -35,7 +28,7 @@ const calculateTimeLeft = (month, day, year) => {
 
 const createDisplayTime = (_date) => {
   let {days, hours, minutes, seconds} = calculateTimeLeft(
-    _date.getMonth(), 
+    _date.getMonth() + 1,  // We mix 0 indexed months with string based 1 indexed months :/ 
     _date.getDate(), 
     _date.getFullYear()
   )
@@ -73,7 +66,6 @@ const createDisplayTime = (_date) => {
 
 }
 
-
 const isDateInPast = (_date) => {
   const now = new Date()
   const nowInt = Date.parse(now)
@@ -81,8 +73,85 @@ const isDateInPast = (_date) => {
   return nowInt - dateInt > 0
 }
 
+const getHolidayByDay = (month, day ,year, nextYear) => {
+  const christmas = isDateInPast(new Date(`${month}/${day}/${year}`)) 
+  ? new Date(`${month}/${day}/${nextYear}`) 
+  : new Date(`${month}/${day}/${year}`)
+
+  return christmas
+} 
+
+const getThanksgiving = (year, nextYear) => {
+  // Thanksgiving is the 4th Thursday in November 
+  const getThanksgivingForYear = (y) => {
+    const firstDayOfNovember = new Date(`11/1/${y}`)
+    const dayOfWeekNovemberFirst = firstDayOfNovember.getDay()
+    const thanksgivingDay = 22 + ((11 - dayOfWeekNovemberFirst) % 7)
+    return new Date(`11/${thanksgivingDay}/${y}`)
+  }
+
+  const currentYearThanksgiving = getThanksgivingForYear(year)
+  const nextYearThanksgiving = getThanksgivingForYear(nextYear)
+
+  const thanksgiving = isDateInPast(currentYearThanksgiving) 
+  ? nextYearThanksgiving
+  : currentYearThanksgiving
+
+  return thanksgiving
+}
+
+
+const getDefaultDates = () => {
+  const now = new Date()
+  const year = now.getFullYear()
+  const nextYear = now.getFullYear() + 1
+  
+  const christmas = getHolidayByDay(12, 25, year, nextYear)
+  const independenceDay = getHolidayByDay(07, 04, year, nextYear)
+  const halloween = getHolidayByDay(10, 31, year, nextYear)
+  const mlkDay = getHolidayByDay(01, 17, year, nextYear)
+
+
+  const thanksgiving = getThanksgiving(year, nextYear)
+  
+  const dates = {
+    christmas: {
+      date: christmas,
+      label: "christmas",
+      title: "Christmas 🎅"
+    },
+    thanksgiving: {
+      date: thanksgiving,
+      label: "thanksgiving",
+      title: "Thanksgiving 🦃"
+    },
+    independenceDay: {
+      date: independenceDay,
+      label: "independenceDay",
+
+      title: "July Fourth 🦅"
+    },
+    halloween: {
+      date: halloween,
+      label: "halloween",
+      title: "Halloween 🎃"
+    },
+    mlkDay: {
+      date: mlkDay,
+      label: "mlkDay",
+      title: "Martin Luther King Jr Day 🤝"
+    },  
+  }
+
+  return dates
+}
+
+
+
 module.exports = {
   calculateTimeLeft,
   createDisplayTime,
-  isDateInPast
+  isDateInPast,
+  getDefaultDates
 }
+
