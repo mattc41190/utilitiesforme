@@ -100,6 +100,62 @@ const getThanksgiving = (year, nextYear) => {
   return thanksgiving
 }
 
+const getMemorialDay = (year, nextYear) => {
+  // Memorial Day is the last monday of May
+  const getMemorialDayForYear = (y) => {
+    const mondayIndex = 1
+
+    let day = 31
+    let date = new Date(`05/${day}/${y}`)
+    let dayOfWeek = date.getDay()
+
+    while (dayOfWeek != mondayIndex) {
+      day = day-1
+      date = new Date(`05/${day}/${y}`)
+      dayOfWeek = date.getDay()
+    }
+
+    return date
+  }
+
+  const currentYearMemorialDay = getMemorialDayForYear(year)
+  const nextYearMemorialDay = getMemorialDayForYear(nextYear)
+
+  const memorialDay = isDateInPast(currentYearMemorialDay) 
+  ? nextYearMemorialDay
+  : currentYearMemorialDay
+
+  return memorialDay
+}
+
+const getLaborDay = (year, nextYear) => {
+  // Labor is the first monday of September 
+  const getLaborDayForYear = (y) => {
+    const mondayIndex = 1
+
+    let day = 01
+    let date = new Date(`09/${day}/${y}`)
+    let dayOfWeek = date.getDay()
+
+    while (dayOfWeek != mondayIndex) {
+      day = day+1
+      date = new Date(`09/${day}/${y}`)
+      dayOfWeek = date.getDay()
+    }
+
+    return date
+  }
+
+  const currentYearLaborDay = getLaborDayForYear(year)
+  const nextYearLaborDay = getLaborDayForYear(nextYear)
+
+  const laborDay = isDateInPast(currentYearLaborDay) 
+  ? nextYearLaborDay
+  : currentYearLaborDay
+
+  return laborDay
+}
+
 
 const getDefaultDates = () => {
   const now = new Date()
@@ -110,48 +166,71 @@ const getDefaultDates = () => {
   const independenceDay = getHolidayByDay(07, 04, year, nextYear)
   const halloween = getHolidayByDay(10, 31, year, nextYear)
   const mlkDay = getHolidayByDay(01, 17, year, nextYear)
-
+  const valentinesDay = getHolidayByDay(02, 14, year, nextYear)
+  const boxingDay = getHolidayByDay(12, 26, year, nextYear)
+  const newYearsDay = getHolidayByDay(01, 01, year, nextYear)
 
   const thanksgiving = getThanksgiving(year, nextYear)
+  const memorialDay = getMemorialDay(year, nextYear)
+  const laborDay = getLaborDay(year, nextYear)
   
   const dates = {
     christmas: {
       date: christmas,
-      label: "christmas",
-      title: "Christmas 🎅"
+      label: "christmas"
     },
     thanksgiving: {
       date: thanksgiving,
-      label: "thanksgiving",
-      title: "Thanksgiving 🦃"
+      label: "thanksgiving"
     },
     independenceDay: {
       date: independenceDay,
-      label: "independenceDay",
-
-      title: "July Fourth 🦅"
+      label: "independenceDay"
     },
     halloween: {
       date: halloween,
-      label: "halloween",
-      title: "Halloween 🎃"
+      label: "halloween"
     },
     mlkDay: {
       date: mlkDay,
-      label: "mlkDay",
-      title: "Martin Luther King Jr Day 🤝"
-    },  
+      label: "mlkDay"
+    }, 
+    valentinesDay: {
+      date: valentinesDay,
+      label: "valentinesDay"
+    }, 
+    memorialDay: {
+      date: memorialDay,
+      label: "memorialDay"
+    }, 
+    laborDay: {
+      date: laborDay,
+      label: "laborDay"
+    }, 
+    boxingDay: {
+      date: boxingDay,
+      label: "boxingDay"
+    }, 
+    newYearsDay: {
+      date: newYearsDay,
+      label: "newYearsDay"
+    }, 
   }
 
   return dates
 }
 
-
+const getWeekDay = (date) => {
+  const weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+  const day = date.getDay()
+  return weekdays[day]
+}
 
 module.exports = {
   calculateTimeLeft,
   createDisplayTime,
   isDateInPast,
-  getDefaultDates
+  getDefaultDates,
+  getWeekDay
 }
 

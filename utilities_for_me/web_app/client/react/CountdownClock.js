@@ -1,8 +1,67 @@
 import React, { useState, useEffect, useRef } from 'react'
 
-import { isDateInPast, createDisplayTime, getDefaultDates } from './lib/calculate-duration'
+import { isDateInPast, createDisplayTime, getDefaultDates, getWeekDay } from './lib/calculate-duration'
 
 const DEFAULT_DATES = getDefaultDates()
+
+const DEFAULT_DATE_DISPLAY_DATA = [
+  {
+    label: "christmas",
+    title: "Christmas 🎅",
+    classColorName: "success"
+  },
+  {
+    label: "thanksgiving",
+    title: "Thanksgiving 🦃",
+    classColorName: "warning"
+  },
+  {
+    label: "independenceDay",
+    title: "July Fourth 🦅",
+    classColorName: "danger"
+  },
+  {
+    label: "halloween",
+    title: "Halloween 🎃",
+    classColorName: "dark"
+  },
+  {
+    label: "mlkDay",
+    title: "Martin Luther King Jr Day 🤝",
+    classColorName: "secondary"
+  },
+  {
+    label: "valentinesDay",
+    title: "Valentines Day 💖",
+    classColorName: "outline-dark"
+  },
+  {
+    label: "memorialDay",
+    title: "Memorial Day 🇺🇸",
+    classColorName: "primary"
+  },
+  {
+    label: "laborDay",
+    title: "Labor Day 💪",
+    classColorName: "info"
+  },
+  {
+    label: "boxingDay",
+    title: "Boxing Day 🥊",
+    classColorName: "secondary"
+  },
+  {
+    label: "newYearsDay",
+    title: "New Years Day 🎆",
+    classColorName: "dark"
+  },
+]
+
+const getDateUIData = (label) => {
+  const defaultUIDateInfo =  { classColorName: "primary", title: "Custom Date", }
+  let uiDateInfo = DEFAULT_DATE_DISPLAY_DATA.find((uiDateInfo) => uiDateInfo.label === label)
+  return uiDateInfo ? uiDateInfo : defaultUIDateInfo
+}
 
 const CountdownClockHeader = () => {
   return (
@@ -17,29 +76,32 @@ const CountdownClockHeader = () => {
   )
 }
 
-const CountdownClockDisplay = ({ displayTime }) => { 
-  console.log(displayTime); 
+const CountdownClockDisplay = ({ displayTime, holiday = "Your custom date", _date }) => { 
+  const weekday = getWeekDay(_date)
+  const friendlyDate = `${_date.getMonth()+1}/${_date.getDate()}/${_date.getFullYear()}`
   return (
     <div className='text-center'>
       <h2 className={`display-1 display-large`}>{displayTime.clockValue}</h2>
+      <h5>Until: {holiday}</h5>
+      <small>Which is on {weekday},({friendlyDate}), by the way!</small>
     </div>
   )
 }
 
 const CountdownClockSelectorButton = ({ title, label, chooseDate }) => {
+  const uiData = getDateUIData(label)
   return (
     <button
-      className='btn btn-outline-dark mx-2 mt-2 px-5 '
+      className={`btn btn-${uiData.classColorName} mx-2 mt-2 px-5 `}
       onClick={ chooseDate }
       value={label}
     >
-      {title}
+      {uiData.title}
     </button>
   )
 }
 
 const CountdownClockSelectorButtons = ({ presetDates, chooseDate }) => {
-  console.log(presetDates);
   const dateKeys = Object.keys(presetDates)
   const dateButtons = dateKeys.map((dateKey, i) => {
     const dateInfo = presetDates[dateKey]
@@ -66,11 +128,11 @@ const CountdownClockSelectorSection = ({ presetDates, chooseDate }) => {
   )
 }
 
-const CountdownClockBody = ({displayTime, presetDates, chooseDate}) => {
+const CountdownClockBody = ({displayTime, _date, holidayUIData, presetDates, chooseDate}) => {
   return (
     <div>
       <CountdownClockSelectorSection presetDates={presetDates} chooseDate={chooseDate}  />
-      <CountdownClockDisplay displayTime={displayTime} />
+      <CountdownClockDisplay holiday={holidayUIData.title} _date={_date} displayTime={displayTime} />
     </div>
   )
 }
@@ -82,9 +144,6 @@ function CountdownClock () {
   const chooseDate = (e) => {
     const chosenDateLabel = e.target.value
     for (const key in DEFAULT_DATES) {
-      console.log(DEFAULT_DATES[key])
-      console.log(chosenDateLabel);
-      console.log(DEFAULT_DATES[key]["label"]);
       if (DEFAULT_DATES[key]["label"] === chosenDateLabel) {
         setDate(DEFAULT_DATES[key])
         return
@@ -101,11 +160,15 @@ function CountdownClock () {
     return () => clearInterval(timer)
   })
 
+  const holidayUIData = getDateUIData(_date.label)
+
   return (
     <div>
       <CountdownClockHeader />
       <hr />
       <CountdownClockBody 
+        _date={_date.date}
+        holidayUIData={holidayUIData}
         displayTime={displayTime}
         presetDates={DEFAULT_DATES}
         chooseDate={chooseDate}
