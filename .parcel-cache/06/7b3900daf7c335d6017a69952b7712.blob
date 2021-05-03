@@ -1,0 +1,182 @@
+"use strict";
+// Key Insights:
+// https://gist.github.com/mattc41190/9a59fef9a66c4e0f230a6e3c1f81c755
+var calculateTimeLeft = function calculateTimeLeft(month, day, year) {
+  var now = new Date();
+  var nowInt = Date.parse(now);
+  year = year || now.getFullYear();
+  var toDate = new Date(("").concat(month, "/").concat(day, "/").concat(year));
+  var toDateInt = Date.parse(toDate);
+  var diff = toDateInt - nowInt;
+  var days = Math.floor(diff / (1000 * 60 * 60 * 24));
+  var hours = Math.floor(diff % (1000 * 60 * 60 * 24) / (1000 * 60 * 60));
+  var minutes = Math.floor(diff % (1000 * 60 * 60) / (1000 * 60));
+  var seconds = Math.floor(diff % (1000 * 60) / 1000);
+  return {
+    days: days,
+    hours: hours,
+    minutes: minutes,
+    seconds: seconds
+  };
+};
+var createDisplayTime = function createDisplayTime(_date) {
+  var _calculateTimeLeft = calculateTimeLeft(_date.getMonth() + 1, // We mix 0 indexed months with string based 1 indexed months :/
+  _date.getDate(), _date.getFullYear()), days = _calculateTimeLeft.days, hours = _calculateTimeLeft.hours, minutes = _calculateTimeLeft.minutes, seconds = _calculateTimeLeft.seconds;
+  if (days < 100 && days >= 10) {
+    days = ("0").concat(days);
+  } else if (days < 10 && days >= 1) {
+    days = ("00").concat(days);
+  } else if (days < 1) {
+    days = '000';
+  }
+  if (hours < 10 && hours >= 1) {
+    hours = ("0").concat(hours);
+  } else if (hours < 1) {
+    hours = '00';
+  }
+  if (minutes < 10 && minutes >= 1) {
+    minutes = ("0").concat(minutes);
+  } else if (minutes < 1) {
+    minutes = '00';
+  }
+  if (seconds < 10 && seconds >= 1) {
+    seconds = ("0").concat(seconds);
+  } else if (seconds < 1) {
+    seconds = '00';
+  }
+  return {
+    inPast: isDateInPast(_date),
+    clockValue: ("").concat(days, ":").concat(hours, ":").concat(minutes, ":").concat(seconds)
+  };
+};
+var isDateInPast = function isDateInPast(_date) {
+  var now = new Date();
+  var nowInt = Date.parse(now);
+  var dateInt = Date.parse(_date);
+  return nowInt - dateInt > 0;
+};
+var getHolidayByDay = function getHolidayByDay(month, day, year, nextYear) {
+  var christmas = isDateInPast(new Date(("").concat(month, "/").concat(day, "/").concat(year))) ? new Date(("").concat(month, "/").concat(day, "/").concat(nextYear)) : new Date(("").concat(month, "/").concat(day, "/").concat(year));
+  return christmas;
+};
+var getThanksgiving = function getThanksgiving(year, nextYear) {
+  // Thanksgiving is the 4th Thursday in November
+  var getThanksgivingForYear = function getThanksgivingForYear(y) {
+    var firstDayOfNovember = new Date(("11/1/").concat(y));
+    var dayOfWeekNovemberFirst = firstDayOfNovember.getDay();
+    var thanksgivingDay = 22 + (11 - dayOfWeekNovemberFirst) % 7;
+    return new Date(("11/").concat(thanksgivingDay, "/").concat(y));
+  };
+  var currentYearThanksgiving = getThanksgivingForYear(year);
+  var nextYearThanksgiving = getThanksgivingForYear(nextYear);
+  var thanksgiving = isDateInPast(currentYearThanksgiving) ? nextYearThanksgiving : currentYearThanksgiving;
+  return thanksgiving;
+};
+var getMemorialDay = function getMemorialDay(year, nextYear) {
+  // Memorial Day is the last monday of May
+  var getMemorialDayForYear = function getMemorialDayForYear(y) {
+    var mondayIndex = 1;
+    var day = 31;
+    var date = new Date(("05/").concat(day, "/").concat(y));
+    var dayOfWeek = date.getDay();
+    while (dayOfWeek !== mondayIndex) {
+      day = day - 1;
+      date = new Date(("05/").concat(day, "/").concat(y));
+      dayOfWeek = date.getDay();
+    }
+    return date;
+  };
+  var currentYearMemorialDay = getMemorialDayForYear(year);
+  var nextYearMemorialDay = getMemorialDayForYear(nextYear);
+  var memorialDay = isDateInPast(currentYearMemorialDay) ? nextYearMemorialDay : currentYearMemorialDay;
+  return memorialDay;
+};
+var getLaborDay = function getLaborDay(year, nextYear) {
+  // Labor is the first monday of September
+  var getLaborDayForYear = function getLaborDayForYear(y) {
+    var mondayIndex = 1;
+    var day = 1;
+    var date = new Date(("09/").concat(day, "/").concat(y));
+    var dayOfWeek = date.getDay();
+    while (dayOfWeek !== mondayIndex) {
+      day = day + 1;
+      date = new Date(("09/").concat(day, "/").concat(y));
+      dayOfWeek = date.getDay();
+    }
+    return date;
+  };
+  var currentYearLaborDay = getLaborDayForYear(year);
+  var nextYearLaborDay = getLaborDayForYear(nextYear);
+  var laborDay = isDateInPast(currentYearLaborDay) ? nextYearLaborDay : currentYearLaborDay;
+  return laborDay;
+};
+var getDefaultDates = function getDefaultDates() {
+  var now = new Date();
+  var year = now.getFullYear();
+  var nextYear = now.getFullYear() + 1;
+  var christmas = getHolidayByDay(12, 25, year, nextYear);
+  var independenceDay = getHolidayByDay(7, 4, year, nextYear);
+  var halloween = getHolidayByDay(10, 31, year, nextYear);
+  var mlkDay = getHolidayByDay(1, 17, year, nextYear);
+  var valentinesDay = getHolidayByDay(2, 14, year, nextYear);
+  var boxingDay = getHolidayByDay(12, 26, year, nextYear);
+  var newYearsDay = getHolidayByDay(1, 1, year, nextYear);
+  var thanksgiving = getThanksgiving(year, nextYear);
+  var memorialDay = getMemorialDay(year, nextYear);
+  var laborDay = getLaborDay(year, nextYear);
+  var dates = {
+    christmas: {
+      date: christmas,
+      label: 'christmas'
+    },
+    thanksgiving: {
+      date: thanksgiving,
+      label: 'thanksgiving'
+    },
+    independenceDay: {
+      date: independenceDay,
+      label: 'independenceDay'
+    },
+    halloween: {
+      date: halloween,
+      label: 'halloween'
+    },
+    mlkDay: {
+      date: mlkDay,
+      label: 'mlkDay'
+    },
+    valentinesDay: {
+      date: valentinesDay,
+      label: 'valentinesDay'
+    },
+    memorialDay: {
+      date: memorialDay,
+      label: 'memorialDay'
+    },
+    laborDay: {
+      date: laborDay,
+      label: 'laborDay'
+    },
+    boxingDay: {
+      date: boxingDay,
+      label: 'boxingDay'
+    },
+    newYearsDay: {
+      date: newYearsDay,
+      label: 'newYearsDay'
+    }
+  };
+  return dates;
+};
+var getWeekDay = function getWeekDay(date) {
+  var weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  var day = date.getDay();
+  return weekdays[day];
+};
+module.exports = {
+  calculateTimeLeft: calculateTimeLeft,
+  createDisplayTime: createDisplayTime,
+  isDateInPast: isDateInPast,
+  getDefaultDates: getDefaultDates,
+  getWeekDay: getWeekDay
+};

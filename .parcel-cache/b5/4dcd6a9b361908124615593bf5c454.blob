@@ -1,0 +1,39 @@
+"use strict";
+var getMinutesOnly = function getMinutesOnly(totalTimeInSeconds) {
+  var minutes = Math.floor(totalTimeInSeconds / 60);
+  minutes = minutes > 99 ? 99 : minutes;
+  return minutes;
+};
+var getSecondsOnly = function getSecondsOnly(totalTimeInSeconds) {
+  var seconds = Math.floor(totalTimeInSeconds % 60);
+  return seconds;
+};
+var translateFromSeconds = function translateFromSeconds(intTime) {
+  if (isNaN(intTime) || !Number.isInteger(parseInt(intTime))) {
+    console.error('You broke the timer jackass!');
+    return 'Error';
+  }
+  var minutes = getMinutesOnly(intTime);
+  minutes = minutes > 99 ? 99 : minutes;
+  if (minutes < 10 && minutes >= 1) {
+    minutes = ("0").concat(minutes);
+  } else if (minutes < 1) {
+    minutes = '00';
+  }
+  var seconds = getSecondsOnly(intTime);
+  if (seconds < 10 && seconds >= 1) {
+    seconds = ("0").concat(seconds);
+  } else if (seconds < 1) {
+    seconds = '00';
+  }
+  return ("").concat(minutes, ":").concat(seconds);
+};
+var translateToSeconds = function translateToSeconds(minutes, seconds) {
+  return minutes * 60 + seconds;
+};
+module.exports = {
+  getMinutesOnly: getMinutesOnly,
+  getSecondsOnly: getSecondsOnly,
+  translateFromSeconds: translateFromSeconds,
+  translateToSeconds: translateToSeconds
+};

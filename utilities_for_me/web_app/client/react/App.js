@@ -1,10 +1,14 @@
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
-import Home from './Home'
-import Navbar from './Navbar'
+// import Home from './Home'
+import Home from './HomeTailwind'
+// import Navbar from './Navbar'
+import Navbar from './NavbarTailwind'
+
 import Error from './Error'
 
-import Echo from './Echo'
+// import Echo from './Echo'
+import Echo from './EchoTailwind'
 import Prettify from './Prettify'
 import CaseTransform from './CaseTransform'
 import CalculatePercent from './CalculatePercent'
@@ -17,7 +21,8 @@ function App () {
   return (
     <main>
       <Navbar />
-      <div className='container'>
+      {/* Tailwind on NON-SUFFIXED component */}
+      <div className='container mx-auto'> 
         <Switch>
           <Route exact path='/' component={Home} />
           <Route path='/echo' component={Echo} />

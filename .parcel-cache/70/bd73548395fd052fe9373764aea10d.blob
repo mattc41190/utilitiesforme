@@ -1,0 +1,358 @@
+"use strict";
+var helpers = require("../../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+helpers.prelude(module);
+try {
+  function _typeof(obj) {
+    "@babel/helpers - typeof";
+    if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
+      _typeof = function _typeof(obj) {
+        return typeof obj;
+      };
+    } else {
+      _typeof = function _typeof(obj) {
+        return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+      };
+    }
+    return _typeof(obj);
+  }
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports["default"] = void 0;
+  var _react = _interopRequireWildcard(require("react"));
+  var _s2 = $RefreshSig$();
+  function _getRequireWildcardCache() {
+    if (typeof WeakMap !== "function") return null;
+    var cache = new WeakMap();
+    _getRequireWildcardCache = function _getRequireWildcardCache() {
+      return cache;
+    };
+    return cache;
+  }
+  function _interopRequireWildcard(obj) {
+    if (obj && obj.__esModule) {
+      return obj;
+    }
+    if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") {
+      return {
+        "default": obj
+      };
+    }
+    var cache = _getRequireWildcardCache();
+    if (cache && cache.has(obj)) {
+      return cache.get(obj);
+    }
+    var newObj = {};
+    var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor;
+    for (var key in obj) {
+      if (Object.prototype.hasOwnProperty.call(obj, key)) {
+        var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null;
+        if (desc && (desc.get || desc.set)) {
+          Object.defineProperty(newObj, key, desc);
+        } else {
+          newObj[key] = obj[key];
+        }
+      }
+    }
+    newObj["default"] = obj;
+    if (cache) {
+      cache.set(obj, newObj);
+    }
+    return newObj;
+  }
+  function ownKeys(object, enumerableOnly) {
+    var keys = Object.keys(object);
+    if (Object.getOwnPropertySymbols) {
+      var symbols = Object.getOwnPropertySymbols(object);
+      if (enumerableOnly) symbols = symbols.filter(function (sym) {
+        return Object.getOwnPropertyDescriptor(object, sym).enumerable;
+      });
+      keys.push.apply(keys, symbols);
+    }
+    return keys;
+  }
+  function _objectSpread(target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i] != null ? arguments[i] : {};
+      if (i % 2) {
+        ownKeys(Object(source), true).forEach(function (key) {
+          _defineProperty(target, key, source[key]);
+        });
+      } else if (Object.getOwnPropertyDescriptors) {
+        Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
+      } else {
+        ownKeys(Object(source)).forEach(function (key) {
+          Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
+        });
+      }
+    }
+    return target;
+  }
+  function _defineProperty(obj, key, value) {
+    if ((key in obj)) {
+      Object.defineProperty(obj, key, {
+        value: value,
+        enumerable: true,
+        configurable: true,
+        writable: true
+      });
+    } else {
+      obj[key] = value;
+    }
+    return obj;
+  }
+  function _slicedToArray(arr, i) {
+    return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest();
+  }
+  function _nonIterableRest() {
+    throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+  }
+  function _unsupportedIterableToArray(o, minLen) {
+    if (!o) return;
+    if (typeof o === "string") return _arrayLikeToArray(o, minLen);
+    var n = Object.prototype.toString.call(o).slice(8, -1);
+    if (n === "Object" && o.constructor) n = o.constructor.name;
+    if (n === "Map" || n === "Set") return Array.from(o);
+    if (n === "Arguments" || (/^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/).test(n)) return _arrayLikeToArray(o, minLen);
+  }
+  function _arrayLikeToArray(arr, len) {
+    if (len == null || len > arr.length) len = arr.length;
+    for (var i = 0, arr2 = new Array(len); i < len; i++) {
+      arr2[i] = arr[i];
+    }
+    return arr2;
+  }
+  function _iterableToArrayLimit(arr, i) {
+    if (typeof Symbol === "undefined" || !((Symbol.iterator in Object(arr)))) return;
+    var _arr = [];
+    var _n = true;
+    var _d = false;
+    var _e = undefined;
+    try {
+      for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {
+        _arr.push(_s.value);
+        if (i && _arr.length === i) break;
+      }
+    } catch (err) {
+      _d = true;
+      _e = err;
+    } finally {
+      try {
+        if (!_n && _i["return"] != null) _i["return"]();
+      } finally {
+        if (_d) throw _e;
+      }
+    }
+    return _arr;
+  }
+  function _arrayWithHoles(arr) {
+    if (Array.isArray(arr)) return arr;
+  }
+  var PERCENT_OF = 'percentOf';
+  var NUM_IS_WHAT_PERCENT_OF = 'numIsWhatPercentOf';
+  var valueToFormula = {
+    percentOf: 'percent_of',
+    numIsWhatPercentOf: 'num_is_what_percent_of'
+  };
+  var sendRequest = function sendRequest(command, data) {
+    var body = {};
+    if (command === PERCENT_OF) {
+      body = {
+        formula: valueToFormula[PERCENT_OF],
+        percent: data.percent,
+        of: data.of
+      };
+    } else if (command === NUM_IS_WHAT_PERCENT_OF) {
+      body = {
+        formula: valueToFormula[NUM_IS_WHAT_PERCENT_OF],
+        num: data.num,
+        of: data.of
+      };
+    }
+    var args = {
+      method: 'post',
+      body: JSON.stringify(body),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    };
+    var url = '/api/v1/calculate-percent';
+    return window.fetch(url, args).then(function (res) {
+      return res.json();
+    });
+  };
+  var CalculatePercentHeader = function CalculatePercentHeader() {
+    return (
+      /*#__PURE__*/_react["default"].createElement("section", {
+        className: "row mt-4"
+      }, /*#__PURE__*/_react["default"].createElement("div", {
+        className: "col"
+      }, /*#__PURE__*/_react["default"].createElement("div", {
+        className: "d-flex flex-column p-2 "
+      }, /*#__PURE__*/_react["default"].createElement("h1", null, "Calculate Percent"), /*#__PURE__*/_react["default"].createElement("p", null, "The ", /*#__PURE__*/_react["default"].createElement("i", null, "Calculate Percent"), " utility contains utilities related to calculating percents... duh!"))))
+    );
+  };
+  _c = CalculatePercentHeader;
+  var PercentOf = function PercentOf(_ref) {
+    var percentOf = _ref.percentOf, handlePercentOfChange = _ref.handlePercentOfChange, handlePercentOfSubmit = _ref.handlePercentOfSubmit, percentOfResult = _ref.percentOfResult;
+    var percentOf_Percent = percentOf.percent;
+    var percentOf_Of = percentOf.of;
+    return (
+      /*#__PURE__*/_react["default"].createElement("section", {
+        className: "row g-3 my-4 align-items-center d-flex"
+      }, /*#__PURE__*/_react["default"].createElement("h2", null, /*#__PURE__*/_react["default"].createElement("strong", null, "What is X percent of Y?")), /*#__PURE__*/_react["default"].createElement("div", {
+        className: "col-auto"
+      }, /*#__PURE__*/_react["default"].createElement("h4", null, "What is")), /*#__PURE__*/_react["default"].createElement("div", {
+        className: "col-auto"
+      }, /*#__PURE__*/_react["default"].createElement("input", {
+        type: "number",
+        className: "form-control",
+        name: "percent",
+        value: percentOf_Percent,
+        onChange: handlePercentOfChange
+      })), /*#__PURE__*/_react["default"].createElement("div", {
+        className: "col-auto"
+      }, /*#__PURE__*/_react["default"].createElement("h4", null, "% of")), /*#__PURE__*/_react["default"].createElement("div", {
+        className: "col-auto"
+      }, /*#__PURE__*/_react["default"].createElement("input", {
+        type: "number",
+        className: "form-control",
+        name: "of",
+        value: percentOf_Of,
+        onChange: handlePercentOfChange
+      })), /*#__PURE__*/_react["default"].createElement("div", {
+        className: "col-auto"
+      }, /*#__PURE__*/_react["default"].createElement("button", {
+        className: "btn btn-info",
+        onClick: handlePercentOfSubmit
+      }, "?")), /*#__PURE__*/_react["default"].createElement("div", {
+        className: "col-auto"
+      }, /*#__PURE__*/_react["default"].createElement("h4", null, /*#__PURE__*/_react["default"].createElement("strong", null, percentOfResult))))
+    );
+  };
+  _c2 = PercentOf;
+  var NumIsWhatPercentOf = function NumIsWhatPercentOf(_ref2) {
+    var numIsWhatPercentOf = _ref2.numIsWhatPercentOf, handleNumIsWhatPercentOfChange = _ref2.handleNumIsWhatPercentOfChange, numIsWhatPercentOfResult = _ref2.numIsWhatPercentOfResult, handleNumIsWhatPercentOfSubmit = _ref2.handleNumIsWhatPercentOfSubmit;
+    var numIsWhatPercentOf_Num = numIsWhatPercentOf.num;
+    var numIsWhatPercentOf_Of = numIsWhatPercentOf.of;
+    return (
+      /*#__PURE__*/_react["default"].createElement("section", {
+        className: "row g-3 my-4 align-items-center d-flex"
+      }, /*#__PURE__*/_react["default"].createElement("h2", null, /*#__PURE__*/_react["default"].createElement("strong", null, "X is what percent of Y?")), /*#__PURE__*/_react["default"].createElement("div", {
+        className: "col-auto"
+      }, /*#__PURE__*/_react["default"].createElement("input", {
+        type: "number",
+        className: "form-control",
+        name: "num",
+        value: numIsWhatPercentOf_Num,
+        onChange: handleNumIsWhatPercentOfChange
+      })), /*#__PURE__*/_react["default"].createElement("div", {
+        className: "col-auto"
+      }, /*#__PURE__*/_react["default"].createElement("h4", null, "is what percent of")), /*#__PURE__*/_react["default"].createElement("div", {
+        className: "col-auto"
+      }, /*#__PURE__*/_react["default"].createElement("input", {
+        type: "number",
+        className: "form-control",
+        name: "of",
+        value: numIsWhatPercentOf_Of,
+        onChange: handleNumIsWhatPercentOfChange
+      })), /*#__PURE__*/_react["default"].createElement("div", {
+        className: "col-auto"
+      }, /*#__PURE__*/_react["default"].createElement("button", {
+        className: "btn btn-info",
+        onClick: handleNumIsWhatPercentOfSubmit
+      }, "?")), /*#__PURE__*/_react["default"].createElement("div", {
+        className: "col-auto"
+      }, /*#__PURE__*/_react["default"].createElement("h4", null, /*#__PURE__*/_react["default"].createElement("strong", null, numIsWhatPercentOfResult))))
+    );
+  };
+  _c3 = NumIsWhatPercentOf;
+  var CalculatePercentBody = function CalculatePercentBody(_ref3) {
+    var percentOf = _ref3.percentOf, handlePercentOfChange = _ref3.handlePercentOfChange, percentOfResult = _ref3.percentOfResult, handlePercentOfSubmit = _ref3.handlePercentOfSubmit, numIsWhatPercentOf = _ref3.numIsWhatPercentOf, handleNumIsWhatPercentOfChange = _ref3.handleNumIsWhatPercentOfChange, numIsWhatPercentOfResult = _ref3.numIsWhatPercentOfResult, handleNumIsWhatPercentOfSubmit = _ref3.handleNumIsWhatPercentOfSubmit;
+    return (
+      /*#__PURE__*/_react["default"].createElement("section", {
+        className: "row g-3 my-4 align-items-center d-flex"
+      }, /*#__PURE__*/_react["default"].createElement(PercentOf, {
+        percentOf: percentOf,
+        handlePercentOfChange: handlePercentOfChange,
+        handlePercentOfSubmit: handlePercentOfSubmit,
+        percentOfResult: percentOfResult
+      }), /*#__PURE__*/_react["default"].createElement("hr", null), /*#__PURE__*/_react["default"].createElement(NumIsWhatPercentOf, {
+        numIsWhatPercentOf: numIsWhatPercentOf,
+        handleNumIsWhatPercentOfChange: handleNumIsWhatPercentOfChange,
+        numIsWhatPercentOfResult: numIsWhatPercentOfResult,
+        handleNumIsWhatPercentOfSubmit: handleNumIsWhatPercentOfSubmit
+      }))
+    );
+  };
+  _c4 = CalculatePercentBody;
+  function CalculatePercent() {
+    _s2();
+    var percentOfDefault = {
+      percent: '10',
+      of: '50'
+    };
+    var numIsWhatPercentOfDefault = {
+      num: '20',
+      of: '80'
+    };
+    var _useState = (0, _react.useState)(percentOfDefault), _useState2 = _slicedToArray(_useState, 2), percentOf = _useState2[0], setPercentOf = _useState2[1];
+    var _useState3 = (0, _react.useState)(numIsWhatPercentOfDefault), _useState4 = _slicedToArray(_useState3, 2), numIsWhatPercentOf = _useState4[0], setNumIsWhatPercentOf = _useState4[1];
+    var _useState5 = (0, _react.useState)('5.00'), _useState6 = _slicedToArray(_useState5, 2), percentOfResult = _useState6[0], setPercentOfResult = _useState6[1];
+    var _useState7 = (0, _react.useState)('25.00'), _useState8 = _slicedToArray(_useState7, 2), numIsWhatPercentOfResult = _useState8[0], setNumIsWhatPercentOfResult = _useState8[1];
+    var handlePercentOfChange = function handlePercentOfChange(e) {
+      var _e$target = e.target, name = _e$target.name, value = _e$target.value;
+      setPercentOf(function (prevState) {
+        return _objectSpread(_objectSpread({}, prevState), {}, _defineProperty({}, name, value));
+      });
+    };
+    var handleNumIsWhatPercentOfChange = function handleNumIsWhatPercentOfChange(e) {
+      var _e$target2 = e.target, name = _e$target2.name, value = _e$target2.value;
+      setNumIsWhatPercentOf(function (prevState) {
+        return _objectSpread(_objectSpread({}, prevState), {}, _defineProperty({}, name, value));
+      });
+    };
+    var handlePercentOfSubmit = function handlePercentOfSubmit(e) {
+      sendRequest(PERCENT_OF, percentOf).then(function (json) {
+        setPercentOfResult(String(parseFloat(json.data.result).toFixed(2)));
+      })["catch"](function (e) {
+        return console.error(e);
+      });
+    };
+    var handleNumIsWhatPercentOfSubmit = function handleNumIsWhatPercentOfSubmit(e) {
+      sendRequest(NUM_IS_WHAT_PERCENT_OF, numIsWhatPercentOf).then(function (json) {
+        setNumIsWhatPercentOfResult(String(parseFloat(json.data.result).toFixed(2)));
+      })["catch"](function (e) {
+        return console.error(e);
+      });
+    };
+    return (
+      /*#__PURE__*/_react["default"].createElement("div", null, /*#__PURE__*/_react["default"].createElement(CalculatePercentHeader, null), /*#__PURE__*/_react["default"].createElement("hr", null), /*#__PURE__*/_react["default"].createElement(CalculatePercentBody, {
+        percentOf: percentOf,
+        handlePercentOfChange: handlePercentOfChange,
+        percentOfResult: percentOfResult,
+        handlePercentOfSubmit: handlePercentOfSubmit,
+        numIsWhatPercentOf: numIsWhatPercentOf,
+        handleNumIsWhatPercentOfChange: handleNumIsWhatPercentOfChange,
+        numIsWhatPercentOfResult: numIsWhatPercentOfResult,
+        handleNumIsWhatPercentOfSubmit: handleNumIsWhatPercentOfSubmit
+      }))
+    );
+  }
+  _s2(CalculatePercent, "Z17ysDgofsOm3HpBsWieWcjO4f0=");
+  _c5 = CalculatePercent;
+  var _default = CalculatePercent;
+  exports["default"] = _default;
+  var _c, _c2, _c3, _c4, _c5;
+  $RefreshReg$(_c, "CalculatePercentHeader");
+  $RefreshReg$(_c2, "PercentOf");
+  $RefreshReg$(_c3, "NumIsWhatPercentOf");
+  $RefreshReg$(_c4, "CalculatePercentBody");
+  $RefreshReg$(_c5, "CalculatePercent");
+  helpers.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}

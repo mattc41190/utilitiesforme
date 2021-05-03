@@ -1,0 +1,353 @@
+"use strict";
+var helpers = require("../../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+helpers.prelude(module);
+try {
+  function _typeof(obj) {
+    "@babel/helpers - typeof";
+    if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
+      _typeof = function _typeof(obj) {
+        return typeof obj;
+      };
+    } else {
+      _typeof = function _typeof(obj) {
+        return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+      };
+    }
+    return _typeof(obj);
+  }
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports["default"] = void 0;
+  var _react = _interopRequireWildcard(require("react"));
+  var _s2 = $RefreshSig$();
+  function _getRequireWildcardCache() {
+    if (typeof WeakMap !== "function") return null;
+    var cache = new WeakMap();
+    _getRequireWildcardCache = function _getRequireWildcardCache() {
+      return cache;
+    };
+    return cache;
+  }
+  function _interopRequireWildcard(obj) {
+    if (obj && obj.__esModule) {
+      return obj;
+    }
+    if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") {
+      return {
+        "default": obj
+      };
+    }
+    var cache = _getRequireWildcardCache();
+    if (cache && cache.has(obj)) {
+      return cache.get(obj);
+    }
+    var newObj = {};
+    var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor;
+    for (var key in obj) {
+      if (Object.prototype.hasOwnProperty.call(obj, key)) {
+        var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null;
+        if (desc && (desc.get || desc.set)) {
+          Object.defineProperty(newObj, key, desc);
+        } else {
+          newObj[key] = obj[key];
+        }
+      }
+    }
+    newObj["default"] = obj;
+    if (cache) {
+      cache.set(obj, newObj);
+    }
+    return newObj;
+  }
+  function _slicedToArray(arr, i) {
+    return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest();
+  }
+  function _nonIterableRest() {
+    throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+  }
+  function _unsupportedIterableToArray(o, minLen) {
+    if (!o) return;
+    if (typeof o === "string") return _arrayLikeToArray(o, minLen);
+    var n = Object.prototype.toString.call(o).slice(8, -1);
+    if (n === "Object" && o.constructor) n = o.constructor.name;
+    if (n === "Map" || n === "Set") return Array.from(o);
+    if (n === "Arguments" || (/^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/).test(n)) return _arrayLikeToArray(o, minLen);
+  }
+  function _arrayLikeToArray(arr, len) {
+    if (len == null || len > arr.length) len = arr.length;
+    for (var i = 0, arr2 = new Array(len); i < len; i++) {
+      arr2[i] = arr[i];
+    }
+    return arr2;
+  }
+  function _iterableToArrayLimit(arr, i) {
+    if (typeof Symbol === "undefined" || !((Symbol.iterator in Object(arr)))) return;
+    var _arr = [];
+    var _n = true;
+    var _d = false;
+    var _e = undefined;
+    try {
+      for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {
+        _arr.push(_s.value);
+        if (i && _arr.length === i) break;
+      }
+    } catch (err) {
+      _d = true;
+      _e = err;
+    } finally {
+      try {
+        if (!_n && _i["return"] != null) _i["return"]();
+      } finally {
+        if (_d) throw _e;
+      }
+    }
+    return _arr;
+  }
+  function _arrayWithHoles(arr) {
+    if (Array.isArray(arr)) return arr;
+  }
+  var sendEncryptRequest = function sendEncryptRequest(message) {
+    var args = {
+      method: 'post',
+      body: JSON.stringify({
+        message: message
+      }),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    };
+    var url = '/api/v1/encrypt-decrypt/encrypt';
+    return window.fetch(url, args).then(function (res) {
+      return res.json();
+    });
+  };
+  var sendDecryptRequest = function sendDecryptRequest(encryptedMessage, key) {
+    var args = {
+      method: 'post',
+      body: JSON.stringify({
+        encrypted_message: encryptedMessage,
+        key: key
+      }),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    };
+    var url = '/api/v1/encrypt-decrypt/decrypt';
+    return window.fetch(url, args).then(function (res) {
+      return res.json();
+    });
+  };
+  var EncryptDecryptHeader = function EncryptDecryptHeader() {
+    return (
+      /*#__PURE__*/_react["default"].createElement("section", {
+        className: "row mt-4"
+      }, /*#__PURE__*/_react["default"].createElement("div", {
+        className: "col"
+      }, /*#__PURE__*/_react["default"].createElement("div", {
+        className: "d-flex flex-column p-2 "
+      }, /*#__PURE__*/_react["default"].createElement("h1", null, "Encrypt / Decrypt"), /*#__PURE__*/_react["default"].createElement("p", null, "The ", /*#__PURE__*/_react["default"].createElement("i", null, "Encrypt / Decrypt"), " utility contains a utility that will allow you to encrypt a message and provides a means of decrypting that message via a key returned upon encryption."))))
+    );
+  };
+  _c = EncryptDecryptHeader;
+  var ResultCard = function ResultCard(_ref) {
+    var text = _ref.text;
+    return (
+      /*#__PURE__*/_react["default"].createElement("div", {
+        className: "card bg-dark my-2 p-4"
+      }, /*#__PURE__*/_react["default"].createElement("h6", null, /*#__PURE__*/_react["default"].createElement("code", {
+        className: "text-success"
+      }, text)))
+    );
+  };
+  _c2 = ResultCard;
+  var EncryptBody = function EncryptBody(_ref2) {
+    var messageToEncrypt = _ref2.messageToEncrypt, handleChange = _ref2.handleChange, handleClick = _ref2.handleClick;
+    return (
+      /*#__PURE__*/_react["default"].createElement("div", {
+        className: "col-md-6"
+      }, /*#__PURE__*/_react["default"].createElement("div", {
+        className: "d-flex flex-column p-2 text-center"
+      }, /*#__PURE__*/_react["default"].createElement("h3", {
+        className: "text-start"
+      }, "Message To Encrypt"), /*#__PURE__*/_react["default"].createElement("textarea", {
+        required: true,
+        rows: "8",
+        className: "form-control my-3",
+        placeholder: "Message to encrypt here...",
+        value: messageToEncrypt,
+        onChange: handleChange
+      })), /*#__PURE__*/_react["default"].createElement("div", {
+        className: "p-2"
+      }, /*#__PURE__*/_react["default"].createElement("button", {
+        className: "btn btn-danger me-2 mb-3",
+        onClick: handleClick,
+        value: "encrypt"
+      }, "Encrypt 🔒")))
+    );
+  };
+  _c3 = EncryptBody;
+  var EncryptResult = function EncryptResult(_ref3) {
+    var encryptedMessage = _ref3.encryptedMessage, encryptionKey = _ref3.encryptionKey;
+    return (
+      /*#__PURE__*/_react["default"].createElement("div", {
+        className: "col-md-6"
+      }, /*#__PURE__*/_react["default"].createElement("div", {
+        className: "d-flex flex-column p-2"
+      }, /*#__PURE__*/_react["default"].createElement("h3", null, "Encrypted Message"), /*#__PURE__*/_react["default"].createElement(ResultCard, {
+        text: encryptedMessage
+      }), /*#__PURE__*/_react["default"].createElement("h3", null, "Encryption Key"), /*#__PURE__*/_react["default"].createElement(ResultCard, {
+        text: encryptionKey
+      })))
+    );
+  };
+  _c4 = EncryptResult;
+  var Encrypt = function Encrypt(_ref4) {
+    var messageToEncrypt = _ref4.messageToEncrypt, handleChange = _ref4.handleChange, handleClick = _ref4.handleClick, encryptedMessage = _ref4.encryptedMessage, encryptionKey = _ref4.encryptionKey;
+    return (
+      /*#__PURE__*/_react["default"].createElement("div", null, /*#__PURE__*/_react["default"].createElement("h2", null, "Encrypt"), /*#__PURE__*/_react["default"].createElement("section", {
+        className: "row mt-4"
+      }, /*#__PURE__*/_react["default"].createElement(EncryptBody, {
+        messageToEncrypt: messageToEncrypt,
+        handleChange: handleChange,
+        handleClick: handleClick
+      }), /*#__PURE__*/_react["default"].createElement(EncryptResult, {
+        encryptedMessage: encryptedMessage,
+        encryptionKey: encryptionKey
+      })))
+    );
+  };
+  _c5 = Encrypt;
+  var DecryptBody = function DecryptBody(_ref5) {
+    var messageToDecrypt = _ref5.messageToDecrypt, decryptionKey = _ref5.decryptionKey, handleMessageChange = _ref5.handleMessageChange, handleKeyChange = _ref5.handleKeyChange, handleClick = _ref5.handleClick;
+    return (
+      /*#__PURE__*/_react["default"].createElement("div", {
+        className: "col-md-6"
+      }, /*#__PURE__*/_react["default"].createElement("div", {
+        className: "d-flex flex-column p-2 text-center"
+      }, /*#__PURE__*/_react["default"].createElement("h3", {
+        className: "text-start"
+      }, "Message To Decrypt"), /*#__PURE__*/_react["default"].createElement("textarea", {
+        required: true,
+        rows: "8",
+        className: "form-control my-3",
+        placeholder: "Message to decrypt here...",
+        value: messageToDecrypt,
+        onChange: handleMessageChange
+      }), /*#__PURE__*/_react["default"].createElement("input", {
+        required: true,
+        className: "form-control my-3",
+        placeholder: "Key for decryption...",
+        value: decryptionKey,
+        onChange: handleKeyChange
+      })), /*#__PURE__*/_react["default"].createElement("div", {
+        className: "p-2"
+      }, /*#__PURE__*/_react["default"].createElement("button", {
+        className: "btn btn-success me-2 mb-3",
+        onClick: handleClick,
+        value: "decrypt"
+      }, "Decrypt 🔓")))
+    );
+  };
+  _c6 = DecryptBody;
+  var DecryptResult = function DecryptResult(_ref6) {
+    var decryptedMessage = _ref6.decryptedMessage;
+    return (
+      /*#__PURE__*/_react["default"].createElement("div", {
+        className: "col-md-6"
+      }, /*#__PURE__*/_react["default"].createElement("div", {
+        className: "d-flex flex-column p-2"
+      }, /*#__PURE__*/_react["default"].createElement("h3", null, "Decrypted Message"), /*#__PURE__*/_react["default"].createElement(ResultCard, {
+        text: decryptedMessage
+      })))
+    );
+  };
+  _c7 = DecryptResult;
+  var Decrypt = function Decrypt(_ref7) {
+    var messageToDecrypt = _ref7.messageToDecrypt, decryptionKey = _ref7.decryptionKey, handleMessageToDecryptChange = _ref7.handleMessageToDecryptChange, handleDecryptionKeyChange = _ref7.handleDecryptionKeyChange, handleClick = _ref7.handleClick, decryptedMessage = _ref7.decryptedMessage;
+    return (
+      /*#__PURE__*/_react["default"].createElement("div", null, /*#__PURE__*/_react["default"].createElement("h2", null, "Decrypt"), /*#__PURE__*/_react["default"].createElement("section", {
+        className: "row mt-4"
+      }, /*#__PURE__*/_react["default"].createElement(DecryptBody, {
+        messageToDecrypt: messageToDecrypt,
+        decryptionKey: decryptionKey,
+        handleMessageChange: handleMessageToDecryptChange,
+        handleKeyChange: handleDecryptionKeyChange,
+        handleClick: handleClick
+      }), /*#__PURE__*/_react["default"].createElement(DecryptResult, {
+        decryptedMessage: decryptedMessage
+      })))
+    );
+  };
+  _c8 = Decrypt;
+  function EncryptDecrypt() {
+    _s2();
+    var _useState = (0, _react.useState)(''), _useState2 = _slicedToArray(_useState, 2), messageToEncrypt = _useState2[0], setMessageToEncrypt = _useState2[1];
+    var _useState3 = (0, _react.useState)(''), _useState4 = _slicedToArray(_useState3, 2), messageToDecrypt = _useState4[0], setMessageToDecrypt = _useState4[1];
+    var _useState5 = (0, _react.useState)(''), _useState6 = _slicedToArray(_useState5, 2), decryptionKey = _useState6[0], setDecryptionKey = _useState6[1];
+    var _useState7 = (0, _react.useState)('Encrypted Message Goes Here...'), _useState8 = _slicedToArray(_useState7, 2), encryptedMessage = _useState8[0], setEncryptedMessage = _useState8[1];
+    var _useState9 = (0, _react.useState)('Encryption Key Goes Here...'), _useState10 = _slicedToArray(_useState9, 2), encryptionKey = _useState10[0], setEncryptionKey = _useState10[1];
+    var _useState11 = (0, _react.useState)('Decrypted Message Goes Here...'), _useState12 = _slicedToArray(_useState11, 2), decryptedMessage = _useState12[0], setDecryptedMessage = _useState12[1];
+    var handleMessageToEncryptChange = function handleMessageToEncryptChange(e) {
+      return setMessageToEncrypt(e.target.value);
+    };
+    var handleMessageToDecryptChange = function handleMessageToDecryptChange(e) {
+      return setMessageToDecrypt(e.target.value);
+    };
+    var handleDecryptionKeyChange = function handleDecryptionKeyChange(e) {
+      setDecryptionKey(e.target.value);
+    };
+    var handleEncryptClick = (0, _react.useCallback)(function (e) {
+      e.preventDefault();
+      sendEncryptRequest(messageToEncrypt).then(function (json) {
+        setEncryptedMessage(json.data.encrypted_message);
+        setEncryptionKey(json.data.key);
+      })["catch"](function (err) {
+        return console.error(err);
+      });
+    }, [messageToEncrypt]);
+    var handleDecryptClick = (0, _react.useCallback)(function (e) {
+      e.preventDefault();
+      sendDecryptRequest(messageToDecrypt, decryptionKey).then(function (json) {
+        return setDecryptedMessage(json.data);
+      })["catch"](function (err) {
+        return console.error(err);
+      });
+    }, [messageToDecrypt, decryptionKey]);
+    return (
+      /*#__PURE__*/_react["default"].createElement("div", null, /*#__PURE__*/_react["default"].createElement(EncryptDecryptHeader, null), /*#__PURE__*/_react["default"].createElement("hr", null), /*#__PURE__*/_react["default"].createElement(Encrypt, {
+        messageToEncrypt: messageToEncrypt,
+        handleChange: handleMessageToEncryptChange,
+        handleClick: handleEncryptClick,
+        encryptedMessage: encryptedMessage,
+        encryptionKey: encryptionKey
+      }), /*#__PURE__*/_react["default"].createElement("hr", null), /*#__PURE__*/_react["default"].createElement(Decrypt, {
+        messageToDecrypt: messageToDecrypt,
+        handleMessageToDecryptChange: handleMessageToDecryptChange,
+        handleDecryptionKeyChange: handleDecryptionKeyChange,
+        handleClick: handleDecryptClick,
+        decryptedMessage: decryptedMessage
+      }))
+    );
+  }
+  _s2(EncryptDecrypt, "pLCfkyJ//qi9+d06RAWEjA4Jz40=");
+  _c9 = EncryptDecrypt;
+  var _default = EncryptDecrypt;
+  exports["default"] = _default;
+  var _c, _c2, _c3, _c4, _c5, _c6, _c7, _c8, _c9;
+  $RefreshReg$(_c, "EncryptDecryptHeader");
+  $RefreshReg$(_c2, "ResultCard");
+  $RefreshReg$(_c3, "EncryptBody");
+  $RefreshReg$(_c4, "EncryptResult");
+  $RefreshReg$(_c5, "Encrypt");
+  $RefreshReg$(_c6, "DecryptBody");
+  $RefreshReg$(_c7, "DecryptResult");
+  $RefreshReg$(_c8, "Decrypt");
+  $RefreshReg$(_c9, "EncryptDecrypt");
+  helpers.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
