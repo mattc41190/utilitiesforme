@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import Button from './common/Button'
+import Textarea from './common/Textarea'
 
 const sendRequest = ({ fromCase, toCase, contents }) => {
   const frontEndToBackendCasings = {
@@ -27,23 +29,20 @@ const sendRequest = ({ fromCase, toCase, contents }) => {
   return window.fetch(url, args).then(res => res.json())
 }
 
+
 const CaseTransformHeader = () => {
   return (
-    <section className='row mt-4'>
-      <div className='col'>
-        <div className='d-flex flex-column p-2 '>
-          <h1>Case Transform</h1>
-          <p>The <i>Case Transform</i> utility allows you to transform code in one casing (camel, snake, etc...) to another case.</p>
-        </div>
-      </div>
+    <section className='p-2'>
+      <h1 className="text-2xl font-semibold">Case Transform</h1>
+      <p>The <i>Case Transform</i> utility allows you to transform code in one casing (camel, snake, etc...) to another case.</p>
     </section>
   )
 }
 
-const CaseButton = ({ value, currentSelection, content, onClickHandler }) => {
-  const buttonClass = value === currentSelection ? 'success fw-bold' : 'secondary'
+const CaseButton = ({ value, currentSelection, content, handleClick }) => {
+  const buttonColor = value === currentSelection ? 'green' : 'gray'
   return (
-    <button className={`me-2 my-1 btn btn-${buttonClass}`} type='button' value={value} readOnly onClick={onClickHandler}>{content}</button>
+    <Button handleClick={handleClick} value={value} label={content} color={buttonColor} />
   )
 }
 
@@ -51,11 +50,11 @@ const ButtonSection = ({ title, currentSelection, handleChange }) => {
   return (
     <div>
       <h3>{title}</h3>
-      <CaseButton value='space-case' currentSelection={currentSelection} content='Space Delimited 💫' onClickHandler={handleChange} />
-      <CaseButton value='camel-case' currentSelection={currentSelection} content='Camel Case 🐪' onClickHandler={handleChange} />
-      <CaseButton value='snake-case' currentSelection={currentSelection} content='Snake Case 🐍' onClickHandler={handleChange} />
-      <CaseButton value='pascal-case' currentSelection={currentSelection} content='Pascal Case 🧪' onClickHandler={handleChange} />
-      <CaseButton value='kebab-case' currentSelection={currentSelection} content='Kebab Case 🍢' onClickHandler={handleChange} />
+      <CaseButton value='space-case' currentSelection={currentSelection} content='Space Delimited 💫' handleClick={handleChange} />
+      <CaseButton value='camel-case' currentSelection={currentSelection} content='Camel Case 🐪' handleClick={handleChange} />
+      <CaseButton value='snake-case' currentSelection={currentSelection} content='Snake Case 🐍' handleClick={handleChange} />
+      <CaseButton value='pascal-case' currentSelection={currentSelection} content='Pascal Case 🧪' handleClick={handleChange} />
+      <CaseButton value='kebab-case' currentSelection={currentSelection} content='Kebab Case 🍢' handleClick={handleChange} />
     </div>
   )
 }
@@ -70,42 +69,45 @@ const CaseTransformBody = ({
   handleSubmit
 }) => {
   return (
-    <section className='row my-4'>
-      <div className='col'>
-        <div className='d-flex flex-column p-2 text-center'>
-          <h3 className='text-start'>Text To Transform</h3>
-          <textarea
-            required
-            rows='8'
-            className='form-control my-3'
-            placeholder='Contents here...'
-            value={contents}
-            onChange={handleContentsChange}
+    <section>
+        <div className='p-2'>
+          <h3>Text To Transform</h3>
+          <Textarea 
+            placeholder='Contents here...' 
+            value={contents} 
+            handleChange={handleContentsChange}
           />
         </div>
-        <div className='d-flex justify-content-between align-items-center p-2 my-4'>
-          <ButtonSection title='From' currentSelection={currentFromSelection} handleChange={handleFromChange} />
-          <ButtonSection title='To' currentSelection={currentToSelection} handleChange={handleToChange} />
+        <div className='p-2'>
+          <ButtonSection 
+            title='From' 
+            currentSelection={currentFromSelection} 
+            handleChange={handleFromChange} 
+          />
+          <ButtonSection 
+            title='To' 
+            currentSelection={currentToSelection} 
+            handleChange={handleToChange} 
+          />
         </div>
         <div className='p-2'>
-          <button className='btn btn-lg btn-success' onClick={handleSubmit}>Submit</button>
+          <Button handleClick={handleSubmit} label="Submit" color="green" />
         </div>
-      </div>
     </section>
   )
 }
 
 const CaseTransformResult = ({ result, setResult }) => {
   return (
+
+
     <section>
-      <div className='d-flex flex-column p-2'>
-        <h3 className='text-start'>Result</h3>
-        <textarea
-          rows='8'
-          className='form-control my-3'
-          placeholder='Results will go here...'
-          value={result}
-          onChange={(e) => setResult(e.target.value)}
+      <div className='p-2'>
+        <h3>Result</h3>
+        <Textarea 
+          placeholder='Results will go here...' 
+          value={result} 
+          handleChange={(e) => setResult(e.target.value)}
         />
       </div>
     </section>

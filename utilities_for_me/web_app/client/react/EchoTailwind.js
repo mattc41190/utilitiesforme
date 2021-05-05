@@ -1,4 +1,7 @@
 import React, { useCallback, useState } from 'react'
+import Button from './common/Button'
+import Textarea from './common/Textarea'
+
 
 const valuesToEndpoint = {
   echo: 'echo',
@@ -18,26 +21,6 @@ const sendRequest = (command, contents) => {
   }
   const url = `/api/v1/echo/${valuesToEndpoint[command]}`
   return window.fetch(url, args).then(res => res.json())
-}
-
-const Button = ({handleClick, value, label, color}) => {
-  const _className = `bg-${color}-500 hover:bg-${color}-700 my-1 mr-2 text-white font-bold py-2 px-4 rounded`
-  return (
-    <button className={_className} onClick={handleClick} value={value}>{label}</button>
-  )
-}
-
-const Textarea = ({handleChange, placeholder, value }) => {
-  return (
-    <textarea
-    required
-    rows='8'
-    className='w-full my-3 p-3 rounded-md border-2 border-green-600 focus:border-green-600 focus:outline-none focus:ring-1 focus:ring-green-600'
-    placeholder={placeholder}
-    value={value}
-    onChange={handleChange}
-  />
-  )
 }
 
 const EchoHeader = () => {
