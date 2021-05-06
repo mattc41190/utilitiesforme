@@ -133,7 +133,7 @@ function CaseTransform () {
   }
 
   return (
-    <div>
+    <div className="mt-6">
       <CaseTransformHeader />
       <hr />
       <CaseTransformBody

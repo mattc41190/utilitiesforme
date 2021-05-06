@@ -60,7 +60,7 @@ function Prettify () {
   }
 
   return (
-    <div>
+    <div className="mt-6">
       <PrettifyHeader />
       <hr />
       <PrettifyBody contents={contents} handleChange={handleChange} handleClick={handleClick} ignoreClick={ignoreClick} />
