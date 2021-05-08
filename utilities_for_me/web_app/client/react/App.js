@@ -18,7 +18,8 @@ import CalculatePercent from './CalculatePercentTailwind'
 import GenerateRandomString from './GenerateRandomStringTailwind'
 // import EncryptDecrypt from './EncryptDecrypt'
 import EncryptDecrypt from './EncryptDecryptTailwind'
-import Timer from './Timer'
+// import Timer from './Timer'
+import Timer from './TimerTailwind'
 import CountdownClock from './CountdownClock'
 
 function App () {

@@ -144,7 +144,7 @@ const Decrypt = ({
   return (
     <section className="p-2 mb-8">
       <div className="text-xl font-semibold">Decrypt</div>
-      <div className="flex flex-col w-full md:flex-row md:justify-between">
+      <div className="p-2 flex flex-col w-full md:flex-row md:justify-between">
         <DecryptBody
           messageToDecrypt={messageToDecrypt}
           decryptionKey={decryptionKey}
