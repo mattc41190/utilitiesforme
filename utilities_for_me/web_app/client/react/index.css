@@ -19,6 +19,11 @@
   animation:blinkingText 1.2s infinite;
 }
 
+*::selection {
+  background-color: #065F46;
+  color: white;
+}
+
 @keyframes blinkingText{
   0%{     color: #212529;    }
   49%{    color: #212529; }
