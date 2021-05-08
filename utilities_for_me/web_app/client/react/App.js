@@ -1,23 +1,35 @@
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
-import Home from './Home'
-import Navbar from './Navbar'
+// import Home from './Home'
+import Home from './HomeTailwind'
+// import Navbar from './Navbar'
+import Navbar from './NavbarTailwind'
+
 import Error from './Error'
 
-import Echo from './Echo'
-import Prettify from './Prettify'
+// import Echo from './Echo'
+import Echo from './EchoTailwind'
+// import Prettify from './Prettify'
+import Prettify from './PrettifyTailwind'
 import CaseTransform from './CaseTransform'
-import CalculatePercent from './CalculatePercent'
-import GenerateRandomString from './GenerateRandomString'
-import EncryptDecrypt from './EncryptDecrypt'
-import Timer from './Timer'
-import CountdownClock from './CountdownClock'
+// import CalculatePercent from './CalculatePercent'
+import CalculatePercent from './CalculatePercentTailwind'
+// import GenerateRandomString from './GenerateRandomString'
+import GenerateRandomString from './GenerateRandomStringTailwind'
+// import EncryptDecrypt from './EncryptDecrypt'
+import EncryptDecrypt from './EncryptDecryptTailwind'
+// import Timer from './Timer'
+import Timer from './TimerTailwind'
+// import CountdownClock from './CountdownClock'
+import CountdownClock from './CountdownClockTailwind'
+
 
 function App () {
   return (
     <main>
       <Navbar />
-      <div className='container'>
+      {/* Tailwind on NON-SUFFIXED component */}
+      <div className='container mx-auto'> 
         <Switch>
           <Route exact path='/' component={Home} />
           <Route path='/echo' component={Echo} />

@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 * {
   font-family: 'Inconsolata', monospace;
 }
@@ -13,6 +17,11 @@
 
 .timer-blinking{
   animation:blinkingText 1.2s infinite;
+}
+
+*::selection {
+  background-color: #065F46;
+  color: white;
 }
 
 @keyframes blinkingText{
