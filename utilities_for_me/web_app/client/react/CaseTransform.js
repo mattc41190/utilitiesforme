@@ -33,7 +33,7 @@ const sendRequest = ({ fromCase, toCase, contents }) => {
 const CaseTransformHeader = () => {
   return (
     <section className='p-2'>
-      <h1 className="text-2xl font-semibold">Case Transform</h1>
+      <h1 className="text-5xl font-light mb-3">Case Transform</h1>
       <p>The <i>Case Transform</i> utility allows you to transform code in one casing (camel, snake, etc...) to another case.</p>
     </section>
   )

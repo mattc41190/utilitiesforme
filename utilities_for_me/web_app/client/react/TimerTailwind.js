@@ -24,7 +24,7 @@ const TIMER_MAP = {
 const TimerHeader = () => {
   return (
     <section className='p-2'>
-      <h1 className="text-2xl font-semibold">Timer</h1>
+      <h1 className="text-5xl font-light mb-3">Timer</h1>
       <p>The <i>Timer</i> utility contains a settable timer. Set a time and walk away, when the <i>timer</i>  finishes it will beep and flash to let you know.</p>
     </section>
   )
@@ -33,7 +33,7 @@ const TimerHeader = () => {
 const TimerSelectorButton = ({ resetTimer, timerDurationValue, timerDurationDisplay }) => {
   return (
     <Button 
-      color="blue"
+      color="green"
       handleClick={resetTimer}
       value={timerDurationValue}
       label={timerDurationDisplay}
@@ -77,7 +77,7 @@ const TimerDisplay = ({ timeRemaining, timerComplete }) => {
   const blinkClass = timerComplete ? 'timer-blinking' : ''
   const displayTime = translateFromSeconds(timeRemaining)
   return (
-    <div className='my-5 text-center'>
+    <div className='my-6 text-center'>
       <div className={`text-8xl md:text-9xl font-light ${blinkClass}`}>{displayTime}</div>
     </div>
   )
@@ -89,8 +89,19 @@ const TimerManager = ({ isRunning, timerComplete, toggleTimer, selectedTimer, re
 
   return (
     <div className='text-center'>
-      <button disabled={timerComplete} className={`bg-${colorClass}-500 hover:bg-${colorClass}-700 my-1 mr-2 text-white font-bold text-lg py-3 px-6 rounded`} onClick={toggleTimer} value='toggle'>{buttonText}</button>
-      <button className="bg-red-500 hover:bg-red-700 my-1 mr-2 text-white font-bold text-lg py-3 px-6 rounded" onClick={resetTimer} value={selectedTimer}>RESET</button>
+      <button 
+        disabled={timerComplete} 
+        className={`bg-${colorClass}-500 hover:bg-${colorClass}-700 my-1 mr-2 text-white font-bold text-lg py-3 px-6 rounded`} 
+        onClick={toggleTimer} 
+        value='toggle'>
+          {buttonText}
+      </button>
+      
+      <button 
+        className="bg-red-500 hover:bg-red-700 my-1 mr-2 text-white font-bold text-lg py-3 px-6 rounded" onClick={resetTimer} 
+        value={selectedTimer}>
+          RESET
+      </button>
     </div>
   )
 }

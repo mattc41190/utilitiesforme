@@ -26,7 +26,7 @@ const sendRequest = (command, contents) => {
 const EchoHeader = () => {
   return (
     <section className='p-2'>
-      <h1 className="text-2xl font-semibold">Echo</h1>
+      <h1 className="text-5xl font-light mb-3">Echo</h1>
       <p>The <i>Echo</i> utility contains utilities related to the transformation of a particular selection of text.</p>
     </section>
   )

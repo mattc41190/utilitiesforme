@@ -26,7 +26,7 @@ const sendDecryptRequest = (encryptedMessage, key) => {
 const EncryptDecryptHeader = () => {
   return (
     <section className='p-2'>
-      <h1 className="text-2xl font-semibold">Encrypt / Decrypt</h1>
+      <h1 className="text-5xl font-light mb-3">Encrypt / Decrypt</h1>
       <p>The <i>Encrypt / Decrypt</i> utility contains a utility that will allow you to encrypt a message and provides a means of decrypting that message via a key returned upon encryption.</p>
     </section>
   )

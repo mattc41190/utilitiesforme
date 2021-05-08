@@ -27,7 +27,7 @@ const generate = (_length, categories) => {
 const GenerateRandomStringHeader = () => {
   return (
     <section className='p-2'>
-      <h1 className="text-2xl font-semibold">Generate Random String</h1>
+      <h1 className="text-5xl font-light mb-3">Generate Random String</h1>
       <p>The <i>Generate Random String</i> utility will generate a random string of a proposed length (up to 128 characters) with options regarding casing, numbers, and symbols.</p>
     </section>
   )

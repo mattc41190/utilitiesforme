@@ -20,7 +20,9 @@ import GenerateRandomString from './GenerateRandomStringTailwind'
 import EncryptDecrypt from './EncryptDecryptTailwind'
 // import Timer from './Timer'
 import Timer from './TimerTailwind'
-import CountdownClock from './CountdownClock'
+// import CountdownClock from './CountdownClock'
+import CountdownClock from './CountdownClockTailwind'
+
 
 function App () {
   return (

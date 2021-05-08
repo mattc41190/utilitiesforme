@@ -11,7 +11,7 @@ const _prettify = (contents, type) => {
 const PrettifyHeader = () => {
   return (
     <section className='p-2'>
-      <h1 className="text-2xl font-semibold">Prettify</h1>
+      <h1 className="text-5xl font-light mb-3">Prettify</h1>
       <p>The <i>Prettify</i> utility contains utilities related to making structured data look prettier to humans.</p>
     </section>
   )

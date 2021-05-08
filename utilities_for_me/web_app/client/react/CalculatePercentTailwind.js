@@ -41,7 +41,7 @@ const sendRequest = (command, data) => {
 const CalculatePercentHeader = () => {
   return (
     <section className='p-2'>
-      <h1 className="text-2xl font-semibold">Calculate Percent</h1>
+      <h1 className="text-5xl font-light mb-3">Calculate Percent</h1>
       <p>The <i>Calculate Percent</i> utility contains utilities related to calculating percents... duh!</p>
     </section>
   )
