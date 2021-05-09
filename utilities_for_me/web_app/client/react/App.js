@@ -23,13 +23,12 @@ import Timer from './TimerTailwind'
 // import CountdownClock from './CountdownClock'
 import CountdownClock from './CountdownClockTailwind'
 
-
 function App () {
   return (
     <main>
       <Navbar />
       {/* Tailwind on NON-SUFFIXED component */}
-      <div className='container mx-auto'> 
+      <div className='container mx-auto'>
         <Switch>
           <Route exact path='/' component={Home} />
           <Route path='/echo' component={Echo} />

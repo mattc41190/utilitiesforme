@@ -24,7 +24,7 @@ const TIMER_MAP = {
 const TimerHeader = () => {
   return (
     <section className='p-2'>
-      <h1 className="text-5xl font-light mb-3">Timer</h1>
+      <h1 className='text-5xl font-light mb-3'>Timer</h1>
       <p>The <i>Timer</i> utility contains a settable timer. Set a time and walk away, when the <i>timer</i>  finishes it will beep and flash to let you know.</p>
     </section>
   )
@@ -32,8 +32,8 @@ const TimerHeader = () => {
 
 const TimerSelectorButton = ({ resetTimer, timerDurationValue, timerDurationDisplay }) => {
   return (
-    <Button 
-      color="green"
+    <Button
+      color='green'
       handleClick={resetTimer}
       value={timerDurationValue}
       label={timerDurationDisplay}
@@ -54,7 +54,7 @@ const TimerSelectorButtons = ({ timerIdentifiers, resetTimer }) => {
   })
 
   return (
-    <div className="flex justify-around">{timerButtons}</div>
+    <div className='flex justify-around'>{timerButtons}</div>
   )
 }
 
@@ -89,18 +89,20 @@ const TimerManager = ({ isRunning, timerComplete, toggleTimer, selectedTimer, re
 
   return (
     <div className='text-center'>
-      <button 
-        disabled={timerComplete} 
-        className={`bg-${colorClass}-500 hover:bg-${colorClass}-700 my-1 mr-2 text-white font-bold text-lg py-3 px-6 rounded`} 
-        onClick={toggleTimer} 
-        value='toggle'>
-          {buttonText}
+      <button
+        disabled={timerComplete}
+        className={`bg-${colorClass}-500 hover:bg-${colorClass}-700 my-1 mr-2 text-white font-bold text-lg py-3 px-6 rounded`}
+        onClick={toggleTimer}
+        value='toggle'
+      >
+        {buttonText}
       </button>
-      
-      <button 
-        className="bg-red-500 hover:bg-red-700 my-1 mr-2 text-white font-bold text-lg py-3 px-6 rounded" onClick={resetTimer} 
-        value={selectedTimer}>
-          RESET
+
+      <button
+        className='bg-red-500 hover:bg-red-700 my-1 mr-2 text-white font-bold text-lg py-3 px-6 rounded' onClick={resetTimer}
+        value={selectedTimer}
+      >
+        RESET
       </button>
     </div>
   )
@@ -116,8 +118,8 @@ const TimerBody = ({
   timerComplete
 }) => {
   return (
-    <section className="mt-8 flex flex-col justify-center">
-      <div className="w-4/12 self-center">
+    <section className='mt-8 flex flex-col justify-center'>
+      <div className='w-4/12 self-center'>
         <TimerSelectorSection resetTimer={resetTimer} />
       </div>
       <div>
@@ -194,7 +196,7 @@ function Timer () {
   }, [timeRemaining])
 
   return (
-    <div className="mt-6">
+    <div className='mt-6'>
       <TimerHeader />
       <hr />
       <TimerBody

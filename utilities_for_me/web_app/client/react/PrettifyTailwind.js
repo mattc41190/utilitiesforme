@@ -2,16 +2,16 @@ import React, { useState } from 'react'
 import Button from './common/Button'
 import Textarea from './common/Textarea'
 
-import { prettify } from './lib/prettify'
+import { prettifyContent } from './lib/prettify'
 
 const _prettify = (contents, type) => {
-  return prettify(contents, type)
+  return prettifyContent(contents, type)
 }
 
 const PrettifyHeader = () => {
   return (
     <section className='p-2'>
-      <h1 className="text-5xl font-light mb-3">Prettify</h1>
+      <h1 className='text-5xl font-light mb-3'>Prettify</h1>
       <p>The <i>Prettify</i> utility contains utilities related to making structured data look prettier to humans.</p>
     </section>
   )
@@ -22,15 +22,15 @@ const PrettifyBody = ({ contents, handleChange, handleClick, ignoreClick }) => {
     <section>
       <div className='p-2'>
         <h3 className='text-lg font-semibold'>Content To Prettify</h3>
-        <Textarea value={contents} placeholder="Contents here..." handleChange={handleChange}/>
+        <Textarea value={contents} placeholder='Contents here...' handleChange={handleChange} />
       </div>
       <div className='p-2'>
-        <Button handleClick={handleClick} value="json" label="JSON"  color="blue"/>
-        <Button handleClick={handleClick} value="html" label="HTML" color="red"/>
-        <Button handleClick={handleClick} value="js" label="JS" color="yellow"/>
-        <Button handleClick={handleClick} value="css" label="CSS" color="green"/>
+        <Button handleClick={handleClick} value='json' label='JSON' color='blue' />
+        <Button handleClick={handleClick} value='html' label='HTML' color='red' />
+        <Button handleClick={handleClick} value='js' label='JS' color='yellow' />
+        <Button handleClick={handleClick} value='css' label='CSS' color='green' />
       </div>
-    </section>  
+    </section>
   )
 }
 
@@ -39,7 +39,7 @@ const PrettifyResult = ({ result, setResult }) => {
     <section>
       <div className='flex flex-col p-2'>
         <h3 className='text-lg font-semibold'>Result</h3>
-        <Textarea placeholder='Results will go here...' value={result} handleChange={(e) => setResult(e.target.value)}/>
+        <Textarea placeholder='Results will go here...' value={result} handleChange={(e) => setResult(e.target.value)} />
       </div>
     </section>
   )
@@ -60,7 +60,7 @@ function Prettify () {
   }
 
   return (
-    <div className="mt-6">
+    <div className='mt-6'>
       <PrettifyHeader />
       <hr />
       <PrettifyBody contents={contents} handleChange={handleChange} handleClick={handleClick} ignoreClick={ignoreClick} />

@@ -42,11 +42,11 @@ check_js: format_js
 
 .PHONY: run_dev_ui
 run_dev_ui: 
-	npm run parcel-watch
+	npm run webpack-dev
 
 .PHONY: build_js
 build_js: check_js
-	npm run parcel-build
+	npm run webpack-prod
 
 # UNIVERSAL TARGETS
 

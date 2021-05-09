@@ -29,11 +29,10 @@ const sendRequest = ({ fromCase, toCase, contents }) => {
   return window.fetch(url, args).then(res => res.json())
 }
 
-
 const CaseTransformHeader = () => {
   return (
     <section className='p-2'>
-      <h1 className="text-5xl font-light mb-3">Case Transform</h1>
+      <h1 className='text-5xl font-light mb-3'>Case Transform</h1>
       <p>The <i>Case Transform</i> utility allows you to transform code in one casing (camel, snake, etc...) to another case.</p>
     </section>
   )
@@ -70,29 +69,29 @@ const CaseTransformBody = ({
 }) => {
   return (
     <section>
-        <div className='p-2'>
-          <h3>Text To Transform</h3>
-          <Textarea 
-            placeholder='Contents here...' 
-            value={contents} 
-            handleChange={handleContentsChange}
-          />
-        </div>
-        <div className='p-2'>
-          <ButtonSection 
-            title='From' 
-            currentSelection={currentFromSelection} 
-            handleChange={handleFromChange} 
-          />
-          <ButtonSection 
-            title='To' 
-            currentSelection={currentToSelection} 
-            handleChange={handleToChange} 
-          />
-        </div>
-        <div className='p-2'>
-          <Button handleClick={handleSubmit} label="Submit" color="green" />
-        </div>
+      <div className='p-2'>
+        <h3>Text To Transform</h3>
+        <Textarea
+          placeholder='Contents here...'
+          value={contents}
+          handleChange={handleContentsChange}
+        />
+      </div>
+      <div className='p-2'>
+        <ButtonSection
+          title='From'
+          currentSelection={currentFromSelection}
+          handleChange={handleFromChange}
+        />
+        <ButtonSection
+          title='To'
+          currentSelection={currentToSelection}
+          handleChange={handleToChange}
+        />
+      </div>
+      <div className='p-2'>
+        <Button handleClick={handleSubmit} label='Submit' color='green' />
+      </div>
     </section>
   )
 }
@@ -100,13 +99,12 @@ const CaseTransformBody = ({
 const CaseTransformResult = ({ result, setResult }) => {
   return (
 
-
     <section>
       <div className='p-2'>
         <h3>Result</h3>
-        <Textarea 
-          placeholder='Results will go here...' 
-          value={result} 
+        <Textarea
+          placeholder='Results will go here...'
+          value={result}
           handleChange={(e) => setResult(e.target.value)}
         />
       </div>
@@ -133,7 +131,7 @@ function CaseTransform () {
   }
 
   return (
-    <div className="mt-6">
+    <div className='mt-6'>
       <CaseTransformHeader />
       <hr />
       <CaseTransformBody

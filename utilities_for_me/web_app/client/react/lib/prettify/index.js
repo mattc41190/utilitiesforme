@@ -31,7 +31,7 @@ const prettifyCSS = (contents) => {
   return result
 }
 
-const prettify = (contents, type) => {
+export const prettifyContent = (contents, type) => {
   let result
   switch (type) {
     case JSON_TYPE:
@@ -51,10 +51,6 @@ const prettify = (contents, type) => {
   }
 
   return result
-}
-
-module.exports = {
-  prettify
 }
 
 /*

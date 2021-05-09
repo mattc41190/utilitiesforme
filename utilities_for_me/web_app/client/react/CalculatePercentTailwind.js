@@ -3,7 +3,6 @@
 import React, { useState } from 'react'
 import Button from './common/Button'
 
-
 const PERCENT_OF = 'percentOf'
 const NUM_IS_WHAT_PERCENT_OF = 'numIsWhatPercentOf'
 
@@ -41,7 +40,7 @@ const sendRequest = (command, data) => {
 const CalculatePercentHeader = () => {
   return (
     <section className='p-2'>
-      <h1 className="text-5xl font-light mb-3">Calculate Percent</h1>
+      <h1 className='text-5xl font-light mb-3'>Calculate Percent</h1>
       <p>The <i>Calculate Percent</i> utility contains utilities related to calculating percents... duh!</p>
     </section>
   )
@@ -58,15 +57,15 @@ const PercentOf = ({
 
   return (
     <section className='my-3 p-2 flex flex-col md:flex-row items-center text-xl'>
-      <div className="font-semibold mr-3">What is X percent of Y?</div>
+      <div className='font-semibold mr-3'>What is X percent of Y?</div>
       <div>What is</div>
-        <input
-          type='number'
-          className='w-24 p-2 m-3 border-2 rounded border-gray-700'
-          name='percent'
-          value={percentOf_Percent}
-          onChange={handlePercentOfChange}
-        />
+      <input
+        type='number'
+        className='w-24 p-2 m-3 border-2 rounded border-gray-700'
+        name='percent'
+        value={percentOf_Percent}
+        onChange={handlePercentOfChange}
+      />
       <div>% of</div>
       <div>
         <input
@@ -77,8 +76,8 @@ const PercentOf = ({
           onChange={handlePercentOfChange}
         />
       </div>
-      <Button color="green" label="?" handleClick={handlePercentOfSubmit} />
-      <div className="font-semibold">{percentOfResult}</div>
+      <Button color='green' label='?' handleClick={handlePercentOfSubmit} />
+      <div className='font-semibold'>{percentOfResult}</div>
     </section>
   )
 }
@@ -93,25 +92,25 @@ const NumIsWhatPercentOf = ({
   const numIsWhatPercentOf_Of = numIsWhatPercentOf.of
 
   return (
-      <section className='my-4 p-2 flex flex-col md:flex-row items-center text-xl'>
-        <div className="font-semibold mr-3">X is what percent of Y?</div>
-        <input
-          type='number'
-          className='w-24 m-3 p-2 border-2 rounded border-gray-700'
-          name='num'
-          value={numIsWhatPercentOf_Num}
-          onChange={handleNumIsWhatPercentOfChange}
-        />
-        <div>is what percent of</div>
-        <input
-          type='number'
-          className='w-24 m-3 p-2 border-2 rounded border-gray-700'
-          name='of'
-          value={numIsWhatPercentOf_Of}
-          onChange={handleNumIsWhatPercentOfChange}
-        />
-        <Button color="green" label="?" handleClick={handleNumIsWhatPercentOfSubmit} />
-        <div>{numIsWhatPercentOfResult}</div>
+    <section className='my-4 p-2 flex flex-col md:flex-row items-center text-xl'>
+      <div className='font-semibold mr-3'>X is what percent of Y?</div>
+      <input
+        type='number'
+        className='w-24 m-3 p-2 border-2 rounded border-gray-700'
+        name='num'
+        value={numIsWhatPercentOf_Num}
+        onChange={handleNumIsWhatPercentOfChange}
+      />
+      <div>is what percent of</div>
+      <input
+        type='number'
+        className='w-24 m-3 p-2 border-2 rounded border-gray-700'
+        name='of'
+        value={numIsWhatPercentOf_Of}
+        onChange={handleNumIsWhatPercentOfChange}
+      />
+      <Button color='green' label='?' handleClick={handleNumIsWhatPercentOfSubmit} />
+      <div>{numIsWhatPercentOfResult}</div>
     </section>
   )
 }
@@ -196,7 +195,7 @@ function CalculatePercent () {
   }
 
   return (
-    <div className="mt-6">
+    <div className='mt-6'>
       <CalculatePercentHeader />
       <hr />
       <CalculatePercentBody

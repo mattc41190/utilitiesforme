@@ -2,7 +2,6 @@ import React, { useCallback, useState } from 'react'
 import Button from './common/Button'
 import Textarea from './common/Textarea'
 
-
 const sendEncryptRequest = (message) => {
   const args = {
     method: 'post',
@@ -26,7 +25,7 @@ const sendDecryptRequest = (encryptedMessage, key) => {
 const EncryptDecryptHeader = () => {
   return (
     <section className='p-2'>
-      <h1 className="text-5xl font-light mb-3">Encrypt / Decrypt</h1>
+      <h1 className='text-5xl font-light mb-3'>Encrypt / Decrypt</h1>
       <p>The <i>Encrypt / Decrypt</i> utility contains a utility that will allow you to encrypt a message and provides a means of decrypting that message via a key returned upon encryption.</p>
     </section>
   )
@@ -34,10 +33,10 @@ const EncryptDecryptHeader = () => {
 
 const ResultCard = ({ text }) => {
   return (
-    <div className="w-full">
+    <div className='w-full'>
       <div className='p-8 rounded-sm break-words text-center text-lg bg-gray-800 text-green-600'>
         <div>{text}</div>
-    </div>
+      </div>
     </div>
   )
 }
@@ -45,18 +44,18 @@ const ResultCard = ({ text }) => {
 const EncryptBody = ({ messageToEncrypt, handleChange, handleClick }) => {
   return (
     <section className='w-full md:w-6/12'>
-        <div className='font-semibold'>Message To Encrypt</div>
-        <Textarea 
-          value={messageToEncrypt} 
-          placeholder="Message to encrypt here..." 
-          handleChange={handleChange}
-        />
-        <Button 
-          color='red' 
-          handleClick={handleClick} 
-          label="Encrypt 🔒"
-          value='encrypt'
-        />
+      <div className='font-semibold'>Message To Encrypt</div>
+      <Textarea
+        value={messageToEncrypt}
+        placeholder='Message to encrypt here...'
+        handleChange={handleChange}
+      />
+      <Button
+        color='red'
+        handleClick={handleClick}
+        label='Encrypt 🔒'
+        value='encrypt'
+      />
     </section>
   )
 }
@@ -64,10 +63,10 @@ const EncryptBody = ({ messageToEncrypt, handleChange, handleClick }) => {
 const EncryptResult = ({ encryptedMessage, encryptionKey }) => {
   return (
     <div className='w-full md:w-5/12'>
-      <div className="flex flex-col p-2">
-        <div className="font-semibold text-lg mb-3">Encrypted Message</div>
+      <div className='flex flex-col p-2'>
+        <div className='font-semibold text-lg mb-3'>Encrypted Message</div>
         <ResultCard text={encryptedMessage} />
-        <div className="mt-3 font-semibold text-lg mb-3">Encryption Key</div>
+        <div className='mt-3 font-semibold text-lg mb-3'>Encryption Key</div>
         <ResultCard text={encryptionKey} />
       </div>
     </div>
@@ -76,8 +75,8 @@ const EncryptResult = ({ encryptedMessage, encryptionKey }) => {
 
 const Encrypt = ({ messageToEncrypt, handleChange, handleClick, encryptedMessage, encryptionKey }) => {
   return (
-    <div className="p-2 mb-8 mt-5">
-      <div className="text-xl font-semibold">Encrypt</div>
+    <div className='p-2 mb-8 mt-5'>
+      <div className='text-xl font-semibold'>Encrypt</div>
       <section className='flex flex-col w-full md:flex-row md:justify-between'>
         <EncryptBody
           messageToEncrypt={messageToEncrypt}
@@ -99,24 +98,24 @@ const DecryptBody = ({
   handleClick
 }) => {
   return (
-    <div className="w-full md:w-6/12">
-        <div>Message To Decrypt</div>
-        <Textarea 
-          value={messageToDecrypt} 
-          placeholder="Message to decrypt here..." 
-          handleChange={handleMessageChange}
-        />
-        <input
-          className='w-full p-2 border-2 rounded  border-green-600 focus:border-green-600 focus:outline-none focus:ring-1 focus:ring-green-600'
-          placeholder='Key for decryption...'
-          value={decryptionKey}
-          onChange={handleKeyChange}
-        />
+    <div className='w-full md:w-6/12'>
+      <div>Message To Decrypt</div>
+      <Textarea
+        value={messageToDecrypt}
+        placeholder='Message to decrypt here...'
+        handleChange={handleMessageChange}
+      />
+      <input
+        className='w-full p-2 border-2 rounded  border-green-600 focus:border-green-600 focus:outline-none focus:ring-1 focus:ring-green-600'
+        placeholder='Key for decryption...'
+        value={decryptionKey}
+        onChange={handleKeyChange}
+      />
       <div className='py-2'>
-        <Button 
-          color='green' 
-          onClick={handleClick} 
-          label="Decrypt 🔓"
+        <Button
+          color='green'
+          onClick={handleClick}
+          label='Decrypt 🔓'
           value='decrypt'
         />
       </div>
@@ -127,8 +126,8 @@ const DecryptBody = ({
 const DecryptResult = ({ decryptedMessage }) => {
   return (
     <div className='w-full md:w-5/12'>
-        <div className="font-semibold text-lg mb-3">Decrypted Message</div>
-        <ResultCard text={decryptedMessage} />
+      <div className='font-semibold text-lg mb-3'>Decrypted Message</div>
+      <ResultCard text={decryptedMessage} />
     </div>
   )
 }
@@ -142,9 +141,9 @@ const Decrypt = ({
   decryptedMessage
 }) => {
   return (
-    <section className="p-2 mb-8">
-      <div className="text-xl font-semibold">Decrypt</div>
-      <div className="p-2 flex flex-col w-full md:flex-row md:justify-between">
+    <section className='p-2 mb-8'>
+      <div className='text-xl font-semibold'>Decrypt</div>
+      <div className='p-2 flex flex-col w-full md:flex-row md:justify-between'>
         <DecryptBody
           messageToDecrypt={messageToDecrypt}
           decryptionKey={decryptionKey}
@@ -155,7 +154,6 @@ const Decrypt = ({
         <DecryptResult decryptedMessage={decryptedMessage} />
       </div>
     </section>
-
 
   )
 }
@@ -195,7 +193,7 @@ function EncryptDecrypt () {
   }, [messageToDecrypt, decryptionKey])
 
   return (
-    <div className="mt-6">
+    <div className='mt-6'>
       <EncryptDecryptHeader />
       <hr />
       <Encrypt

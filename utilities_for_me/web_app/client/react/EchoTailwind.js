@@ -2,7 +2,6 @@ import React, { useCallback, useState } from 'react'
 import Button from './common/Button'
 import Textarea from './common/Textarea'
 
-
 const valuesToEndpoint = {
   echo: 'echo',
   upper: 'upper',
@@ -26,7 +25,7 @@ const sendRequest = (command, contents) => {
 const EchoHeader = () => {
   return (
     <section className='p-2'>
-      <h1 className="text-5xl font-light mb-3">Echo</h1>
+      <h1 className='text-5xl font-light mb-3'>Echo</h1>
       <p>The <i>Echo</i> utility contains utilities related to the transformation of a particular selection of text.</p>
     </section>
   )
@@ -35,20 +34,20 @@ const EchoHeader = () => {
 const EchoBody = ({ contents, handleChange, handleClick }) => {
   return (
     <section>
-        <div className='p-2'>
-          <h3 className='text-lg font-semibold'>Text To Echo</h3>
-          <Textarea value={contents} placeholder="Contents here..." handleChange={handleChange}/>
-        </div>
-        <div className='p-2'>
-          <Button handleClick={handleClick} value="echo" label="Echo 🗣"  color="green"/>
-          <Button handleClick={handleClick} value="upper" label="Upper 🔠" color="gray"/>
-          <Button handleClick={handleClick} value="lower" label="Lower 🔡" color="purple"/>
-          <Button handleClick={handleClick} value="base-64-encode" label="Base 64 Encode 💽" color="blue"/>
-          <Button handleClick={handleClick} value="base-64-decode" label="Base 64 Decode 📀" color="indigo"/>
-          <Button handleClick={handleClick} value="kebab-case" label="Kebab Case 🍢" color="pink"/>
-          <Button handleClick={handleClick} value="snake-case" label="Snake Case 🐍" color="red"/>
-        </div>
-    </section>  
+      <div className='p-2'>
+        <h3 className='text-lg font-semibold'>Text To Echo</h3>
+        <Textarea value={contents} placeholder='Contents here...' handleChange={handleChange} />
+      </div>
+      <div className='p-2'>
+        <Button handleClick={handleClick} value='echo' label='Echo 🗣' color='green' />
+        <Button handleClick={handleClick} value='upper' label='Upper 🔠' color='gray' />
+        <Button handleClick={handleClick} value='lower' label='Lower 🔡' color='purple' />
+        <Button handleClick={handleClick} value='base-64-encode' label='Base 64 Encode 💽' color='blue' />
+        <Button handleClick={handleClick} value='base-64-decode' label='Base 64 Decode 📀' color='indigo' />
+        <Button handleClick={handleClick} value='kebab-case' label='Kebab Case 🍢' color='pink' />
+        <Button handleClick={handleClick} value='snake-case' label='Snake Case 🐍' color='red' />
+      </div>
+    </section>
   )
 }
 
@@ -57,7 +56,7 @@ const EchoResult = ({ result, setResult }) => {
     <section>
       <div className='flex flex-col p-2'>
         <h3 className='text-lg font-semibold'>Result</h3>
-        <Textarea placeholder='Results will go here...' value={result} handleChange={(e) => setResult(e.target.value)}/>
+        <Textarea placeholder='Results will go here...' value={result} handleChange={(e) => setResult(e.target.value)} />
       </div>
     </section>
   )
@@ -77,7 +76,7 @@ function Echo () {
   }, [contents])
 
   return (
-    <div className="mt-6">
+    <div className='mt-6'>
       <EchoHeader />
       <hr />
       <EchoBody contents={contents} handleChange={handleChange} handleClick={handleClick} />

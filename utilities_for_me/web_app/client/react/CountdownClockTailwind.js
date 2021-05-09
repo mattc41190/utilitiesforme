@@ -67,7 +67,7 @@ const getDateUIData = (label) => {
 const CountdownClockHeader = () => {
   return (
     <section className='p-2'>
-      <h1 className="text-5xl font-light mb-3">Countdown Clock</h1>
+      <h1 className='text-5xl font-light mb-3'>Countdown Clock</h1>
       <p>The <i>Countdown Clock</i> will display the amount of days, hours, minutes and seconds until the next annual instance of a date. Like Christmas, Thanksgiving or Boxing Day.</p>
     </section>
   )
@@ -88,7 +88,7 @@ const CountdownClockDisplay = ({ displayTime, holiday = 'Your custom date', _dat
 const CountdownClockSelectorButton = ({ title, label, chooseDate }) => {
   const uiData = getDateUIData(label)
   return (
-    <Button 
+    <Button
       color={uiData.classColorName}
       handleClick={chooseDate}
       value={label}
@@ -112,7 +112,7 @@ const CountdownClockSelectorButtons = ({ presetDates, chooseDate }) => {
   })
 
   return (
-    <div className="flex flex-row flex-wrap justify-center mt-8 mb-6">{dateButtons}</div>
+    <div className='flex flex-row flex-wrap justify-center mt-8 mb-6'>{dateButtons}</div>
   )
 }
 

@@ -19,17 +19,17 @@ const expectedCSS = `p {
 }`
 
 test('prettify JSON', () => {
-  expect(prettify.prettify('{"key": "val"}', 'json')).toEqual(expectedJSON)
+  expect(prettify.prettifyContent('{"key": "val"}', 'json')).toEqual(expectedJSON)
 })
 
 test('prettify HTML', () => {
-  expect(prettify.prettify('<p>hello</p><p>world</p>', 'html')).toEqual(expectedHTML)
+  expect(prettify.prettifyContent('<p>hello</p><p>world</p>', 'html')).toEqual(expectedHTML)
 })
 
 test('prettify JS', () => {
-  expect(prettify.prettify('let fn = () => { fakeFunc() }', 'js')).toEqual(expectedJS)
+  expect(prettify.prettifyContent('let fn = () => { fakeFunc() }', 'js')).toEqual(expectedJS)
 })
 
 test('prettify CSS', () => {
-  expect(prettify.prettify('p {color: red;}', 'css')).toEqual(expectedCSS)
+  expect(prettify.prettifyContent('p {color: red;}', 'css')).toEqual(expectedCSS)
 })

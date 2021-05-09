@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import Button from './common/Button'
 
-
 const CAPITAL_LETTERS = 'capital-letters'
 const LOWERCASE_LETTERS = 'lowercase-letters'
 const NUMBERS = 'numbers'
@@ -27,7 +26,7 @@ const generate = (_length, categories) => {
 const GenerateRandomStringHeader = () => {
   return (
     <section className='p-2'>
-      <h1 className="text-5xl font-light mb-3">Generate Random String</h1>
+      <h1 className='text-5xl font-light mb-3'>Generate Random String</h1>
       <p>The <i>Generate Random String</i> utility will generate a random string of a proposed length (up to 128 characters) with options regarding casing, numbers, and symbols.</p>
     </section>
   )
@@ -53,46 +52,46 @@ const GenerateRandomStringOptions = ({ length, selectedCategories, setSelectedCa
 
   return (
     <div className='p-2'>
-      <div className="text-xl font-semibold">Options</div>
-        <input
-          required
-          type='number'
-          className='p-2 mt-3 mb-1 w-full md:w-6/12 border-2 rounded border-gray-700'
-          placeholder='Length...'
-          value={length}
-          onChange={handleChange}
-        />
-        <div>
-          <small>Max 128 Characters</small>
-        </div>
-      <div className="my-2">
-        <Button 
-          handleClick={handleClick} 
-          value="capital-letters" 
-          label="Capitals 🔠"  
+      <div className='text-xl font-semibold'>Options</div>
+      <input
+        required
+        type='number'
+        className='p-2 mt-3 mb-1 w-full md:w-6/12 border-2 rounded border-gray-700'
+        placeholder='Length...'
+        value={length}
+        onChange={handleChange}
+      />
+      <div>
+        <small>Max 128 Characters</small>
+      </div>
+      <div className='my-2'>
+        <Button
+          handleClick={handleClick}
+          value='capital-letters'
+          label='Capitals 🔠'
           color={getBtnColorClass('capital-letters')}
         />
-        <Button 
-          handleClick={handleClick} 
-          value="lowercase-letters" 
-          label="Lowercase 🔡"  
+        <Button
+          handleClick={handleClick}
+          value='lowercase-letters'
+          label='Lowercase 🔡'
           color={getBtnColorClass('lowercase-letters')}
         />
-        <Button 
-          handleClick={handleClick} 
-          value="numbers" 
-          label="Numbers 🔢"  
+        <Button
+          handleClick={handleClick}
+          value='numbers'
+          label='Numbers 🔢'
           color={getBtnColorClass('numbers')}
         />
-        <Button 
-          handleClick={handleClick} 
-          value="symbols" 
-          label="Symbols❗️"  
+        <Button
+          handleClick={handleClick}
+          value='symbols'
+          label='Symbols❗️'
           color={getBtnColorClass('symbols')}
         />
       </div>
       <hr />
-        <button className='w-full md:w-6/12  bg-green-500 hover:bg-green-700 mt-5 mb-3 text-white font-bold text-lg py-4 px-6 rounded' onClick={handleSubmit} value='generate'>Generate 🏁</button>
+      <button className='w-full md:w-6/12  bg-green-500 hover:bg-green-700 mt-5 mb-3 text-white font-bold text-lg py-4 px-6 rounded' onClick={handleSubmit} value='generate'>Generate 🏁</button>
     </div>
   )
 }
@@ -118,12 +117,12 @@ const GenerateRandomStringResult = ({ result }) => {
   }
 
   return (
-      <div onClick={copy} className='p-2'>
-        <div className='text-lg font-semibold'>Result</div>
-        <div className='w-full md:w-6/12 p-8 rounded-sm text-center text-lg bg-gray-800 text-green-600'>
-          <code>{result}</code>
-        </div>
+    <div onClick={copy} className='p-2'>
+      <div className='text-lg font-semibold'>Result</div>
+      <div className='w-full md:w-6/12 p-8 rounded-sm text-center text-lg bg-gray-800 text-green-600'>
+        <code>{result}</code>
       </div>
+    </div>
   )
 }
 
@@ -144,7 +143,7 @@ function GenerateRandomString () {
   }
 
   return (
-    <div className="mt-6">
+    <div className='mt-6'>
       <GenerateRandomStringHeader />
       <hr />
       <GenerateRandomStringBody

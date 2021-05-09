@@ -36,7 +36,9 @@ def create_app(test_config=None):
     from .blueprints.api.echo import bp as echo_bp
     from .blueprints.api.case_transform import bp as case_transform_bp
     from .blueprints.api.calculate_percent import bp as calculate_percent_bp
+    from .blueprints.api.calculate import bp as calculate_bp
     from .blueprints.api.generate_random_string import bp as generate_random_string_bp
+    from .blueprints.api.encrypt_decrypt import bp as encrypt_decrypt_bp
     from .blueprints.api.encrypt_decrypt import bp as encrypt_decrypt_bp
 
     app.register_blueprint(app_bp.bp)
@@ -45,5 +47,6 @@ def create_app(test_config=None):
     app.register_blueprint(calculate_percent_bp.bp)
     app.register_blueprint(generate_random_string_bp.bp)
     app.register_blueprint(encrypt_decrypt_bp.bp)
+    app.register_blueprint(calculate_bp.bp)
 
     return app
