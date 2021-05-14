@@ -2,6 +2,21 @@ import React, { useCallback, useState } from 'react'
 import Button from './common/Button'
 import Textarea from './common/Textarea'
 
+const COLORS = {
+  green: "bg-green-500",
+  greenHover: "hover:bg-green-700",
+  gray: "bg-gray-500",
+  grayHover: "hover:bg-gray-700",
+  indigo: "bg-indigo-500",
+  indigoHover: "hover:bg-indigo-700",
+  pink: "bg-pink-500",
+  pinkHover: "hover:bg-pink-700",
+  red: "bg-red-500",
+  redHover: "hover:bg-red-700",
+  yellow: "bg-yellow-500",
+  yellowHover: "hover:bg-yellow-700",
+}
+
 const valuesToEndpoint = {
   echo: 'echo',
   upper: 'upper',
@@ -39,13 +54,55 @@ const EchoBody = ({ contents, handleChange, handleClick }) => {
         <Textarea value={contents} placeholder='Contents here...' handleChange={handleChange} />
       </div>
       <div className='p-2'>
-        <Button handleClick={handleClick} value='echo' label='Echo 🗣' color='green' />
-        <Button handleClick={handleClick} value='upper' label='Upper 🔠' color='gray' />
-        <Button handleClick={handleClick} value='lower' label='Lower 🔡' color='purple' />
-        <Button handleClick={handleClick} value='base-64-encode' label='Base 64 Encode 💽' color='blue' />
-        <Button handleClick={handleClick} value='base-64-decode' label='Base 64 Decode 📀' color='indigo' />
-        <Button handleClick={handleClick} value='kebab-case' label='Kebab Case 🍢' color='pink' />
-        <Button handleClick={handleClick} value='snake-case' label='Snake Case 🐍' color='red' />
+        <Button 
+          handleClick={handleClick} 
+          value='echo' 
+          label='Echo 🗣' 
+          color={COLORS.gray} 
+          hoverColor={COLORS.grayHover}  
+        />
+        <Button 
+          handleClick={handleClick} 
+          value='upper' 
+          label='Upper 🔠'  
+          color={COLORS.indigo} 
+          hoverColor={COLORS.indigoHover}  
+        />
+        <Button 
+          handleClick={handleClick} 
+          value='lower' 
+          label='Lower 🔡'  
+          color={COLORS.yellow} 
+          hoverColor={COLORS.yellowHover}  
+        />
+        <Button 
+          handleClick={handleClick} 
+          value='base-64-encode' 
+          label='Base 64 Encode 💽'  
+          color={COLORS.red} 
+          hoverColor={COLORS.redHover}  
+        />
+        <Button 
+          handleClick={handleClick} 
+          value='base-64-decode' 
+          label='Base 64 Decode 📀' 
+          color={COLORS.pink} 
+          hoverColor={COLORS.pinkHover}   
+        />
+        <Button 
+          handleClick={handleClick} 
+          value='kebab-case' 
+          label='Kebab Case 🍢'  
+          color={COLORS.green} 
+          hoverColor={COLORS.greenHover}  
+        />
+        <Button 
+          handleClick={handleClick} 
+          value='snake-case' 
+          label='Snake Case 🐍' 
+          color={COLORS.pink} 
+          hoverColor={COLORS.pinkHover}  
+        />
       </div>
     </section>
   )
