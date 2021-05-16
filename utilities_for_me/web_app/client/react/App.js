@@ -17,7 +17,6 @@ function App () {
   return (
     <main>
       <Navbar />
-      {/* Tailwind on NON-SUFFIXED component */}
       <div className='container mx-auto'>
         <Switch>
           <Route exact path='/' component={Home} />
