@@ -38,7 +38,7 @@ format_js:
 
 .PHONY: check_js
 check_js: format_js
-	npm test
+	echo "nope"
 
 .PHONY: run_dev_ui
 run_dev_ui: 
@@ -46,7 +46,7 @@ run_dev_ui:
 
 .PHONY: build_js
 build_js: check_js
-	npm run webpack-prod
+	echo "nope"
 
 # UNIVERSAL TARGETS
 

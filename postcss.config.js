@@ -10,7 +10,7 @@ module.exports = {
     cssnano({ preset: 'default' }),
     purgecss({
       content: [
-        'utilities_for_me/web_app/templates/**/*.html', 
+        'utilities_for_me/web_app/templates/**/*.html',
         'utilities_for_me/web_app/client/react/**/*.js'
       ],
       defaultExtractor: content => content.match(/[\w-/:]+(?<!:)/g) || []

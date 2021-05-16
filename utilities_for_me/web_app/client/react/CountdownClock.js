@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react'
+import Button from './common/Button'
+import COLORS from './lib/colors'
 
 import { createDisplayTime, getDefaultDates, getWeekDay } from './lib/calculate-duration'
 
@@ -8,52 +10,62 @@ const DEFAULT_DATE_DISPLAY_DATA = [
   {
     label: 'christmas',
     title: 'Christmas 🎅',
-    classColorName: 'success'
+    classColorName: COLORS.green,
+    classColorHoverName: COLORS.greenHover
   },
   {
     label: 'thanksgiving',
     title: 'Thanksgiving 🦃',
-    classColorName: 'warning'
+    classColorName: COLORS.yellow,
+    classColorHoverName: COLORS.yellowHover
   },
   {
     label: 'independenceDay',
     title: 'July Fourth 🦅',
-    classColorName: 'danger'
+    classColorName: COLORS.blue,
+    classColorHoverName: COLORS.blueHover
   },
   {
     label: 'halloween',
     title: 'Halloween 🎃',
-    classColorName: 'dark'
+    classColorName: COLORS.indigo,
+    classColorHoverName: COLORS.indigoHover
   },
   {
     label: 'mlkDay',
     title: 'Martin Luther King Jr Day 🤝',
-    classColorName: 'secondary'
+    classColorName: COLORS.purple,
+    classColorHoverName: COLORS.purpleHover
   },
   {
     label: 'valentinesDay',
     title: 'Valentines Day 💖',
-    classColorName: 'outline-dark'
+    classColorName: COLORS.pink,
+    classColorHoverName: COLORS.pinkHover
   },
   {
     label: 'memorialDay',
     title: 'Memorial Day 🇺🇸',
-    classColorName: 'primary'
+    classColorName: COLORS.blue,
+    classColorHoverName: COLORS.blueHover
   },
   {
     label: 'laborDay',
     title: 'Labor Day 💪',
-    classColorName: 'info'
+    classColorName: COLORS.green,
+    classColorHoverName: COLORS.greenHover
   },
   {
     label: 'boxingDay',
     title: 'Boxing Day 🥊',
-    classColorName: 'secondary'
+    classColorName: COLORS.gray,
+    classColorHoverName: COLORS.grayHover
   },
   {
     label: 'newYearsDay',
     title: 'New Years Day 🎆',
-    classColorName: 'dark'
+    classColorName: COLORS.indigo,
+    classColorHoverName: COLORS.indigoHover
   }
 ]
 
@@ -65,13 +77,9 @@ const getDateUIData = (label) => {
 
 const CountdownClockHeader = () => {
   return (
-    <section className='row mt-4'>
-      <div className='col'>
-        <div className='d-flex flex-column p-2 '>
-          <h1>Countdown Clock</h1>
-          <p>The <i>Countdown Clock</i> will display the amount of days, hours, minutes and seconds until the next annual instance of a date. Like Christmas, Thanksgiving or Boxing Day.</p>
-        </div>
-      </div>
+    <section className='p-2'>
+      <h1 className='text-5xl font-light mb-3'>Countdown Clock</h1>
+      <p>The <i>Countdown Clock</i> will display the amount of days, hours, minutes and seconds until the next annual instance of a date. Like Christmas, Thanksgiving or Boxing Day.</p>
     </section>
   )
 }
@@ -81,7 +89,7 @@ const CountdownClockDisplay = ({ displayTime, holiday = 'Your custom date', _dat
   const friendlyDate = `${_date.getMonth() + 1}/${_date.getDate()}/${_date.getFullYear()}`
   return (
     <div className='text-center'>
-      <h2 className='display-1 display-large'>{displayTime.clockValue}</h2>
+      <h2 className='text-6xl md:text-9xl md:font-light mb-4'>{displayTime.clockValue}</h2>
       <h5>Until: {holiday}</h5>
       <small>Which is on {weekday},({friendlyDate}), by the way!</small>
     </div>
@@ -91,13 +99,13 @@ const CountdownClockDisplay = ({ displayTime, holiday = 'Your custom date', _dat
 const CountdownClockSelectorButton = ({ title, label, chooseDate }) => {
   const uiData = getDateUIData(label)
   return (
-    <button
-      className={`btn btn-${uiData.classColorName} mx-2 mt-2 px-5 `}
-      onClick={chooseDate}
+    <Button
+      color={uiData.classColorName}
+      hoverColor={uiData.classColorHoverName}
+      handleClick={chooseDate}
       value={label}
-    >
-      {uiData.title}
-    </button>
+      label={uiData.title}
+    />
   )
 }
 
@@ -116,13 +124,13 @@ const CountdownClockSelectorButtons = ({ presetDates, chooseDate }) => {
   })
 
   return (
-    <div>{dateButtons}</div>
+    <div className='flex flex-row flex-wrap justify-center mt-8 mb-6'>{dateButtons}</div>
   )
 }
 
 const CountdownClockSelectorSection = ({ presetDates, chooseDate }) => {
   return (
-    <div className='text-center'>
+    <div>
       <CountdownClockSelectorButtons presetDates={presetDates} chooseDate={chooseDate} />
     </div>
   )

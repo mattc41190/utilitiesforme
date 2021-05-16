@@ -100,6 +100,7 @@ npm run styleit
 - Number Calculator
 - Code Case Transformer ✅
 - Random String Generator ✅
+- Hex/Binary/Base10/Octal Converter
 - Fake Data Creator V-2
 - Data Encryption ✅
 - Regex Tester V-N

@@ -1,6 +1,4 @@
 import React, { useCallback, useState } from 'react'
-import Button from './common/Button'
-import Textarea from './common/Textarea'
 
 const sendEncryptRequest = (message) => {
   const args = {
@@ -24,49 +22,53 @@ const sendDecryptRequest = (encryptedMessage, key) => {
 
 const EncryptDecryptHeader = () => {
   return (
-    <section className='p-2'>
-      <h1 className='text-5xl font-light mb-3'>Encrypt / Decrypt</h1>
-      <p>The <i>Encrypt / Decrypt</i> utility contains a utility that will allow you to encrypt a message and provides a means of decrypting that message via a key returned upon encryption.</p>
+    <section className='row mt-4'>
+      <div className='col'>
+        <div className='d-flex flex-column p-2 '>
+          <h1>Encrypt / Decrypt</h1>
+          <p>The <i>Encrypt / Decrypt</i> utility contains a utility that will allow you to encrypt a message and provides a means of decrypting that message via a key returned upon encryption.</p>
+        </div>
+      </div>
     </section>
   )
 }
 
 const ResultCard = ({ text }) => {
   return (
-    <div className='w-full'>
-      <div className='p-8 rounded-sm break-words text-center text-lg bg-gray-800 text-green-600'>
-        <div>{text}</div>
-      </div>
+    <div className='card bg-dark my-2 p-4'>
+      <h6><code className='text-success'>{text}</code></h6>
     </div>
   )
 }
 
 const EncryptBody = ({ messageToEncrypt, handleChange, handleClick }) => {
   return (
-    <section className='w-full md:w-6/12'>
-      <div className='font-semibold'>Message To Encrypt</div>
-      <Textarea
-        value={messageToEncrypt}
-        placeholder='Message to encrypt here...'
-        handleChange={handleChange}
-      />
-      <Button
-        color='red'
-        handleClick={handleClick}
-        label='Encrypt 🔒'
-        value='encrypt'
-      />
-    </section>
+    <div className='col-md-6'>
+      <div className='d-flex flex-column p-2 text-center'>
+        <h3 className='text-start'>Message To Encrypt</h3>
+        <textarea
+          required
+          rows='8'
+          className='form-control my-3'
+          placeholder='Message to encrypt here...'
+          value={messageToEncrypt}
+          onChange={handleChange}
+        />
+      </div>
+      <div className='p-2'>
+        <button className='btn btn-danger me-2 mb-3' onClick={handleClick} value='encrypt'>Encrypt 🔒</button>
+      </div>
+    </div>
   )
 }
 
 const EncryptResult = ({ encryptedMessage, encryptionKey }) => {
   return (
-    <div className='w-full md:w-5/12'>
-      <div className='flex flex-col p-2'>
-        <div className='font-semibold text-lg mb-3'>Encrypted Message</div>
+    <div className='col-md-6'>
+      <div className='d-flex flex-column p-2'>
+        <h3>Encrypted Message</h3>
         <ResultCard text={encryptedMessage} />
-        <div className='mt-3 font-semibold text-lg mb-3'>Encryption Key</div>
+        <h3>Encryption Key</h3>
         <ResultCard text={encryptionKey} />
       </div>
     </div>
@@ -75,9 +77,9 @@ const EncryptResult = ({ encryptedMessage, encryptionKey }) => {
 
 const Encrypt = ({ messageToEncrypt, handleChange, handleClick, encryptedMessage, encryptionKey }) => {
   return (
-    <div className='p-2 mb-8 mt-5'>
-      <div className='text-xl font-semibold'>Encrypt</div>
-      <section className='flex flex-col w-full md:flex-row md:justify-between'>
+    <div>
+      <h2>Encrypt</h2>
+      <section className='row mt-4'>
         <EncryptBody
           messageToEncrypt={messageToEncrypt}
           handleChange={handleChange}
@@ -98,26 +100,27 @@ const DecryptBody = ({
   handleClick
 }) => {
   return (
-    <div className='w-full md:w-6/12'>
-      <div>Message To Decrypt</div>
-      <Textarea
-        value={messageToDecrypt}
-        placeholder='Message to decrypt here...'
-        handleChange={handleMessageChange}
-      />
-      <input
-        className='w-full p-2 border-2 rounded  border-green-600 focus:border-green-600 focus:outline-none focus:ring-1 focus:ring-green-600'
-        placeholder='Key for decryption...'
-        value={decryptionKey}
-        onChange={handleKeyChange}
-      />
-      <div className='py-2'>
-        <Button
-          color='green'
-          onClick={handleClick}
-          label='Decrypt 🔓'
-          value='decrypt'
+    <div className='col-md-6'>
+      <div className='d-flex flex-column p-2 text-center'>
+        <h3 className='text-start'>Message To Decrypt</h3>
+        <textarea
+          required
+          rows='8'
+          className='form-control my-3'
+          placeholder='Message to decrypt here...'
+          value={messageToDecrypt}
+          onChange={handleMessageChange}
         />
+        <input
+          required
+          className='form-control my-3'
+          placeholder='Key for decryption...'
+          value={decryptionKey}
+          onChange={handleKeyChange}
+        />
+      </div>
+      <div className='p-2'>
+        <button className='btn btn-success me-2 mb-3' onClick={handleClick} value='decrypt'>Decrypt 🔓</button>
       </div>
     </div>
   )
@@ -125,9 +128,11 @@ const DecryptBody = ({
 
 const DecryptResult = ({ decryptedMessage }) => {
   return (
-    <div className='w-full md:w-5/12'>
-      <div className='font-semibold text-lg mb-3'>Decrypted Message</div>
-      <ResultCard text={decryptedMessage} />
+    <div className='col-md-6'>
+      <div className='d-flex flex-column p-2'>
+        <h3>Decrypted Message</h3>
+        <ResultCard text={decryptedMessage} />
+      </div>
     </div>
   )
 }
@@ -141,9 +146,9 @@ const Decrypt = ({
   decryptedMessage
 }) => {
   return (
-    <section className='p-2 mb-8'>
-      <div className='text-xl font-semibold'>Decrypt</div>
-      <div className='p-2 flex flex-col w-full md:flex-row md:justify-between'>
+    <div>
+      <h2>Decrypt</h2>
+      <section className='row mt-4'>
         <DecryptBody
           messageToDecrypt={messageToDecrypt}
           decryptionKey={decryptionKey}
@@ -152,8 +157,8 @@ const Decrypt = ({
           handleClick={handleClick}
         />
         <DecryptResult decryptedMessage={decryptedMessage} />
-      </div>
-    </section>
+      </section>
+    </div>
 
   )
 }
@@ -193,7 +198,7 @@ function EncryptDecrypt () {
   }, [messageToDecrypt, decryptionKey])
 
   return (
-    <div className='mt-6'>
+    <div>
       <EncryptDecryptHeader />
       <hr />
       <Encrypt

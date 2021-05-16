@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import Button from './common/Button'
 
 const CAPITAL_LETTERS = 'capital-letters'
 const LOWERCASE_LETTERS = 'lowercase-letters'
@@ -25,9 +24,13 @@ const generate = (_length, categories) => {
 
 const GenerateRandomStringHeader = () => {
   return (
-    <section className='p-2'>
-      <h1 className='text-5xl font-light mb-3'>Generate Random String</h1>
-      <p>The <i>Generate Random String</i> utility will generate a random string of a proposed length (up to 128 characters) with options regarding casing, numbers, and symbols.</p>
+    <section className='row mt-4'>
+      <div className='col'>
+        <div className='d-flex flex-column p-2 '>
+          <h1>Generate Random String</h1>
+          <p>The <i>Generate Random String</i> utility will generate a random string of a proposed length (up to 128 characters) with options regarding casing, numbers, and symbols.</p>
+        </div>
+      </div>
     </section>
   )
 }
@@ -44,61 +47,44 @@ const GenerateRandomStringOptions = ({ length, selectedCategories, setSelectedCa
 
   const getBtnColorClass = (category) => {
     if (selectedCategories.includes(category)) {
-      return 'green'
+      return 'success'
     } else {
-      return 'gray'
+      return 'secondary'
     }
   }
 
   return (
-    <div className='p-2'>
-      <div className='text-xl font-semibold'>Options</div>
-      <input
-        required
-        type='number'
-        className='p-2 mt-3 mb-1 w-full md:w-6/12 border-2 rounded border-gray-700'
-        placeholder='Length...'
-        value={length}
-        onChange={handleChange}
-      />
-      <div>
+    <div className='col-md-6'>
+      <div className='d-flex flex-column p-2'>
+        <h3>Options</h3>
+        <input
+          required
+          type='number'
+          className='form-control my-3'
+          placeholder='Length...'
+          value={length}
+          onChange={handleChange}
+        />
         <small>Max 128 Characters</small>
       </div>
-      <div className='my-2'>
-        <Button
-          handleClick={handleClick}
-          value='capital-letters'
-          label='Capitals 🔠'
-          color={getBtnColorClass('capital-letters')}
-        />
-        <Button
-          handleClick={handleClick}
-          value='lowercase-letters'
-          label='Lowercase 🔡'
-          color={getBtnColorClass('lowercase-letters')}
-        />
-        <Button
-          handleClick={handleClick}
-          value='numbers'
-          label='Numbers 🔢'
-          color={getBtnColorClass('numbers')}
-        />
-        <Button
-          handleClick={handleClick}
-          value='symbols'
-          label='Symbols❗️'
-          color={getBtnColorClass('symbols')}
-        />
+      <div className='p-2'>
+        <button className={`btn btn-${getBtnColorClass('capital-letters')} me-2 mb-3`} onClick={(handleClick)} value='capital-letters'>Capitals 🔠</button>
+        <button className={`btn btn-${getBtnColorClass('lowercase-letters')} me-2 mb-3`} onClick={(handleClick)} value='lowercase-letters'>Lowercase 🔡</button>
+        <button className={`btn btn-${getBtnColorClass('numbers')} me-2 mb-3`} onClick={(handleClick)} value='numbers'>Numbers 🔢 </button>
+        <button className={`btn btn-${getBtnColorClass('symbols')} me-2 mb-3`} onClick={(handleClick)} value='symbols'>Symbols❗️</button>
       </div>
       <hr />
-      <button className='w-full md:w-6/12  bg-green-500 hover:bg-green-700 mt-5 mb-3 text-white font-bold text-lg py-4 px-6 rounded' onClick={handleSubmit} value='generate'>Generate 🏁</button>
+
+      <div className='d-grid p-2'>
+        <button className='btn btn-lg btn-block btn-success me-2 mb-3' onClick={handleSubmit} value='generate'>Generate 🏁</button>
+      </div>
     </div>
   )
 }
 
 const GenerateRandomStringBody = ({ length, selectedCategories, setSelectedCategories, handleChange, handleSubmit, result }) => {
   return (
-    <section className='my-4'>
+    <section className='row mt-4'>
       <GenerateRandomStringOptions
         length={length}
         selectedCategories={selectedCategories}
@@ -112,15 +98,18 @@ const GenerateRandomStringBody = ({ length, selectedCategories, setSelectedCateg
 }
 
 const GenerateRandomStringResult = ({ result }) => {
-  const copy = (e) => {
-    window.navigator.clipboard.writeText(result)
-  }
+  // const copy = (e) => {
+  //   navigator.clipboard.writeText(result)
+  // }
 
   return (
-    <div onClick={copy} className='p-2'>
-      <div className='text-lg font-semibold'>Result</div>
-      <div className='w-full md:w-6/12 p-8 rounded-sm text-center text-lg bg-gray-800 text-green-600'>
-        <code>{result}</code>
+    <div className='col-md-6'>
+      <div className='p-2 text-center'>
+        <h3 className='text-start'>Result</h3>
+        <div className='card bg-dark my-4 p-4'>
+          <h4><code className='text-success'>{result}</code></h4>
+        </div>
+        {/* <button className='btn btn-success' onClick={copy}>Copy 📋</button> */}
       </div>
     </div>
   )
@@ -143,7 +132,7 @@ function GenerateRandomString () {
   }
 
   return (
-    <div className='mt-6'>
+    <div>
       <GenerateRandomStringHeader />
       <hr />
       <GenerateRandomStringBody
