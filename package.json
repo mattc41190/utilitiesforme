@@ -3,16 +3,15 @@
   "version": "1.0.0",
   "description": "The web frontend end for utilitiesfor.me",
   "scripts": {
-    "rollit": "rollup --config rollup.config.js",
-    "styleit": "postcss utilities_for_me/web_app/client/react/index.css -o utilities_for_me/web_app/static/index-bundle.css",
-    "scripts-watch": "rollup --config rollup.config.js --watch",
-    "style-watch": "postcss utilities_for_me/web_app/client/react/index.css -o utilities_for_me/web_app/static/index-bundle.css --watch",
-    "test": "jest",
-    "standard": "standard --fix"
+    "test-javascript": "jest",
+    "format-javascript": "standard --fix",
+    "compile-javascript": "rollup --config rollup.config.js",
+    "compile-styles": "postcss utilities_for_me/web_app/client/react/index.css -o utilities_for_me/web_app/static/index-bundle.css",
+    "watch-javascript": "rollup --config rollup.config.js --watch"
   },
   "default": "utilities_for_me/web_app/static/index-bundle.js",
-  "keywords": [],
-  "author": "",
+  "keywords": ["web", "react", "app", "utilitiesforme"],
+  "author": "Matthew Cale",
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.14.0",
