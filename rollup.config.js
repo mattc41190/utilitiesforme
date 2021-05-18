@@ -19,7 +19,7 @@ export default {
     plugins: [
         // Allows us to import from node modules
         nodeResolve({
-            extendsions: ['.js']
+            extensions: ['.js']
         }),
         // Make JSX syntax compilable
         babel({
