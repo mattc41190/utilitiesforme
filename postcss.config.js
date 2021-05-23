@@ -11,7 +11,8 @@ module.exports = {
     purgecss({
       content: [
         'utilities_for_me/web_app/templates/**/*.html',
-        'utilities_for_me/web_app/client/react/**/*.js'
+        'utilities_for_me/web_app/client/react/**/*.js',
+        'utilities_for_me/web_app/client/react/**/*.jsx'
       ],
       defaultExtractor: content => content.match(/[\w-/:]+(?<!:)/g) || []
     })

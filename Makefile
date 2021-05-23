@@ -34,7 +34,7 @@ build_python: check_python
 
 .PHONY: format_js
 format_js:
-	npm run standard
+	npm run format-javascript
 
 .PHONY: check_js
 check_js: format_js
@@ -42,11 +42,11 @@ check_js: format_js
 
 .PHONY: run_dev_ui
 run_dev_ui: 
-	npm run webpack-dev
+	npm run wp-watch
 
 .PHONY: build_js
 build_js: check_js
-	echo "nope"
+	npm run wp-build
 
 # UNIVERSAL TARGETS
 
