@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import Button from './common/Button'
+import COLORS from './lib/colors'
 
 const CAPITAL_LETTERS = 'capital-letters'
 const LOWERCASE_LETTERS = 'lowercase-letters'
@@ -44,9 +45,9 @@ const GenerateRandomStringOptions = ({ length, selectedCategories, setSelectedCa
 
   const getBtnColorClass = (category) => {
     if (selectedCategories.includes(category)) {
-      return 'green'
+      return { color: COLORS.green, colorHover: COLORS.greenHover }
     } else {
-      return 'gray'
+      return { color: COLORS.gray, colorHover: COLORS.grayHover }
     }
   }
 
@@ -69,25 +70,30 @@ const GenerateRandomStringOptions = ({ length, selectedCategories, setSelectedCa
           handleClick={handleClick}
           value='capital-letters'
           label='Capitals 🔠'
-          color={getBtnColorClass('capital-letters')}
+          color={getBtnColorClass('capital-letters').color}
+          hoverColor={getBtnColorClass('capital-letters').colorHover}
         />
         <Button
           handleClick={handleClick}
           value='lowercase-letters'
           label='Lowercase 🔡'
-          color={getBtnColorClass('lowercase-letters')}
+          color={getBtnColorClass('lowercase-letters').color}
+          hoverColor={getBtnColorClass('lowercase-letters').colorHover}
         />
         <Button
           handleClick={handleClick}
           value='numbers'
           label='Numbers 🔢'
-          color={getBtnColorClass('numbers')}
+          color={getBtnColorClass('numbers').color}
+          hoverColor={getBtnColorClass('numbers').colorHover}
+
         />
         <Button
           handleClick={handleClick}
           value='symbols'
           label='Symbols❗️'
-          color={getBtnColorClass('symbols')}
+          color={getBtnColorClass('symbols').color}
+          hoverColor={getBtnColorClass('symbols').colorHover}
         />
       </div>
       <hr />
@@ -119,7 +125,7 @@ const GenerateRandomStringResult = ({ result }) => {
   return (
     <div onClick={copy} className='p-2'>
       <div className='text-lg font-semibold'>Result</div>
-      <div className='w-full md:w-6/12 p-8 rounded-sm text-center text-lg bg-gray-800 text-green-600'>
+      <div className='break-words w-full md:w-6/12 p-8 rounded-sm text-center text-lg bg-gray-800 text-green-600'>
         <code>{result}</code>
       </div>
     </div>

@@ -1,6 +1,7 @@
 import React, { useCallback, useState } from 'react'
 import Button from './common/Button'
 import Textarea from './common/Textarea'
+import COLORS from './lib/colors'
 
 const sendEncryptRequest = (message) => {
   const args = {
@@ -51,7 +52,8 @@ const EncryptBody = ({ messageToEncrypt, handleChange, handleClick }) => {
         handleChange={handleChange}
       />
       <Button
-        color='red'
+        color={COLORS.red}
+        hoverColor={COLORS.redHover}
         handleClick={handleClick}
         label='Encrypt 🔒'
         value='encrypt'
@@ -113,8 +115,9 @@ const DecryptBody = ({
       />
       <div className='py-2'>
         <Button
-          color='green'
-          onClick={handleClick}
+          color={COLORS.green}
+          hoverColor={COLORS.greenHover}
+          handleClick={handleClick}
           label='Decrypt 🔓'
           value='decrypt'
         />

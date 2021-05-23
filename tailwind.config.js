@@ -1,6 +1,6 @@
 module.exports = {
   purge: [
-    './src/**/*.js'
+    'utilities_for_me/web_app/static/**/*.js'
   ],
   darkMode: false, // or 'media' or 'class'
   theme: {

@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 import Button from './common/Button'
+import COLORS from './lib/colors'
 
 import { translateFromSeconds } from './lib/timer'
 
@@ -33,7 +34,8 @@ const TimerHeader = () => {
 const TimerSelectorButton = ({ resetTimer, timerDurationValue, timerDurationDisplay }) => {
   return (
     <Button
-      color='green'
+      color={COLORS.green}
+      hoverColor={COLORS.greenHover}
       handleClick={resetTimer}
       value={timerDurationValue}
       label={timerDurationDisplay}

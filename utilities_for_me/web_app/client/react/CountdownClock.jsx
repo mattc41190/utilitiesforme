@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import Button from './common/Button'
+import COLORS from './lib/colors'
 
 import { createDisplayTime, getDefaultDates, getWeekDay } from './lib/calculate-duration'
 
@@ -9,52 +10,62 @@ const DEFAULT_DATE_DISPLAY_DATA = [
   {
     label: 'christmas',
     title: 'Christmas 🎅',
-    classColorName: 'green'
+    classColorName: COLORS.green,
+    classColorHoverName: COLORS.greenHover
   },
   {
     label: 'thanksgiving',
     title: 'Thanksgiving 🦃',
-    classColorName: 'yellow'
+    classColorName: COLORS.yellow,
+    classColorHoverName: COLORS.yellowHover
   },
   {
     label: 'independenceDay',
     title: 'July Fourth 🦅',
-    classColorName: 'blue'
+    classColorName: COLORS.blue,
+    classColorHoverName: COLORS.blueHover
   },
   {
     label: 'halloween',
     title: 'Halloween 🎃',
-    classColorName: 'indigo'
+    classColorName: COLORS.indigo,
+    classColorHoverName: COLORS.indigoHover
   },
   {
     label: 'mlkDay',
     title: 'Martin Luther King Jr Day 🤝',
-    classColorName: 'purple'
+    classColorName: COLORS.purple,
+    classColorHoverName: COLORS.purpleHover
   },
   {
     label: 'valentinesDay',
     title: 'Valentines Day 💖',
-    classColorName: 'pink'
+    classColorName: COLORS.pink,
+    classColorHoverName: COLORS.pinkHover
   },
   {
     label: 'memorialDay',
     title: 'Memorial Day 🇺🇸',
-    classColorName: 'blue'
+    classColorName: COLORS.blue,
+    classColorHoverName: COLORS.blueHover
   },
   {
     label: 'laborDay',
     title: 'Labor Day 💪',
-    classColorName: 'green'
+    classColorName: COLORS.green,
+    classColorHoverName: COLORS.greenHover
   },
   {
     label: 'boxingDay',
     title: 'Boxing Day 🥊',
-    classColorName: 'gray'
+    classColorName: COLORS.gray,
+    classColorHoverName: COLORS.grayHover
   },
   {
     label: 'newYearsDay',
     title: 'New Years Day 🎆',
-    classColorName: 'indigo'
+    classColorName: COLORS.indigo,
+    classColorHoverName: COLORS.indigoHover
   }
 ]
 
@@ -90,6 +101,7 @@ const CountdownClockSelectorButton = ({ title, label, chooseDate }) => {
   return (
     <Button
       color={uiData.classColorName}
+      hoverColor={uiData.classColorHoverName}
       handleClick={chooseDate}
       value={label}
       label={uiData.title}

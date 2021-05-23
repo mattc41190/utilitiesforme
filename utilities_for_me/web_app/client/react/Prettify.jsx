@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import Button from './common/Button'
 import Textarea from './common/Textarea'
+import COLORS from './lib/colors'
 
 import { prettifyContent } from './lib/prettify'
 
@@ -25,10 +26,33 @@ const PrettifyBody = ({ contents, handleChange, handleClick, ignoreClick }) => {
         <Textarea value={contents} placeholder='Contents here...' handleChange={handleChange} />
       </div>
       <div className='p-2'>
-        <Button handleClick={handleClick} value='json' label='JSON' color='blue' />
-        <Button handleClick={handleClick} value='html' label='HTML' color='red' />
-        <Button handleClick={handleClick} value='js' label='JS' color='yellow' />
-        <Button handleClick={handleClick} value='css' label='CSS' color='green' />
+        <Button
+          handleClick={handleClick}
+          value='json' label='JSON'
+          color={COLORS.green}
+          hoverColor={COLORS.greenHover}
+        />
+        <Button
+          handleClick={handleClick}
+          value='html'
+          label='HTML'
+          color={COLORS.blue}
+          hoverColor={COLORS.lueHover}
+        />
+        <Button
+          handleClick={handleClick}
+          value='js'
+          label='JS'
+          color={COLORS.yellow}
+          hoverColor={COLORS.yellowHover}
+        />
+        <Button
+          handleClick={handleClick}
+          value='css'
+          label='CSS'
+          color={COLORS.pink}
+          hoverColor={COLORS.pinkHover}
+        />
       </div>
     </section>
   )

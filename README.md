@@ -81,7 +81,15 @@ make run_dev_server
 - Run Client Bundler 
 
 ```sh
+# OLD
 make run_dev_ui
+
+# NEW -- Temp (Run each in own terminal... I know I am working on it!)
+# JS Bundler
+npm run scripts-watch
+
+# CSS Bundler
+npm run styleit
 ```
 
 ## Ideas For Utils
@@ -92,6 +100,7 @@ make run_dev_ui
 - Number Calculator
 - Code Case Transformer ✅
 - Random String Generator ✅
+- Hex/Binary/Base10/Octal Converter
 - Fake Data Creator V-2
 - Data Encryption ✅
 - Regex Tester V-N

@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import Button from './common/Button'
 import Textarea from './common/Textarea'
+import COLORS from './lib/colors'
 
 const sendRequest = ({ fromCase, toCase, contents }) => {
   const frontEndToBackendCasings = {
@@ -39,9 +40,17 @@ const CaseTransformHeader = () => {
 }
 
 const CaseButton = ({ value, currentSelection, content, handleClick }) => {
-  const buttonColor = value === currentSelection ? 'green' : 'gray'
+  const color = value === currentSelection ? COLORS.green : COLORS.gray
+  const colorHover = value === currentSelection ? COLORS.greenHover : COLORS.grayHover
+
   return (
-    <Button handleClick={handleClick} value={value} label={content} color={buttonColor} />
+    <Button
+      handleClick={handleClick}
+      value={value}
+      label={content}
+      color={color}
+      hoverColor={colorHover}
+    />
   )
 }
 
@@ -90,7 +99,12 @@ const CaseTransformBody = ({
         />
       </div>
       <div className='p-2'>
-        <Button handleClick={handleSubmit} label='Submit' color='green' />
+        <Button
+          handleClick={handleSubmit}
+          label='Submit'
+          color={COLORS.green}
+          hoverColor={COLORS.greenHover}
+        />
       </div>
     </section>
   )

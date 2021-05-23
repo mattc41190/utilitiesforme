@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react'
 import Button from './common/Button'
+import COLORS from './lib/colors'
 
 const PERCENT_OF = 'percentOf'
 const NUM_IS_WHAT_PERCENT_OF = 'numIsWhatPercentOf'
@@ -76,7 +77,12 @@ const PercentOf = ({
           onChange={handlePercentOfChange}
         />
       </div>
-      <Button color='green' label='?' handleClick={handlePercentOfSubmit} />
+      <Button
+        color={COLORS.green}
+        hoverColor={COLORS.greenHover}
+        label='?'
+        handleClick={handlePercentOfSubmit}
+      />
       <div className='font-semibold'>{percentOfResult}</div>
     </section>
   )
@@ -109,8 +115,13 @@ const NumIsWhatPercentOf = ({
         value={numIsWhatPercentOf_Of}
         onChange={handleNumIsWhatPercentOfChange}
       />
-      <Button color='green' label='?' handleClick={handleNumIsWhatPercentOfSubmit} />
-      <div>{numIsWhatPercentOfResult}</div>
+      <Button
+        color={COLORS.green}
+        hoverColor={COLORS.greenHover}
+        label='?'
+        handleClick={handleNumIsWhatPercentOfSubmit}
+      />
+      <div className='font-semibold'>{numIsWhatPercentOfResult}</div>
     </section>
   )
 }
