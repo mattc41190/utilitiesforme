@@ -57,7 +57,7 @@ const GenerateRandomStringOptions = ({ length, selectedCategories, setSelectedCa
       <input
         required
         type='number'
-        className='p-2 mt-3 mb-1 w-full md:w-6/12 border-2 rounded border-gray-700'
+        className='p-2 mt-3 mb-1 w-full md:w-6/12 border-2 rounded border-gray-700 bg-skin-secondary-fill text-skin-secondary'
         placeholder='Length...'
         value={length}
         onChange={handleChange}
@@ -149,7 +149,7 @@ function GenerateRandomString () {
   }
 
   return (
-    <div className='mt-6'>
+    <div className='mt-6 text-skin-primary'>
       <GenerateRandomStringHeader />
       <hr />
       <GenerateRandomStringBody

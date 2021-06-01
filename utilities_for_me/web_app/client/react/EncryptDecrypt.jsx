@@ -108,7 +108,7 @@ const DecryptBody = ({
         handleChange={handleMessageChange}
       />
       <input
-        className='w-full p-2 border-2 rounded  border-green-600 focus:border-green-600 focus:outline-none focus:ring-1 focus:ring-green-600'
+        className='w-full p-2 rounded-md border-2 border-skin-emphasis-fill focus:border-skin-emphasis-fill focus:outline-none focus:ring-1 focus:ring-skin-emphasis-fill bg-skin-secondary-fill text-skin-secondary'
         placeholder='Key for decryption...'
         value={decryptionKey}
         onChange={handleKeyChange}
@@ -196,7 +196,7 @@ function EncryptDecrypt () {
   }, [messageToDecrypt, decryptionKey])
 
   return (
-    <div className='mt-6'>
+    <div className='mt-6 text-skin-primary'>
       <EncryptDecryptHeader />
       <hr />
       <Encrypt

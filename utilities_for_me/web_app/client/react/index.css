@@ -2,30 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
-html, body, #root {
+html, body {
   height: 100%;
 }
 
-/* * {
-  font-family: 'Inconsolata', monospace;
-} */
+#root {
+  height: 100%;
+}
 
 .display-large {
   font-size: 9rem;
 }
 
-.utility-link {
-  color: #0DCAF0;
-}
-
-
 .timer-blinking{
   animation:blinkingText 1.2s infinite;
-}
-
-*::selection {
-  background-color: #065F46;
-  color: white;
 }
 
 @keyframes blinkingText{
@@ -36,30 +26,16 @@ html, body, #root {
   100%{   color: #212529;    }
 }
 
+*::selection {
+  background-color: pink;
+  color: #0097a7;
+}
+
 @layer base {
   :root {
     font-family: 'Inconsolata', monospace;
-    /* --white: #f8f8ff;
-    --black: #161617;
-    --pinky: #FB6E81;
-    --very-light-gray: #f2f2f2;
-    --light-gray: #eeeeee;
-    --gray: #666666;
-    --dark-gray: #333333;
-    --very-dark-gray: #222222; */
 
-    /* Blue Magenta Shades */
-    /* --very-light-blue-magenta: #EEF2FF;
-    --light-blue-magenta: #C7D2FE;
-    --muted-blue-magenta: #6366F1;
-    --blue-magenta: #4F46E5;
-    --dark-blue-magenta: #4338CA; */
-
-    /* Yellow Green Shades */
-    --dark-yellow-green: #111802;
-
-
-    /*  */
+    /* Colors */
     --transparent: transparent;
     --black: #000000;
     --white: #ffffff;
@@ -361,21 +337,21 @@ html, body, #root {
     font-family: 'Noto Sans HK', sans-serif;
 
       /* Base Colors */
-      --color-base-fill: var(--grey-100);
+      --primary-fill: var(--grey-100);
       --color-secondary-fill: var(--grey-200);
       --color-emphasis-fill: var(--grey-300);
-      --color-text-base-primary: var(--grey-600);
+      --primary-text: var(--grey-600);
       --color-text-base-secondary: var(--grey-500);
       --color-text-base-muted: var(--grey-300);
       --color-text-base-emphasis: var(--pink-600);
-  
-      /* Buttons Colors */
-      --color-button-base-fill: var(--black);
-      --color-button-base-outline: var(--black);
-      --color-button-text-base: var(--black);
-      --color-button-base-fill-active: var(--black);
-      --color-button-base-outline-active: var(--black);
-      --color-button-text-base-active: var(--black);
+
+      /* Buttons */
+      --color-button-base-fill: var(--grey-200);
+      --color-button-base-outline: var(--gray-600);
+      --color-button-text-base: var(--gray-600);
+      --color-button-base-fill-active: var(--grey-400);
+      --color-button-base-outline-active: var(--grey-800);
+      --color-button-text-base-active: var(--grey-800);
   
       /* Card/Pill Colors */
       --color-component-fill: var(--grey-200);
@@ -386,28 +362,20 @@ html, body, #root {
       --color-text-component-emphasis: var(--pink-600);
   }
 
-    /* Gray Components on White Backdrop Theme  */
+    /* Gray Components on Dark Backdrop Theme  */
     .theme-dark {
       font-family: 'Noto Sans HK', sans-serif;
   
       /* Base Colors */
-      --color-base-fill: var(--black);
+      --primary-fill: var(--black);
       --color-secondary-fill: var(--grey-900);
       --color-emphasis-fill: var(--grey-700);
-      --color-text-base-primary: var(--grey-500);
+      --primary-text: var(--grey-500);
       --color-text-base-secondary: var(--grey-400);
       --color-text-base-muted: var(--grey-100);
       --color-text-base-emphasis: var(--pink-600);
   
-      /* Buttons Colors */
-      --color-button-base-fill: var(--black);
-      --color-button-base-outline: var(--black);
-      --color-button-text-base: var(--black);
-      --color-button-base-fill-active: var(--black);
-      --color-button-base-outline-active: var(--black);
-      --color-button-text-base-active: var(--black);
-  
-      /* Card/Pill Colors */
+      /* Component/Pill Colors */
       --color-component-fill: var(--grey-900);
       --color-component-emphasis-fill: var(--pink-600);
       --color-text-component-primary: var(--grey-400);
@@ -416,35 +384,80 @@ html, body, #root {
       --color-text-component-emphasis: var(--pink-600);
     }
 
-  /* Magenta/Blue on White Backdrop Theme */
-  .theme-indigo {
-    --color-text-base: var(--white);
-    --color-text-muted: var(--very-light-blue-magenta);
-    --color-text-inverted: var(--blue-magenta);
-    --color-base: var(--white);
-    --color-fill: var(--dark-blue-magenta);
-    --color-button-accent: var(--white);
-    --color-button-accent-hover: var(--very-light-blue-magenta);
-    --color-button-muted: var(--muted-blue-magenta);
-    --color-nav-fill: var(--very-light-gray);
-    --color-text-nav-item: var(--dark-blue-magenta);
-    --color-text-nav-item-hover: var(--muted-blue-magenta);
+        /* Gray Components on Dark Backdrop Theme  */
+    .theme-ocean {
+      font-family: 'Noto Sans HK', sans-serif;
+  
+      /* Base Colors */
+      --primary-fill: var(--blue-800);
+      --color-secondary-fill: var(--blue-600);
+      --color-emphasis-fill: var(--blue-200);
+      --primary-text: var(--grey-200);
+      --color-text-base-secondary: var(--grey-300);
+      --color-text-base-muted: var(--grey-300);
+      --color-text-base-emphasis: var(--amber-400);
+  
+      /* Component/Pill Colors */
+      --color-component-fill: var(--blue-700);
+      --color-component-emphasis-fill: var(--pink-600);
+      --color-text-component-primary: var(--grey-200);
+      --color-text-component-secondary: var(--grey-300);
+      --color-text-component-muted: var(--grey-100);
+      --color-text-component-emphasis: var(--amber-400);
     }
-
-  /* Yellow/Neons on Dark Gray/Black Backdrop */
-  .theme-neon {
-    --color-base: var(--very-dark-gray);
-    --color-text-base: #111802;
-    --color-text-muted: #2F4306;
-    --color-text-inverted: #4F46E5;
-    --color-fill: #B3FF17;
-    --color-button-accent: #243403;
-    --color-button-accent-hover: #374F05;
-    --color-button-muted: #6366F1;
-    --color-nav-fill: var(--very-dark-gray);
-    --color-text-nav-item: #B3FF17;
-    --color-text-nav-item-hover: #ff62f4;
-  } 
 
 }
 
+/* TRASH
+--white: #f8f8ff;
+--black: #161617;
+--pinky: #FB6E81;
+--very-light-gray: #f2f2f2;
+--light-gray: #eeeeee;
+--gray: #666666;
+--dark-gray: #333333;
+--very-dark-gray: #222222;
+
+Blue Magenta Shades
+--very-light-blue-magenta: #EEF2FF;
+--light-blue-magenta: #C7D2FE;
+--muted-blue-magenta: #6366F1;
+--blue-magenta: #4F46E5;
+--dark-blue-magenta: #4338CA;
+
+Yellow Green Shades
+--dark-yellow-green: #111802;
+
+
+Magenta/Blue on White Backdrop Theme
+.theme-indigo {
+  --color-text-base: var(--white);
+  --color-text-muted: var(--very-light-blue-magenta);
+  --color-text-inverted: var(--blue-magenta);
+  --color-base: var(--white);
+  --color-fill: var(--dark-blue-magenta);
+  --color-button-accent: var(--white);
+  --color-button-accent-hover: var(--very-light-blue-magenta);
+  --color-button-muted: var(--muted-blue-magenta);
+  --color-nav-fill: var(--very-light-gray);
+  --color-text-nav-item: var(--dark-blue-magenta);
+  --color-text-nav-item-hover: var(--muted-blue-magenta);
+  }
+
+Yellow/Neons on Dark Gray/Black Backdrop
+.theme-neon {
+  --color-base: var(--very-dark-gray);
+  --color-text-base: #111802;
+  --color-text-muted: #2F4306;
+  --color-text-inverted: #4F46E5;
+  --color-fill: #B3FF17;
+  --color-button-accent: #243403;
+  --color-button-accent-hover: #374F05;
+  --color-button-muted: #6366F1;
+  --color-nav-fill: var(--very-dark-gray);
+  --color-text-nav-item: #B3FF17;
+  --color-text-nav-item-hover: #ff62f4;
+}  */
+
+
+/* Buttons Colors */

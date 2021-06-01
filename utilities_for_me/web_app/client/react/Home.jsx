@@ -96,7 +96,7 @@ const UtilityPanes = () => {
 
 function Home () {
   return (
-    <main>
+    <main className="h-full">
       <div className='flex flex-col lg:flex-row justify-between mt-4 p-3'>
         <WelcomePane />
         <TestimonialPane />

@@ -62,7 +62,7 @@ const PercentOf = ({
       <div>What is</div>
       <input
         type='number'
-        className='w-24 p-2 m-3 border-2 rounded border-gray-700'
+        className='w-24 p-2 m-3 border-2 rounded border-gray-700 bg-skin-secondary-fill text-skin-secondary'
         name='percent'
         value={percentOf_Percent}
         onChange={handlePercentOfChange}
@@ -71,7 +71,7 @@ const PercentOf = ({
       <div>
         <input
           type='number'
-          className='w-24 p-2 m-3 border-2 rounded border-gray-700'
+          className='w-24 p-2 m-3 border-2 rounded border-gray-700 bg-skin-secondary-fill text-skin-secondary'
           name='of'
           value={percentOf_Of}
           onChange={handlePercentOfChange}
@@ -102,7 +102,7 @@ const NumIsWhatPercentOf = ({
       <div className='font-semibold mr-3'>X is what percent of Y?</div>
       <input
         type='number'
-        className='w-24 m-3 p-2 border-2 rounded border-gray-700'
+        className='w-24 m-3 p-2 border-2 rounded border-gray-700 bg-skin-secondary-fill text-skin-secondary'
         name='num'
         value={numIsWhatPercentOf_Num}
         onChange={handleNumIsWhatPercentOfChange}
@@ -110,7 +110,7 @@ const NumIsWhatPercentOf = ({
       <div>is what percent of</div>
       <input
         type='number'
-        className='w-24 m-3 p-2 border-2 rounded border-gray-700'
+        className='w-24 m-3 p-2 border-2 rounded border-gray-700 bg-skin-secondary-fill text-skin-secondary'
         name='of'
         value={numIsWhatPercentOf_Of}
         onChange={handleNumIsWhatPercentOfChange}
@@ -206,7 +206,7 @@ function CalculatePercent () {
   }
 
   return (
-    <div className='mt-6'>
+    <div className='mt-6 text-skin-primary'>
       <CalculatePercentHeader />
       <hr />
       <CalculatePercentBody

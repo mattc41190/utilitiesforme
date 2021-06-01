@@ -198,7 +198,7 @@ function Timer () {
   }, [timeRemaining])
 
   return (
-    <div className='mt-6'>
+    <div className='mt-6 text-skin-primary'>
       <TimerHeader />
       <hr />
       <TimerBody
