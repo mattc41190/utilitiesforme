@@ -1,0 +1,71 @@
+.theme-blue {
+  font-family: 'Noto Sans HK', sans-serif;
+
+  /* Base */
+  --primary-fill: var(--blue-800);
+  --primary-complement: var(--green-800);
+  --secondary-fill: var(--blue-600);
+  --secondary-complement: var(--blue-300);
+  --emphasis-fill: var(--blue-200);
+  --emphasis-complement: var(--pink-200);
+
+  /* Base Text */
+  --text-primary: var(--grey-200);
+  --text-secondary: var(--grey-300);
+  --text-muted: var(--grey-300);
+  --text-emphasis: var(--amber-600);
+
+  /* Inputs */
+  --input-primary-fill: var(--grey-100);
+  --input-primary-complement: var(--grey-100);
+  --input-secondary-fill: var(--grey-200);
+  --input-secondary-complement: var(--grey-200);
+  --input-emphasis-fill: var(--grey-300);
+  --input-emphasis-complement: var(--grey-200);
+
+  /* Buttons */
+  --btn-primary-fill: var(--grey-200);
+  --btn-primary-complement: var(--gray-600);
+  --btn-primary-fill-hover: var(--grey-200);
+  --btn-primary-complement-hover: var(--gray-600);
+  --btn-primary-fill-disabled: var(--grey-200);
+  --btn-primary-complement-disabled: var(--gray-600);
+
+  --btn-secondary-fill: var(--grey-200);
+  --btn-secondary-complement: var(--gray-600);
+  --btn-secondary-fill-hover: var(--grey-200);
+  --btn-secondary-complement-hover: var(--gray-600);
+  --btn-secondary-fill-disabled: var(--grey-200);
+  --btn-secondary-complement-disabled: var(--gray-600);
+
+  --btn-emphasis-fill: var(--grey-200);
+  --btn-emphasis-complement: var(--gray-600);
+  --btn-emphasis-fill-hover: var(--grey-200);
+  --btn-emphasis-complement-hover: var(--gray-600);
+  --btn-emphasis-fill-disabled: var(--grey-200);
+  --btn-emphasis-complement-disabled: var(--gray-600);
+
+  /* Button Texts */
+  --btn-text-primary: var(--gray-600);
+  --btn-text-primary-hover: var(--gray-600);
+  --btn-text-primary-disabled: var(--gray-600);
+
+  --btn-text-secondary: var(--gray-600);
+  --btn-text-secondary-hover: var(--gray-600);
+  --btn-text-secondary-disabled: var(--gray-600);
+
+  --btn-text-emphasis: var(--gray-600);
+  --btn-text-emphasis-hover: var(--gray-600);
+  --btn-text-emphasis-disabled: var(--gray-600);
+
+  /* Components */
+  --comp-primary-fill: var(--blue-700);
+  --comp-secondary-fill: var(--blue-100);
+  --comp-emphasis-fill: var(--pink-600);
+
+  /* Component Texts */
+  --comp-text-primary: var(--blue-50);
+  --comp-text-secondary: var(--blue-100);
+  --comp-text-muted: var(--grey-300);
+  --comp-text-emphasis: var(--amber-400);
+}

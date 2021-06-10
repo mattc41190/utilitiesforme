@@ -1,9 +1,6 @@
-import React, {useState} from 'react'
+import React from 'react'
 
-
-function Navbar ({currentTheme, setTheme}) {
-
-
+function Navbar ({ currentTheme, setTheme }) {
   return (
     <nav className='bg-theme-secondary-fill border-b-2 border-theme-secondary-complement'>
       <div className='max-w-8xl mx-auto px-2 sm:px-6 lg:px-8'>
@@ -14,7 +11,7 @@ function Navbar ({currentTheme, setTheme}) {
             </a>
           </div>
           <div className='text-xl text-theme-primary hover:text-theme-emphasis'>
-              <a href='https://github.com/mattc41190/utilitiesforme'><i className='bi bi-github' /></a>
+            <a href='https://github.com/mattc41190/utilitiesforme'><i className='bi bi-github' /></a>
           </div>
         </div>
       </div>
