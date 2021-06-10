@@ -5,15 +5,15 @@ function Navbar ({currentTheme, setTheme}) {
 
 
   return (
-    <nav className='bg-skin-secondary-fill border-b-2 border-skin-emphasis-fill'>
+    <nav className='bg-theme-secondary-fill border-b-2 border-theme-secondary-complement'>
       <div className='max-w-8xl mx-auto px-2 sm:px-6 lg:px-8'>
         <div className='relative flex items-center justify-between h-16'>
           <div>
-            <a className='text-xl text-skin-primary hover:text-skin-emphasis' href='/'>
+            <a className='text-xl text-theme-primary hover:text-theme-emphasis' href='/'>
               <span>UtilitiesFor.me</span>
             </a>
           </div>
-          <div className='text-xl text-skin-primary hover:text-skin-emphasis'>
+          <div className='text-xl text-theme-primary hover:text-theme-emphasis'>
               <a href='https://github.com/mattc41190/utilitiesforme'><i className='bi bi-github' /></a>
           </div>
         </div>

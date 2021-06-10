@@ -19,7 +19,7 @@ import Footer from './Footer'
 
 function App () {
   const cookieTheme = getCookie("theme")
-  let defaultTheme = "theme-light"
+  let defaultTheme = "theme-green"
   const [theme, setTheme] = useState(cookieTheme ? cookieTheme : defaultTheme)
 
   useEffect(() => {
@@ -38,7 +38,7 @@ function App () {
   }, [theme]);
 
   return (
-      <main id="app" className={`${theme} flex flex-col h-screen bg-skin-primary-fill`}>
+      <main id="app" className={`${theme} flex flex-col h-screen bg-theme-primary-fill text-theme-primary`}>
         <Navbar currentTheme={theme} setTheme={setTheme} />
         <div className='container mx-auto flex-1'>
           <Switch>

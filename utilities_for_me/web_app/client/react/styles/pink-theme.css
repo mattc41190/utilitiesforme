@@ -1,0 +1,71 @@
+.theme-pink {
+    font-family: 'Noto Sans HK', sans-serif;
+
+    /* Base */
+    --primary-fill: var(--pink-200);
+    --primary-complement: var(--pink-600);
+    --secondary-fill: var(--pink-100);
+    --secondary-complement: var(--pink-300);
+    --emphasis-fill: var(--pink-200);
+    --emphasis-complement: var(--green-200);
+
+    /* Base Text */
+    --text-primary: var(--pink-500);
+    --text-secondary: var(--grey-300);
+    --text-muted: var(--grey-300);
+    --text-emphasis: var(--red-300);
+
+    /* Inputs */
+    --input-primary-fill: var(--grey-100);
+    --input-primary-complement: var(--grey-100);
+    --input-secondary-fill: var(--grey-200);
+    --input-secondary-complement: var(--grey-200);
+    --input-emphasis-fill: var(--grey-300);
+    --input-emphasis-complement: var(--grey-200);
+
+    /* Buttons */
+    --btn-primary-fill: var(--grey-200);
+    --btn-primary-complement: var(--gray-600);
+    --btn-primary-fill-hover: var(--grey-200);
+    --btn-primary-complement-hover: var(--gray-600);
+    --btn-primary-fill-disabled: var(--grey-200);
+    --btn-primary-complement-disabled: var(--gray-600);
+
+    --btn-secondary-fill: var(--grey-200);
+    --btn-secondary-complement: var(--gray-600);
+    --btn-secondary-fill-hover: var(--grey-200);
+    --btn-secondary-complement-hover: var(--gray-600);
+    --btn-secondary-fill-disabled: var(--grey-200);
+    --btn-secondary-complement-disabled: var(--gray-600);
+
+    --btn-emphasis-fill: var(--grey-200);
+    --btn-emphasis-complement: var(--gray-600);
+    --btn-emphasis-fill-hover: var(--grey-200);
+    --btn-emphasis-complement-hover: var(--gray-600);
+    --btn-emphasis-fill-disabled: var(--grey-200);
+    --btn-emphasis-complement-disabled: var(--gray-600);
+
+    /* Button Texts */
+    --btn-text-primary: var(--gray-600);
+    --btn-text-primary-hover: var(--gray-600);
+    --btn-text-primary-disabled: var(--gray-600);
+
+    --btn-text-secondary: var(--gray-600);
+    --btn-text-secondary-hover: var(--gray-600);
+    --btn-text-secondary-disabled: var(--gray-600);
+
+    --btn-text-emphasis: var(--gray-600);
+    --btn-text-emphasis-hover: var(--gray-600);
+    --btn-text-emphasis-disabled: var(--gray-600);
+
+    /* Components */
+    --comp-primary-fill: var(--pink-100);
+    --comp-secondary-fill: var(--pink-100);
+    --comp-emphasis-fill: var(--pink-600);
+
+    /* Component Texts */
+    --comp-text-primary: var(--pink-500);
+    --comp-text-secondary: var(--pink-600);
+    --comp-text-muted: var(--grey-300);
+    --comp-text-emphasis: var(--red-300);
+  }

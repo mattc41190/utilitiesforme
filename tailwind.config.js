@@ -1,3 +1,78 @@
+const backgroundColors = {
+  "primary-fill": "var(--primary-fill)",
+  "secondary-fill": "var(--secondary-fill)",
+  "emphasis-fill": "var(--emphasis-fill)",
+
+  "input-primary-fill": "var(--primary-fill)",
+  "input-secondary-fill": "var(--secondary-fill)",
+  "input-emphasis-fill": "var(--secondary-fill)",
+
+  "btn-primary-fill": "var(--btn-primary-fill)",
+  "btn-primary-fill-hover": "var(--btn-primary-fill)",
+  "btn-primary-fill-disabled": "var(--btn-primary-fill)",
+  "btn-secondary-fill": "var(--btn-secondary-fill)",
+  "btn-secondary-fill-hover": "var(--btn-secondary-fill)",
+  "btn-secondary-fill-disabled": "var(--btn-secondary-fill)",
+  "btn-emphasis-fill": "var(--btn-emphasis-fill)",
+  "btn-emphasis-fill-hover": "var(--btn-emphasis-fill)",
+  "btn-emphasis-fill-disabled": "var(--btn-emphasis-fill)",
+
+  "comp-primary-fill": "var(--comp-primary-fill)",
+  "comp-secondary-fill": "var(--comp-secondary-fill)",
+  "comp-emphasis-fill": "var(--comp-emphasis-fill)",
+}
+
+const borderColors = {
+  "primary-complement": "var(--primary-complement)",
+  "secondary-complement": "var(--secondary-complement)",
+  "emphasis-complement": "var(--emphasis-complement)",
+
+  "input-primary-complement": "var(--primary-complement)",
+  "input-secondary-complement": "var(--secondary-complement)",
+  "input-emphasis-complement": "var(--secondary-complement)",
+
+  "btn-primary-complement": "var(--btn-primary-complement)",
+  "btn-primary-complement-hover": "var(--btn-primary-complement)",
+  "btn-primary-complement-disabled": "var(--btn-primary-complement)",
+  "btn-secondary-complement": "var(--btn-secondary-complement)",
+  "btn-secondary-complement-hover": "var(--btn-secondary-complement)",
+  "btn-secondary-complement-disabled": "var(--btn-secondary-complement)",
+  "btn-emphasis-complement": "var(--btn-emphasis-complement)",
+  "btn-emphasis-complement-hover": "var(--btn-emphasis-complement)",
+  "btn-emphasis-complement-disabled": "var(--btn-emphasis-complement)",
+
+  "comp-primary-complement": "var(--color-component-complement)",
+  "comp-secondary-complement": "var(--color-component-complement)",
+  "comp-emphasis-complement": "var(--color-component-complement)",
+}
+
+const textColors = {
+  "primary": "var(--text-primary)",
+  "secondary": "var(--text-secondary)",
+  "muted": "var(--text-muted)",
+  "emphasis": "var(--text-emphasis)",
+
+  "input-primary": "var(--primary-fill)",
+  "input-secondary": "var(--secondary-fill)",
+  "input-emphasis": "var(--secondary-fill)",
+
+  "btn-primary": "var(--btn-text-primary)",
+  "btn-primary-hover": "var(--btn-text-primary)",
+  "btn-primary-disabled": "var(--btn-text-primary)",
+  "btn-secondary": "var(--btn-text-secondary)",
+  "btn-secondary-hover": "var(--btn-text-secondary)",
+  "btn-secondary-disabled": "var(--btn-text-secondary)",
+  "btn-emphasis": "var(--btn-text-emphasis)",
+  "btn-emphasis-hover": "var(--btn-text-emphasis)",
+  "btn-emphasis-disabled": "var(--btn-text-emphasis)",
+
+  "comp-primary": "var(--comp-text-primary)",
+  "comp-secondary": "var(--comp-text-secondary)",
+  "comp-muted": "var(--comp-text-muted)",
+  "comp-emphasis": "var(--comp-text-emphasis)",
+}
+
+
 module.exports = {
   purge: [
     'utilities_for_me/web_app/static/**/*.js'
@@ -8,47 +83,10 @@ module.exports = {
       center: true
     },
     extend: {
-      textColor: {
-        skin: {
-          "primary": "var(--text-primary)",
-          "secondary": "var(--color-text-base-secondary)",
-          "muted": "var(--color-text-base-muted)",
-          "emphasis": "var(--color-text-base-emphasis)",
-          "component-primary": "var(--color-text-component-primary)",
-          "component-secondary": "var(--color-text-component-secondary)",
-          "component-muted": "var(--color-text-component-muted)",
-          "component-emphasis": "var(--color-text-component-emphasis)",
-          "button-primary": "var(--color-button-text-base)",
-          "button-primary-active": "var(--color-button-text-base-active)",
-        }
-      },
-      backgroundColor: {
-        skin: {
-          "primary-fill": "var(--primary-fill)",
-          "secondary-fill": "var(--color-secondary-fill)",
-          "component-fill": "var(--color-component-fill)",
-          "button-fill": "var(--color-button-base-fill)",
-          "button-active-fill": "var(--color-button-base-fill-active)"
-        }
-      },
-      borderColor: {
-        skin: {
-          "primary-fill": "var(--primary-fill)",
-          "secondary-fill": "var(--color-secondary-fill)",
-          "component-fill": "var(--color-component-fill)",
-          "emphasis-fill": "var(--color-emphasis-fill)",
-          "emphasis-component-fill": "var(--color-component-emphasis-fill)",
-        }
-      },
-      ringColor: {
-        skin: {
-          "primary-fill": "var(--primary-fill)",
-          "secondary-fill": "var(--color-secondary-fill)",
-          "component-fill": "var(--color-component-fill)",
-          "emphasis-fill": "var(--color-emphasis-fill)",
-          "emphasis-component-fill": "var(--color-component-emphasis-fill)",
-        }
-      }
+      backgroundColor: { theme: backgroundColors }, // bg-theme-[key], 
+      borderColor: { theme: borderColors }, 
+      ringColor: { theme: borderColors },
+      textColor: { theme: textColors },
     }
   },
   variants: {
@@ -60,33 +98,3 @@ module.exports = {
   plugins: []
 }
 
-// --color-button-base-fill: var(--grey-200);
-// --color-button-base-outline: var(--gray-600);
-// --color-button-text-base: var(--gray-600);
-// --color-button-base-fill-active: var(--grey-400);
-// --color-button-base-outline-active: var(--grey-800);
-// --color-button-text-base-active: var(--grey-800);
-
-
-// /* Base Colors */
-// --color-base-fill: var(--white);
-// --color-secondary-fill: var(--very-light-gray);
-// --color-text-base-primary: var(--very-dark-gray);
-// --color-text-base-secondary: var(--black);
-// --color-text-base-muted: var(--black);
-// --color-text-base-emphasis: var(--black);
-
-// /* Buttons Colors */
-// --color-button-base-fill: var(--black);
-// --color-button-base-outline: var(--black);
-// --color-button-text-base: var(--black);
-// --color-button-base-fill-active: var(--black);
-// --color-button-base-outline-active: var(--black);
-// --color-button-text-base-active: var(--black);
-
-// /* Card/Pill Colors */
-// --color-component-fill: var(--very-dark-gray);
-// --color-text-component-primary: var(--very-dark-gray);
-// --color-text-component-secondary: var(--black);
-// --color-text-component-muted: var(--black);
-// --color-text-component-emphasis: var(--black);

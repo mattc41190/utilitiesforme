@@ -16,7 +16,13 @@ The general structure:
 
 `[entity]-color-[fill/complement]-[state]`
 
-Here the optional `entity` field (as denoted by `[]`) can be replaced by with something called `text` for text colors. The semi-optional `complement` is used only for background colors and is intended to enrich an otherwise monotone feel. The optional `state` qualifier is intended to denote entity state and shouldn't be used where entity is not provided. An example of fully leveraging this.
+Here the optional `entity` field (as denoted by `[]`) can be replaced by with something called `text` for text colors. The semi-optional `complement` is used only for background colors and is intended to enrich an otherwise monotone feel. The optional `state` qualifier is intended to denote entity state and shouldn't be used where entity is not provided. An example of fully leveraging this might look like:
+
+`primary-fill`
+
+OR
+
+`text-primary-hover`
 
 **Colors:**
 
@@ -35,11 +41,12 @@ Here the optional `entity` field (as denoted by `[]`) can be replaced by with so
 *Base Text*
 
 - Text Primary:
-    - CSS Variable Name(s): [`text-primary`, `text-primary-hover`, `text-primary-disabled`]
+    - CSS Variable Name(s): [`text-primary`, `text-primary-hover`, `text-primary-disabled`, `text-primary-complement`]
     - The `text-primary` text color is intended for use in the base site. This color will be the main text color your user sees so it should appear clearly on your `primary-fill` and possibly your `secondary-fill` depending on how different the two are in your use case (not all pallettes have primary and secondary color that shift the text color too dramatically). The variations here (`hover` and `disabled`) are obvious, **but I will address them here and nowhere else so no one can say they were left unexplained**. The `hover` modifier is the text color you'd like your primary text color to change to in the event it is hovered over by a mouse and `disabled` is the color you'd like it changed to in the event that it is disabled and unusable.
+    - The `text-primary-complement` like the `primary-complement` intended to enrich text on a primary base. It is decorative and at this time will not be getting state based modifications to keep the pallette smaller.
 
 - Text Secondary:
-    - CSS Variable Name(s): [`text-secondary`, `text-secondary-hover`, `text-secondary-disabled`]
+    - CSS Variable Name(s): [`text-secondary`, `text-secondary-hover`, `text-secondary-disabled`, `text-primary-complement`]
     - The `text-secondary` text color is intended for use in the base site. This color will be the secondary text color your user sees so it should appear clearly on your `secondary-fill` and possibly your `primary-fill`.
 
 ### Primary Pallette Example
@@ -51,6 +58,7 @@ Here the optional `entity` field (as denoted by `[]`) can be replaced by with so
 - `text-primary`
 - `text-primary-hover`
 - `text-primary-disabled`
+- `text-primary-complement`
 - `text-secondary`
 - `text-secondary-hover`
 - `text-secondary-disabled`
