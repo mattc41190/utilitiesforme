@@ -27,6 +27,15 @@ function Footer ({ currentTheme, setTheme }) {
         <span className='text-xl text-skin-primary hover:text-skin-emphasis mr-3'>
           <button value='theme-pink' className='focus:outline-none' onClick={handleThemeToggle}>💖</button>
         </span>
+        <span className='text-xl text-skin-primary hover:text-skin-emphasis mr-3'>
+          |
+        </span>
+        <span className='text-xl text-skin-primary hover:text-skin-emphasis mr-3'>
+          <button value='theme-tree' className='focus:outline-none' onClick={handleThemeToggle}>🌳</button>
+        </span>
+        <span className='text-xl text-skin-primary hover:text-skin-emphasis mr-3'>
+          <button value='theme-hacker' className='focus:outline-none' onClick={handleThemeToggle}>🖥</button>
+        </span>
       </div>
     </div>
   )

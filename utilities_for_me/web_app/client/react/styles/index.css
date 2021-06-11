@@ -6,6 +6,9 @@
 @import url("./green-theme.css");
 @import url("./light-theme.css");
 @import url("./dark-theme.css");
+@import url("./tree-theme.css");
+@import url("./hacker-theme.css");
+
 
 @tailwind base;
 @tailwind components;
@@ -28,11 +31,11 @@ html, body {
 }
 
 @keyframes blinkingText{
-  0%{     color: #212529;    }
-  49%{    color: #212529; }
+  0%{     color: var(text-primary);    }
+  49%{    color: var(text-primary); }
   60%{    color: transparent; }
   99%{    color:transparent;  }
-  100%{   color: #212529;    }
+  100%{   color: var(text-primary);    }
 }
 
 *::selection {

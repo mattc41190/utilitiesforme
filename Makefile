@@ -32,6 +32,10 @@ build_python: check_python
 
 # JAVASCRIPT TARGETS
 
+.PHONY: install_js_reqs
+install_js_reqs:
+	npm i
+
 .PHONY: format_js
 format_js:
 	npm run format-javascript
