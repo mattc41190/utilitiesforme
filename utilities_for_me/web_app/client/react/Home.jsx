@@ -27,7 +27,7 @@ const TestimonialPane = ({ theme }) => {
         </blockquote>
         <figcaption className='font-medium'>
           <div className='text-theme-comp-emphasis'>
-            Matthew Cale
+            <a href='http://matthewcale.com/'>Matthew Cale</a>
           </div>
           <div className='text-theme-comp-secondary'>
             A Regular Dude -- Austin, TX

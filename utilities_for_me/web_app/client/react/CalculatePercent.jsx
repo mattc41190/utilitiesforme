@@ -53,6 +53,9 @@ const PercentOf = ({
   handlePercentOfSubmit,
   percentOfResult
 }) => {
+  const textClasses = 'text-theme-input-primary placeholder-theme-input-primary'
+  const borderClasses = 'rounded-md border-2 border-theme-input-primary-complement focus:border-theme-emphasis-fill focus:outline-none focus:ring-1 focus:ring-skin-emphasis-fill'
+
   const percentOf_Percent = percentOf.percent
   const percentOf_Of = percentOf.of
 
@@ -62,7 +65,7 @@ const PercentOf = ({
       <div>What is</div>
       <input
         type='number'
-        className='w-24 p-2 m-3 border-2 rounded border-gray-700 bg-skin-secondary-fill text-skin-secondary'
+        className={`w-24 p-2 m-3 border-2 rounded bg-theme-input-primary-fill ${textClasses} ${borderClasses}`}
         name='percent'
         value={percentOf_Percent}
         onChange={handlePercentOfChange}
@@ -71,7 +74,7 @@ const PercentOf = ({
       <div>
         <input
           type='number'
-          className='w-24 p-2 m-3 border-2 rounded border-gray-700 bg-skin-secondary-fill text-skin-secondary'
+          className={`w-24 p-2 m-3 border-2 rounded bg-theme-input-primary-fill ${textClasses} ${borderClasses}`}
           name='of'
           value={percentOf_Of}
           onChange={handlePercentOfChange}
@@ -94,6 +97,9 @@ const NumIsWhatPercentOf = ({
   numIsWhatPercentOfResult,
   handleNumIsWhatPercentOfSubmit
 }) => {
+  const textClasses = 'text-theme-input-primary placeholder-theme-input-primary'
+  const borderClasses = 'rounded-md border-2 border-theme-input-primary-complement focus:border-theme-emphasis-fill focus:outline-none focus:ring-1 focus:ring-skin-emphasis-fill'
+
   const numIsWhatPercentOf_Num = numIsWhatPercentOf.num
   const numIsWhatPercentOf_Of = numIsWhatPercentOf.of
 
@@ -102,7 +108,7 @@ const NumIsWhatPercentOf = ({
       <div className='font-semibold mr-3'>X is what percent of Y?</div>
       <input
         type='number'
-        className='w-24 m-3 p-2 border-2 rounded border-gray-700 bg-skin-secondary-fill text-skin-secondary'
+        className={`w-24 m-3 p-2 border-2 rounded bg-theme-input-primary-fill ${textClasses} ${borderClasses}`}
         name='num'
         value={numIsWhatPercentOf_Num}
         onChange={handleNumIsWhatPercentOfChange}
@@ -110,7 +116,7 @@ const NumIsWhatPercentOf = ({
       <div>is what percent of</div>
       <input
         type='number'
-        className='w-24 m-3 p-2 border-2 rounded border-gray-700 bg-skin-secondary-fill text-skin-secondary'
+        className={`w-24 m-3 p-2 border-2 rounded bg-theme-input-primary-fill ${textClasses} ${borderClasses}`}
         name='of'
         value={numIsWhatPercentOf_Of}
         onChange={handleNumIsWhatPercentOfChange}

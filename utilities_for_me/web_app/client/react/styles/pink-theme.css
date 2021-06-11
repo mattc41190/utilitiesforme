@@ -10,18 +10,24 @@
     --emphasis-complement: var(--green-200);
 
     /* Base Text */
-    --text-primary: var(--pink-500);
-    --text-secondary: var(--grey-300);
+    --text-primary: var(--grey-100);
+    --text-secondary: var(--pink-600);
     --text-muted: var(--grey-300);
     --text-emphasis: var(--red-300);
 
     /* Inputs */
-    --input-primary-fill: var(--grey-100);
-    --input-primary-complement: var(--grey-100);
+    --input-primary-fill: var(--pink-100);
+    --input-primary-complement: var(--pink-300);
     --input-secondary-fill: var(--grey-200);
     --input-secondary-complement: var(--grey-200);
     --input-emphasis-fill: var(--grey-300);
     --input-emphasis-complement: var(--grey-200);
+
+    /* Input Texts */
+    --input-text-primary: var(--pink-500);
+    --input-text-secondary: var(--grey-400);
+    --input-text-muted: var(--grey-100);
+    --input-text-emphasis: var(--pink-600);
 
     /* Buttons */
     --btn-primary-fill: var(--grey-200);

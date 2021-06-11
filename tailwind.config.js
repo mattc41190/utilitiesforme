@@ -3,9 +3,9 @@ const backgroundColors = {
   'secondary-fill': 'var(--secondary-fill)',
   'emphasis-fill': 'var(--emphasis-fill)',
 
-  'input-primary-fill': 'var(--primary-fill)',
-  'input-secondary-fill': 'var(--secondary-fill)',
-  'input-emphasis-fill': 'var(--secondary-fill)',
+  'input-primary-fill': 'var(--input-primary-fill)',
+  'input-secondary-fill': 'var(--input-secondary-fill)',
+  'input-emphasis-fill': 'var(--input-emphasis-fill)',
 
   'btn-primary-fill': 'var(--btn-primary-fill)',
   'btn-primary-fill-hover': 'var(--btn-primary-fill)',
@@ -27,9 +27,9 @@ const borderColors = {
   'secondary-complement': 'var(--secondary-complement)',
   'emphasis-complement': 'var(--emphasis-complement)',
 
-  'input-primary-complement': 'var(--primary-complement)',
-  'input-secondary-complement': 'var(--secondary-complement)',
-  'input-emphasis-complement': 'var(--secondary-complement)',
+  'input-primary-complement': 'var(--input-primary-complement)',
+  'input-secondary-complement': 'var(--input-secondary-complement)',
+  'input-emphasis-complement': 'var(--input-secondary-complement)',
 
   'btn-primary-complement': 'var(--btn-primary-complement)',
   'btn-primary-complement-hover': 'var(--btn-primary-complement)',
@@ -52,9 +52,9 @@ const textColors = {
   muted: 'var(--text-muted)',
   emphasis: 'var(--text-emphasis)',
 
-  'input-primary': 'var(--primary-fill)',
-  'input-secondary': 'var(--secondary-fill)',
-  'input-emphasis': 'var(--secondary-fill)',
+  'input-primary': 'var(--input-text-primary)',
+  'input-secondary': 'var(--input-text-secondary)',
+  'input-emphasis': 'var(--input-text-emphasis)',
 
   'btn-primary': 'var(--btn-text-primary)',
   'btn-primary-hover': 'var(--btn-text-primary)',
@@ -85,7 +85,8 @@ module.exports = {
       backgroundColor: { theme: backgroundColors }, // bg-theme-[key],
       borderColor: { theme: borderColors },
       ringColor: { theme: borderColors },
-      textColor: { theme: textColors }
+      textColor: { theme: textColors },
+      placeholderColor: { theme: textColors }
     }
   },
   variants: {

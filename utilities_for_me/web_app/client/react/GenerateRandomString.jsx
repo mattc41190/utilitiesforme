@@ -51,13 +51,16 @@ const GenerateRandomStringOptions = ({ length, selectedCategories, setSelectedCa
     }
   }
 
+  const textClasses = 'text-theme-input-primary placeholder-theme-input-primary'
+  const borderClasses = 'rounded-md border-2 border-theme-input-primary-complement focus:border-theme-emphasis-fill focus:outline-none focus:ring-1 focus:ring-skin-emphasis-fill'
+
   return (
     <div className='p-2'>
       <div className='text-xl font-semibold'>Options</div>
       <input
         required
         type='number'
-        className='p-2 mt-3 mb-1 w-full md:w-6/12 border-2 rounded border-gray-700 bg-skin-secondary-fill text-skin-secondary'
+        className={`p-2 mt-3 mb-1 w-full md:w-6/12 border-2 bg-theme-input-primary-fill ${textClasses} ${borderClasses}`}
         placeholder='Length...'
         value={length}
         onChange={handleChange}
