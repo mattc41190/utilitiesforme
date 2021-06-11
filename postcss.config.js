@@ -3,12 +3,10 @@ const autoprefixer = require('autoprefixer')
 const purgecss = require('@fullhuman/postcss-purgecss')
 const cssnano = require('cssnano')
 
-module.exports = {
-  plugins: [
-    tailwindcss,
-    autoprefixer,
-    cssnano({ preset: 'default' }),
-    purgecss({
+const _autoprefixer = process.env.NODE_ENV === 'production' ? autoprefixer : null
+const _cssnano = process.env.NODE_ENV === 'production' ? cssnano({ preset: 'default' }) : null
+const _purgecss = process.env.NODE_ENV === 'production'
+  ? purgecss({
       content: [
         'utilities_for_me/web_app/templates/**/*.html',
         'utilities_for_me/web_app/client/react/**/*.js',
@@ -16,5 +14,13 @@ module.exports = {
       ],
       defaultExtractor: content => content.match(/[\w-/:]+(?<!:)/g) || []
     })
+  : null
+
+module.exports = {
+  plugins: [
+    tailwindcss,
+    _autoprefixer,
+    _cssnano,
+    _purgecss
   ]
 }

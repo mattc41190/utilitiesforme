@@ -7,7 +7,7 @@
 
 This is a repository that contains the source code for the _utilitiesfor.me_ application. See: https://utilitiesfor.me
 
-![demo](meta/demo.png)
+![demo](meta/demo-v2.png)
 
 
 ## Why make this?

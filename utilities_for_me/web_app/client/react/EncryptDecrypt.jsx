@@ -99,6 +99,9 @@ const DecryptBody = ({
   handleKeyChange,
   handleClick
 }) => {
+  const textClasses = 'text-theme-input-primary placeholder-theme-input-primary'
+  const borderClasses = 'rounded-md border-2 border-theme-input-primary-complement focus:border-theme-emphasis-fill focus:outline-none focus:ring-1 focus:ring-skin-emphasis-fill'
+
   return (
     <div className='w-full md:w-6/12'>
       <div>Message To Decrypt</div>
@@ -108,7 +111,7 @@ const DecryptBody = ({
         handleChange={handleMessageChange}
       />
       <input
-        className='w-full p-2 border-2 rounded  border-green-600 focus:border-green-600 focus:outline-none focus:ring-1 focus:ring-green-600'
+        className={`w-full p-2 bg-theme-input-primary-fill ${textClasses} ${borderClasses}`}
         placeholder='Key for decryption...'
         value={decryptionKey}
         onChange={handleKeyChange}
@@ -196,7 +199,7 @@ function EncryptDecrypt () {
   }, [messageToDecrypt, decryptionKey])
 
   return (
-    <div className='mt-6'>
+    <div className='mt-6 text-skin-primary'>
       <EncryptDecryptHeader />
       <hr />
       <Encrypt

@@ -119,7 +119,7 @@ function Echo () {
   }, [contents])
 
   return (
-    <div className='mt-6'>
+    <div className='mt-6 text-skin-primary'>
       <EchoHeader />
       <hr />
       <EchoBody contents={contents} handleChange={handleChange} handleClick={handleClick} />

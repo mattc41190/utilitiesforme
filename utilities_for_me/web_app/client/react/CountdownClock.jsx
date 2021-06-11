@@ -173,7 +173,7 @@ function CountdownClock () {
   const holidayUIData = getDateUIData(_date.label)
 
   return (
-    <div>
+    <div className='mt-6 text-skin-primary'>
       <CountdownClockHeader />
       <hr />
       <CountdownClockBody

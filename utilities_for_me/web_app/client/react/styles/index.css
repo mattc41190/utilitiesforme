@@ -1,0 +1,45 @@
+@import url("./colors.css");
+@import url("./orange-theme.css");
+@import url("./purple-theme.css");
+@import url("./pink-theme.css");
+@import url("./blue-theme.css");
+@import url("./green-theme.css");
+@import url("./light-theme.css");
+@import url("./dark-theme.css");
+@import url("./tree-theme.css");
+@import url("./hacker-theme.css");
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body {
+  height: 100%;
+}
+
+#root {
+  height: 100%;
+}
+
+.display-large {
+  font-size: 9rem;
+}
+
+.timer-blinking{
+  animation:blinkingText 1.2s infinite;
+}
+
+@keyframes blinkingText{
+  0%{     color: var(text-primary);    }
+  49%{    color: var(text-primary); }
+  60%{    color: transparent; }
+  99%{    color:transparent;  }
+  100%{   color: var(text-primary);    }
+}
+
+*::selection {
+  background-color: pink;
+  color: #0097a7;
+}
+
