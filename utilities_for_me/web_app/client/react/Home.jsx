@@ -100,7 +100,13 @@ const UtilityPanes = ({ theme }) => {
         theme={theme}
         link='/countdown-clock'
         title='Countdown Clock'
-        description=' Wanna how many days till Christmas? Look no further than this handy customizable countdown timer! 🗓'
+        description='Wanna how many days till Christmas? Look no further than this handy customizable countdown timer! 🗓'
+      />
+      <UtilityPane
+        theme={theme}
+        link='/counter'
+        title='Counter'
+        description="Need to keep track of something? Your score? Reps? Number of cups of coffee you've had? 🔢"
       />
     </div>
   )

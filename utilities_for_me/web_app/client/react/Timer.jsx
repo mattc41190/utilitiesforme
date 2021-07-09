@@ -22,6 +22,10 @@ const TIMER_MAP = {
   custom: null
 }
 
+const NOT_DONE = 'not-done'
+const DONE = 'done'
+const DELETE = 'delete'
+
 const TimerHeader = () => {
   return (
     <section className='p-2'>
@@ -120,7 +124,7 @@ const TimerBody = ({
   timerComplete
 }) => {
   return (
-    <section className='mt-8 flex flex-col justify-center'>
+    <section className='mt-8 mb-4 flex flex-col justify-center'>
       <div className='w-4/12 self-center'>
         <TimerSelectorSection resetTimer={resetTimer} />
       </div>
@@ -142,6 +146,142 @@ const TimerBody = ({
         />
       </div>
     </section>
+  )
+}
+
+const ToDoInput = ({ newToDoValue, handleChange, addToDo }) => {
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter') {
+      addToDo()
+    }
+  }
+
+  return (
+    <div>
+      <input
+        className='w-full p-4 mb-4 text-xl bg-theme-input-primary-fill'
+        placeholder='Item To Focus On'
+        value={newToDoValue}
+        onChange={handleChange}
+        onKeyDown={handleKeyDown}
+      />
+      <Button
+        handleClick={addToDo}
+        value='add' label='Add'
+        color={COLORS.green}
+        hoverColor={COLORS.greenHover}
+      />
+    </div>
+  )
+}
+
+const ToDo = ({ todo, updateToDo }) => {
+  const className = `mb-3 flex flex-row justify-between border-2 rounded-sm border-theme-primary-complement items-center px-4 py-3 ${todo.status === DONE ? 'bg-green-500 text-gray-100' : ''}`
+
+  return (
+    <div className={className}>
+      <div todoid={todo.id} className='text-xl'>{todo.value}</div>
+      <div>
+        <Button
+          handleClick={() => updateToDo(todo.id, DONE)}
+          value='done' label='✅'
+          color={COLORS.gray}
+          hoverColor={COLORS.grayHover}
+        />
+        <Button
+          handleClick={() => updateToDo(todo.id, DELETE)}
+          value='delete' label='🚫'
+          color={COLORS.gray}
+          hoverColor={COLORS.grayHover}
+        />
+      </div>
+    </div>
+  )
+}
+
+const ToDoList = ({ todos = [], updateToDo }) => {
+  return (
+    <div className='mt-5 flex flex-col max-h-56 overflow-auto'>
+      {todos.map(todo => <ToDo key={todo.id} todo={todo} updateToDo={updateToDo} />)}
+    </div>
+  )
+}
+
+const Admin = ({ todos }) => {
+  const logAsJSON = (e) => {
+    console.log(JSON.stringify(todos, null, 2))
+  }
+
+  return (
+    <div className='mt-4'>
+      <Button
+        handleClick={logAsJSON}
+        value='logJSON' label='Log JSON'
+        color={COLORS.blue}
+        hoverColor={COLORS.blueHover}
+      />
+    </div>
+  )
+}
+
+const ToDoBody = () => {
+  const [todos, setToDos] = useState([])
+
+  const [newToDoValue, setNewToDoValue] = useState('')
+
+  const handleInputChange = (e) => {
+    setNewToDoValue(e.target.value)
+  }
+
+  const addToDo = (e) => {
+    const newToDo = { value: newToDoValue, status: NOT_DONE, created_at: new Date(), id: Date.now() }
+    setToDos([newToDo, ...todos])
+    setNewToDoValue('')
+  }
+
+  const updateToDo = (id, action) => {
+    let index = -1
+    const toDoToUpdate = todos.find((todo, _index) => {
+      if (todo.id === id) {
+        index = _index
+        return true
+      } else {
+        return false
+      }
+    })
+
+    // console.log(toDoToUpdate, index)
+
+    if (action === DONE && toDoToUpdate.status !== DONE) {
+      toDoToUpdate.status = DONE
+      const newToDos = [...todos]
+      newToDos.splice(index, 1, toDoToUpdate)
+      setToDos(newToDos)
+    } else if (action === DONE && toDoToUpdate.status === DONE) {
+      toDoToUpdate.status = NOT_DONE
+      const newToDos = [...todos]
+      newToDos.splice(index, 1, toDoToUpdate)
+      setToDos(newToDos)
+    } else if (action === DELETE) {
+      const newToDos = [...todos]
+      newToDos.splice(index, 1)
+      setToDos(newToDos)
+    }
+  }
+
+  return (
+    <div className='mt-8 flex flex-row justify-center'>
+      <div className='w-1/2'>
+        <ToDoInput
+          newToDoValue={newToDoValue}
+          handleChange={handleInputChange}
+          addToDo={addToDo}
+        />
+        <ToDoList todos={todos} updateToDo={updateToDo} />
+        <Admin todos={todos} />
+      </div>
+
+    </div>
   )
 }
 
@@ -210,6 +350,8 @@ function Timer () {
         resetTimer={resetTimer}
         timerComplete={timerComplete}
       />
+      <hr />
+      <ToDoBody />
     </div>
   )
 }
