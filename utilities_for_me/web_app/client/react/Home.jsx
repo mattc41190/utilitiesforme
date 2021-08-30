@@ -104,8 +104,8 @@ const UtilityPanes = ({ theme }) => {
       />
       <UtilityPane
         theme={theme}
-        link='/counter'
-        title='Counter'
+        link='/count'
+        title='Count'
         description="Need to keep track of something? Your score? Reps? Number of cups of coffee you've had? 🔢"
       />
     </div>

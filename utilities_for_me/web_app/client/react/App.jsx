@@ -16,7 +16,7 @@ import EncryptDecrypt from './EncryptDecrypt'
 import Timer from './Timer'
 import CountdownClock from './CountdownClock'
 import Footer from './Footer'
-import Counter from './Counter'
+import Count from './Count'
 
 function App () {
   const cookieTheme = getCookie('theme')
@@ -54,7 +54,7 @@ function App () {
           <Route path='/encrypt-decrypt' component={EncryptDecrypt} />
           <Route path='/timer' component={Timer} />
           <Route path='/countdown-clock' component={CountdownClock} />
-          <Route path='/counter' component={Counter} />
+          <Route path='/count' component={Count} />
           <Route component={Error} />
         </Switch>
       </div>
