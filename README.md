@@ -92,6 +92,12 @@ npm run scripts-watch
 npm run styleit
 ```
 
+## Common Testing Issues Fix:
+
+IF you are getting the ol' NoModuleFoundError try this on for size:
+
+- `export PYTHONPATH="${PYTHONPATH}:/Users/matt.cale/Desktop/Code/personal/utilitiesforme/utilities_for_me"`
+
 ## Ideas For Utils
 
 - Echo ✅

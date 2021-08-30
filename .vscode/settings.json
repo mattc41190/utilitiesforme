@@ -1,0 +1,5 @@
+{
+    "python.analysis.extraPaths": [
+        "./utilities_for_me/utilities/_todo"
+    ]
+}
