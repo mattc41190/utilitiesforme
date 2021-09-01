@@ -111,7 +111,15 @@ const addReducer = (state, payload) => {
 }
 
 const removeReducer = (state, payload) => {
+  if (state.counters.length < 2) {
+    return state
+  }
+
   const newCounters = state.counters.filter(counter => counter.id !== payload.counterId)
+  const counterWithFocus = state.counters.find(counter => counter.hasFocus)
+  if (!counterWithFocus) {
+    newCounters[0].hasFocus = true
+  }
   // Mutate
   sortCounters(newCounters)
   return { ...state, counters: newCounters }
@@ -220,9 +228,9 @@ function Count () {
   const currCounter = state.counters.find(c => c.hasFocus)
   const currCounterId = currCounter ? currCounter.id : -1
   const nextCounterId = findNextCounterId(state.counters)
-  useKeyPress('n', () => dispatch({ type: SET_FOCUS, payload: { counterId: nextCounterId } }))
-  useKeyPress('c', () => dispatch({ type: ADD, payload: {} }))
-  useKeyPress('r', () => dispatch({ type: REMOVE, payload: { counterId: currCounterId } }))
+  useKeyPress('Tab', () => dispatch({ type: SET_FOCUS, payload: { counterId: nextCounterId } }))
+  useKeyPress(' ', () => dispatch({ type: ADD, payload: {} }))
+  useKeyPress('Backspace', () => dispatch({ type: REMOVE, payload: { counterId: currCounterId } }))
   useKeyPress('ArrowRight', () => dispatch({ type: INCREMENT, payload: { counterId: currCounterId, amount: 1 } }))
   useKeyPress('ArrowLeft', () => dispatch({ type: DECREMENT, payload: { counterId: currCounterId, amount: 1 } }))
   useKeyPress('ArrowUp', () => dispatch({ type: INCREMENT, payload: { counterId: currCounterId, amount: 10 } }))
