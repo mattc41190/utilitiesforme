@@ -176,7 +176,7 @@ const ToDoInput = ({ newToDoValue, handleChange, addToDo }) => {
 }
 
 const ToDo = ({ todo, updateToDo }) => {
-  const className = `mb-3 flex flex-row justify-between border-2 rounded-sm border-theme-primary-complement items-center px-4 py-3 ${todo.status === DONE ? 'bg-green-500 text-gray-100' : ''}`
+  const className = `mb-3 flex flex-row justify-between border-2 rounded-theme-default border-theme-primary-complement items-center px-4 py-3 ${todo.status === DONE ? 'bg-green-500 text-gray-100' : ''}`
 
   return (
     <div className={className}>

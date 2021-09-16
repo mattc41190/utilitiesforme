@@ -1,17 +1,20 @@
 .theme-hacker {
   font-family: 'Inconsolata', monospace;
+
+  --border-radius-default: var('0rem');
+
   /* Base */
-  --primary-fill: var(--blue-grey-700);
+  --primary-fill: #091833;
   --primary-complement: var(--light-green-200);
-  --secondary-fill: var(--blue-grey-800);
-  --secondary-complement: var(--amber-400);
+  --secondary-fill: #ea00d9;
+  --secondary-complement: var(--purple-400);
   --emphasis-fill: var(--pink-300);
   --emphasis-complement: var(--pink-200);
   /* Base Text */
-  --text-primary: var(--amber-200);
-  --text-secondary: var(--blue-grey-200);
+  --text-primary: #133e7c;
+  --text-secondary: var(--cyan-200);
   --text-muted: var(--grey-300);
-  --text-emphasis: var(--pink-500);
+  --text-emphasis: var(--black);
   /* Inputs */
   --input-primary-fill: var(--blue-grey-900);
   --input-primary-complement: var(--amber-300);
@@ -54,12 +57,12 @@
   --btn-text-emphasis-hover: var(--gray-600);
   --btn-text-emphasis-disabled: var(--gray-600);
   /* Components */
-  --comp-primary-fill: var(--amber-300);
-  --comp-secondary-fill: var(--green-100);
+  --comp-primary-fill: #ea00d9;
+  --comp-secondary-fill: #ea00d9;
   --comp-emphasis-fill: var(--pink-600);
   /* Component Texts */
-  --comp-text-primary: var(--blue-grey-700);
-  --comp-text-secondary: var(--blue-grey-500);
+  --comp-text-primary: 	#133e7c;
+  --comp-text-secondary:  #133e7c;
   --comp-text-muted: var(--grey-300);
-  --comp-text-emphasis: var(--pink-500);
+  --comp-text-emphasis: var(--black);
 }

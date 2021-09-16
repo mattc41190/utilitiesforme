@@ -1,5 +1,6 @@
 .theme-dark {
   font-family: 'Noto Sans HK', sans-serif;
+  --border-radius-default: 0.125rem;
 
   /* Base Fill Colors */
   --primary-fill: var(--black);

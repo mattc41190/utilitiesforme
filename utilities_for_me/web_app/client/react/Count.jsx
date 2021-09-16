@@ -91,6 +91,9 @@ const decrementReducer = (state, payload) => {
 }
 
 const addReducer = (state, payload) => {
+  if (state.counters.length > 256) {
+    return state
+  }
   const newId = getNextId(state.counters)
   const newCounter = {
     id: newId,
@@ -112,11 +115,13 @@ const addReducer = (state, payload) => {
 
 const removeReducer = (state, payload) => {
   if (state.counters.length < 2) {
-    return state
+    const newCounter = { ...state.counters[0] }
+    newCounter.hasFocus = true
+    return { ...state, counters: [newCounter] }
   }
 
   const newCounters = state.counters.filter(counter => counter.id !== payload.counterId)
-  const counterWithFocus = state.counters.find(counter => counter.hasFocus)
+  const counterWithFocus = newCounters.find(counter => counter.hasFocus)
   if (!counterWithFocus) {
     newCounters[0].hasFocus = true
   }
@@ -142,22 +147,35 @@ const setFocus = (state, payload) => {
   return { ...state, counters: newCounters }
 }
 
+const hackyLoggerMiddleware = (state) => {
+  console.groupCollapsed('%cNew State', 'color: green')
+  console.log(state)
+  console.groupEnd()
+  console.groupEnd()
+  return state
+}
+
 const counterReducer = (state, action) => {
-  console.log(`state: ${JSON.stringify(state)}`)
-  console.log(`action: ${JSON.stringify(action)}`)
+  console.groupCollapsed(`${action.type} @ ${Date.now()}`)
+  console.groupCollapsed('%cOld State', 'color: blue')
+  console.log(state)
+  console.groupEnd()
+  console.groupCollapsed(`%cAction (${action.type})`, 'color: red')
+  console.log(action)
+  console.groupEnd()
   switch (action.type) {
     case INCREMENT:
-      return incrementReducer(state, action.payload)
+      return hackyLoggerMiddleware(incrementReducer(state, action.payload))
     case DECREMENT:
-      return decrementReducer(state, action.payload)
+      return hackyLoggerMiddleware(decrementReducer(state, action.payload))
     case ADD:
-      return addReducer(state, action.payload)
+      return hackyLoggerMiddleware(addReducer(state, action.payload))
     case REMOVE:
-      return removeReducer(state, action.payload)
+      return hackyLoggerMiddleware(removeReducer(state, action.payload))
     case SET_FOCUS:
-      return setFocus(state, action.payload)
+      return hackyLoggerMiddleware(setFocus(state, action.payload))
     default:
-      return state
+      return hackyLoggerMiddleware(state)
   }
 }
 
@@ -184,10 +202,10 @@ const RemoveCounter = ({ id, dispatch }) => {
 const CounterBody = ({ id, name, count, dispatch, hasFocus, isLast }) => {
   return (
     <div
-      className='flex flex-col bg-theme-comp-primary-fill rounded-xl p-6 md:p-2 shadow-inner justify-center text-center mt-4 mb-3'
+      className='flex flex-col bg-theme-comp-primary-fill rounded-default p-6 md:p-2 shadow-inner justify-center text-center mt-4 mb-3'
     >
-      <div className='text-4xl mb-2'>{name}{hasFocus ? ' ⬅️' : null}</div>
-      <div className='text-4xl mb-5'>{count}</div>
+      <div className='text-4xl mb-2 text-theme-comp-primary'>{name}{hasFocus ? ' ⬅️' : null}</div>
+      <div className='text-4xl mb-5 text-theme-comp-primary'>{count}</div>
       <div>
         <Button
           handleClick={() => dispatch({ type: INCREMENT, payload: { counterId: id, amount: 1 } })}
@@ -207,16 +225,12 @@ const CounterBody = ({ id, name, count, dispatch, hasFocus, isLast }) => {
             : <RemoveCounter id={id} dispatch={dispatch} />
         }
       </div>
-
     </div>
   )
 }
 
 const findNextCounterId = (counters) => {
   const currentFocusCounterIndex = counters.findIndex(c => c.hasFocus)
-  console.log(`currentFocusCounterIndex: ${currentFocusCounterIndex}`)
-  console.log(`counters.length - 1: ${counters.length - 1}`)
-
   if (counters.length - 1 <= currentFocusCounterIndex) {
     return counters[0].id
   }
@@ -225,9 +239,11 @@ const findNextCounterId = (counters) => {
 
 function Count () {
   const [state, dispatch] = useReducer(counterReducer, INITIAL_STATE)
+
   const currCounter = state.counters.find(c => c.hasFocus)
   const currCounterId = currCounter ? currCounter.id : -1
   const nextCounterId = findNextCounterId(state.counters)
+
   useKeyPress('Tab', () => dispatch({ type: SET_FOCUS, payload: { counterId: nextCounterId } }))
   useKeyPress(' ', () => dispatch({ type: ADD, payload: {} }))
   useKeyPress('Backspace', () => dispatch({ type: REMOVE, payload: { counterId: currCounterId } }))
@@ -237,7 +253,7 @@ function Count () {
   useKeyPress('ArrowDown', () => dispatch({ type: DECREMENT, payload: { counterId: currCounterId, amount: 10 } }))
 
   return (
-    <div className='mt-6 text-skin-primary'>
+    <div className='mt-6 mx-3 text-skin-primary'>
       <CounterHeader />
       <hr />
       <div className='mt-3'>
@@ -247,7 +263,7 @@ function Count () {
           color={COLORS.green}
           hoverColor={COLORS.greenHover}
         />
-        <div className='grid md:grid-cols-3 gap-3'>
+        <div className='grid sm:grid-cols-2 lg:grid-cols-3 gap-3'>
           {state.counters.map(counter => {
             return (
               <CounterBody

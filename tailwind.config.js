@@ -46,6 +46,11 @@ const borderColors = {
   'comp-emphasis-complement': 'var(--color-component-complement)'
 }
 
+const borderRadius = {
+  'default': "var(--border-radius-default)",
+  '4xl': '2rem',
+}
+
 const textColors = {
   primary: 'var(--text-primary)',
   secondary: 'var(--text-secondary)',
@@ -81,12 +86,13 @@ module.exports = {
     container: {
       center: true
     },
+    borderRadius,
     extend: {
       backgroundColor: { theme: backgroundColors }, // bg-theme-[key],
       borderColor: { theme: borderColors },
       ringColor: { theme: borderColors },
       textColor: { theme: textColors },
-      placeholderColor: { theme: textColors }
+      placeholderColor: { theme: textColors },
     }
   },
   variants: {
