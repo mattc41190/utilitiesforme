@@ -1,4 +1,4 @@
-import React, { useReducer, useEffect } from 'react'
+import React, { useReducer, useEffect, useState } from 'react'
 import Button from './common/Button'
 import COLORS from './lib/colors'
 
@@ -20,8 +20,11 @@ const REMOVE = 'counter/remove'
 const INCREMENT = 'counter/increment'
 const DECREMENT = 'counter/decrement'
 const SET_FOCUS = 'counter/setFocus'
+const SET_NAME = 'counter/setName'
+const SET_HOT_KEYS = 'counter/setHotKeys'
 
 const INITIAL_STATE = {
+  hotKeysEnabled: true,
   counters: [
     {
       id: 1,
@@ -30,6 +33,14 @@ const INITIAL_STATE = {
       hasFocus: true
     }
   ]
+}
+
+const setNameAction = (name, id) => {
+  return { type: SET_NAME, payload: { counterId: id, name: name } }
+}
+
+const setHotKeysAction = () => {
+  return { type: SET_HOT_KEYS, payload: {} }
 }
 
 const findCounterById = (counters, id) => {
@@ -147,6 +158,26 @@ const setFocus = (state, payload) => {
   return { ...state, counters: newCounters }
 }
 
+const setNameReducer = (state, payload) => { 
+  const newCounters = state.counters.map(counter => {
+    if (payload.counterId === counter.id) {
+      return {
+        ...counter,
+        name: payload.counterId
+      }
+    }
+    return {
+      ...counter,
+    }
+  }) // Mutate
+  sortCounters(newCounters)
+  return { ...state, counters: newCounters }
+}
+
+const setHotKeysReducer = (state, payload) => { 
+  return { ...state, hotKeysEnabled: !state.hotKeysEnabled }
+}
+
 const hackyLoggerMiddleware = (state) => {
   console.groupCollapsed('%cNew State', 'color: green')
   console.log(state)
@@ -174,6 +205,10 @@ const counterReducer = (state, action) => {
       return hackyLoggerMiddleware(removeReducer(state, action.payload))
     case SET_FOCUS:
       return hackyLoggerMiddleware(setFocus(state, action.payload))
+    case SET_NAME:
+      return hackyLoggerMiddleware(setNameReducer(state, action.payload))
+    case SET_HOT_KEYS:
+      return hackyLoggerMiddleware(setHotKeysReducer(state, action.payload))
     default:
       return hackyLoggerMiddleware(state)
   }
@@ -200,11 +235,48 @@ const RemoveCounter = ({ id, dispatch }) => {
 }
 
 const CounterBody = ({ id, name, count, dispatch, hasFocus, isLast }) => {
+  const textClasses = 'text-theme-input-primary placeholder-theme-input-primary'
+  const borderClasses = 'rounded-md border-2 border-theme-input-primary-complement focus:border-theme-emphasis-fill focus:outline-none focus:ring-1 focus:ring-skin-emphasis-fill'
+
+  const [nameInput, setNameInput] = useState(false)
+  const [localName, setLocalName] = useState(name) 
+
+  const handleTitleClick = (e) => {
+    if (!nameInput) {
+      setNameInput(true) 
+      dispatch(setHotKeysAction())
+    }
+  }
+
+  const handleTitleCheckButton = (e) => {
+    if (nameInput) {
+      setNameInput(false) 
+      dispatch(setNameAction(localName, id))
+    }
+  }
+
   return (
     <div
       className='flex flex-col bg-theme-comp-primary-fill rounded-default p-6 md:p-2 shadow-inner justify-center text-center mt-4 mb-3'
     >
-      <div className='text-4xl mb-2 text-theme-comp-primary'>{name}{hasFocus ? ' ⬅️' : null}</div>
+      <div 
+        onClick={handleTitleClick} 
+        className='text-4xl mb-2 text-theme-comp-primary'>
+          <span> 
+            {nameInput 
+              ? <input 
+                  className={`w-48 p-2 m-3 border-2 rounded bg-theme-input-primary-fill ${textClasses} ${borderClasses}`}
+                  type="text" 
+                  value={localName}
+                  onChange={(e) => { setLocalName(e.target.value) }}
+                >
+                </input> 
+              : localName
+            } 
+          </span>
+          {nameInput ? <button onClick={handleTitleCheckButton}>✅</button> : null}
+          {hasFocus ? ' ⬅️' : null}
+      </div>
       <div className='text-4xl mb-5 text-theme-comp-primary'>{count}</div>
       <div>
         <Button
@@ -243,14 +315,24 @@ function Count () {
   const currCounter = state.counters.find(c => c.hasFocus)
   const currCounterId = currCounter ? currCounter.id : -1
   const nextCounterId = findNextCounterId(state.counters)
+  const hotKeysEnabled = state.hotKeysEnabled
+  const noop = () => {}
 
-  useKeyPress('Tab', () => dispatch({ type: SET_FOCUS, payload: { counterId: nextCounterId } }))
-  useKeyPress(' ', () => dispatch({ type: ADD, payload: {} }))
-  useKeyPress('Backspace', () => dispatch({ type: REMOVE, payload: { counterId: currCounterId } }))
-  useKeyPress('ArrowRight', () => dispatch({ type: INCREMENT, payload: { counterId: currCounterId, amount: 1 } }))
-  useKeyPress('ArrowLeft', () => dispatch({ type: DECREMENT, payload: { counterId: currCounterId, amount: 1 } }))
-  useKeyPress('ArrowUp', () => dispatch({ type: INCREMENT, payload: { counterId: currCounterId, amount: 10 } }))
-  useKeyPress('ArrowDown', () => dispatch({ type: DECREMENT, payload: { counterId: currCounterId, amount: 10 } }))
+  useKeyPress(
+    'n', 
+    hotKeysEnabled ? () => dispatch({ type: SET_FOCUS, payload: { counterId: nextCounterId } }) : noop)
+  useKeyPress(
+    'a', hotKeysEnabled ? () => dispatch({ type: ADD, payload: {} }) : noop)
+  useKeyPress(
+    'r', hotKeysEnabled ? () => dispatch({ type: REMOVE, payload: { counterId: currCounterId } }) : noop)
+  useKeyPress(
+    'ArrowRight', hotKeysEnabled ? () => dispatch({ type: INCREMENT, payload: { counterId: currCounterId, amount: 1 } }) : noop )
+  useKeyPress(
+    'ArrowLeft', hotKeysEnabled ? () => dispatch({ type: DECREMENT, payload: { counterId: currCounterId, amount: 1 } }): noop)
+  useKeyPress(
+    'ArrowUp', hotKeysEnabled ? () => dispatch({ type: INCREMENT, payload: { counterId: currCounterId, amount: 10 } }): noop)
+  useKeyPress(
+    'ArrowDown', hotKeysEnabled ? () => dispatch({ type: DECREMENT, payload: { counterId: currCounterId, amount: 10 } }): noop)
 
   return (
     <div className='mt-6 mx-3 text-skin-primary'>
