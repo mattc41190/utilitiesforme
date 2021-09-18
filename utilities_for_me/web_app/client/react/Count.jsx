@@ -180,7 +180,7 @@ const setFocusReducer = (state, payload) => {
   return { ...state, counters: newCounters }
 }
 
-const setNameReducer = (state, payload) => { 
+const setNameReducer = (state, payload) => {
   const newCounters = state.counters.map(counter => {
     if (payload.counterId === counter.id) {
       return {
@@ -189,14 +189,14 @@ const setNameReducer = (state, payload) => {
       }
     }
     return {
-      ...counter,
+      ...counter
     }
   }) // Mutate
   sortCounters(newCounters)
   return { ...state, counters: newCounters }
 }
 
-const setHotKeysReducer = (state, payload) => { 
+const setHotKeysReducer = (state, payload) => {
   return { ...state, hotKeysEnabled: !state.hotKeysEnabled }
 }
 
@@ -261,7 +261,7 @@ const CounterBody = ({ id, name, count, dispatch, hasFocus, isLast, hotKeysEnabl
   const borderClasses = 'rounded-md border-2 border-theme-input-primary-complement focus:border-theme-emphasis-fill focus:outline-none focus:ring-1 focus:ring-skin-emphasis-fill'
 
   const [nameInput, setNameInput] = useState(false)
-  const [localName, setLocalName] = useState(name) 
+  const [localName, setLocalName] = useState(name)
   useKeyPress('Enter', () => save())
 
   const handleTitleClick = (e) => {
@@ -270,7 +270,7 @@ const CounterBody = ({ id, name, count, dispatch, hasFocus, isLast, hotKeysEnabl
 
   const activateInput = () => {
     if (!nameInput) {
-      setNameInput(true) 
+      setNameInput(true)
       dispatch(setHotKeysAction())
     }
   }
@@ -281,7 +281,7 @@ const CounterBody = ({ id, name, count, dispatch, hasFocus, isLast, hotKeysEnabl
 
   const save = () => {
     if (nameInput) {
-      setNameInput(false) 
+      setNameInput(false)
       dispatch(setNameAction(localName, id))
       dispatch(setHotKeysAction())
     }
@@ -292,24 +292,23 @@ const CounterBody = ({ id, name, count, dispatch, hasFocus, isLast, hotKeysEnabl
       onClick={() => dispatch(setFocusAction(id))}
       className='flex flex-col bg-theme-comp-primary-fill rounded-default p-6 md:p-2 shadow-inner justify-center text-center mt-4 mb-3'
     >
-      <div 
-        onClick={handleTitleClick} 
-        className='text-4xl mb-2 text-theme-comp-primary'>
-          <span> 
-            {nameInput 
-              ? <input
-                  autoFocus 
-                  className={`w-48 p-2 m-3 border-2 rounded bg-theme-input-primary-fill ${textClasses} ${borderClasses}`}
-                  type="text" 
-                  value={localName}
-                  onChange={(e) => { setLocalName(e.target.value) }}
-                >
-                </input> 
-              : localName
-            } 
-          </span>
-          {nameInput ? <button onClick={saveHandler}>✅</button> : null}
-          {hasFocus ? ' ⬅️' : null}
+      <div
+        onClick={handleTitleClick}
+        className='text-4xl mb-2 text-theme-comp-primary'
+      >
+        <span>
+          {nameInput
+            ? <input
+                autoFocus
+                className={`w-48 p-2 m-3 border-2 rounded bg-theme-input-primary-fill ${textClasses} ${borderClasses}`}
+                type='text'
+                value={localName}
+                onChange={(e) => { setLocalName(e.target.value) }}
+              />
+            : localName}
+        </span>
+        {nameInput ? <button onClick={saveHandler}>✅</button> : null}
+        {hasFocus ? ' ⬅️' : null}
       </div>
       <div className='text-4xl mb-5 text-theme-comp-primary'>{count}</div>
       <div>
@@ -350,15 +349,14 @@ function Count () {
   const currCounterId = currCounter ? currCounter.id : -1
   const nextCounterId = findNextCounterId(state.counters)
   const hotKeysEnabled = state.hotKeysEnabled
-  const noop = () => {}
 
   useKeyPress('n', hotKeysEnabled ? () => dispatch(setFocusAction(nextCounterId)) : NOOP)
   useKeyPress('a', hotKeysEnabled ? () => dispatch(addCounterAction()) : NOOP)
   useKeyPress('r', hotKeysEnabled ? () => dispatch(removeCounterAction(currCounterId)) : NOOP)
-  useKeyPress('ArrowRight', hotKeysEnabled ? () => dispatch(incrementCounterAction(currCounterId, 1)) : NOOP )
-  useKeyPress('ArrowLeft', hotKeysEnabled ? () => dispatch(decrementCounterAction(currCounterId, 1)): NOOP)
+  useKeyPress('ArrowRight', hotKeysEnabled ? () => dispatch(incrementCounterAction(currCounterId, 1)) : NOOP)
+  useKeyPress('ArrowLeft', hotKeysEnabled ? () => dispatch(decrementCounterAction(currCounterId, 1)) : NOOP)
   useKeyPress('ArrowUp', hotKeysEnabled ? () => dispatch(incrementCounterAction(currCounterId, 10)) : NOOP)
-  useKeyPress('ArrowDown', hotKeysEnabled ? () => dispatch(decrementCounterAction(currCounterId, 10)): NOOP)
+  useKeyPress('ArrowDown', hotKeysEnabled ? () => dispatch(decrementCounterAction(currCounterId, 10)) : NOOP)
 
   return (
     <div className='mt-6 mx-3 text-skin-primary'>
