@@ -1,8 +1,8 @@
 # Use Python image
-FROM python:3.6.1-alpine
+FROM python:3.8-slim-buster
 
-# Add Alpine Lib-C and Git binaries
-RUN apk update && apk upgrade && apk add gcc musl-dev libc-dev build-base git openssl-dev
+# # Add Alpine Lib-C and Git binaries
+# RUN apk update && apk upgrade && apk add gcc musl-dev libc-dev build-base git openssl-dev
 
 # Add labels
 LABEL MAINTAINER_NAME="Matthew Cale"  

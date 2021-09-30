@@ -17,6 +17,7 @@ import Timer from './Timer'
 import CountdownClock from './CountdownClock'
 import Footer from './Footer'
 import Count from './Count'
+import Breakout from './Breakout'
 
 function App () {
   const cookieTheme = getCookie('theme')
@@ -55,6 +56,8 @@ function App () {
           <Route path='/timer' component={Timer} />
           <Route path='/countdown-clock' component={CountdownClock} />
           <Route path='/count' component={Count} />
+          <Route path='/breakout' component={Breakout} />
+
           <Route component={Error} />
         </Switch>
       </div>

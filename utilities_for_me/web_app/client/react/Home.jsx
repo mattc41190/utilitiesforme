@@ -108,6 +108,12 @@ const UtilityPanes = ({ theme }) => {
         title='Count'
         description="Need to keep track of something? Your score? Reps? Number of cups of coffee you've had? 🔢"
       />
+      <UtilityPane
+        theme={theme}
+        link='/breakout'
+        title='Breakout'
+        description="Wanna target a ball to see if you can hit rectangles that look a lot like bricks? 🧱"
+      />
     </div>
   )
 }
