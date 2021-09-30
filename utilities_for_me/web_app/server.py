@@ -20,8 +20,10 @@ def create_app(test_config=None):
         app.config.from_mapping(test_config)
 
     static_root = ""
-
-    if app.config["ENV"] == "production":
+    trying_do = True
+    if trying_do:
+        static_root = "https://utilitiesforme.nyc3.digitaloceanspaces.com"
+    elif app.config["ENV"] == "production":
         static_root = (
             "https://storage.googleapis.com/utilities-for-me"  # config based on env!
         )
