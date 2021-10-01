@@ -1,23 +1,6 @@
 # Use Python image
 FROM python:3.8-slim-buster
 
-# # Add Alpine Lib-C and Git binaries
-# RUN apk update && apk upgrade && apk add gcc musl-dev libc-dev build-base git openssl-dev
-
-# Setup dependencies
-RUN apt-get update
-RUN apt-get install xz-utils
-RUN apt-get -y install curl
-
-# Download latest nodejs binary
-RUN curl https://nodejs.org/dist/v14.15.4/node-v14.15.4-linux-x64.tar.xz -O
-
-# Extract & install
-RUN tar -xf node-v14.15.4-linux-x64.tar.xz
-RUN ln -s /node-v14.15.4-linux-x64/bin/node /usr/local/bin/node
-RUN ln -s /node-v14.15.4-linux-x64/bin/npm /usr/local/bin/npm
-RUN ln -s /node-v14.15.4-linux-x64/bin/npx /usr/local/bin/npx
-
 # Add labels
 LABEL MAINTAINER_NAME="Matthew Cale"  
 LABEL MAINTAINER_EMAIL="mattc41190@gmail.com"
@@ -33,14 +16,14 @@ COPY . /app
 
 # Install requirements
 RUN pip install --upgrade pip && pip install -r requirements.txt
-RUN npm install && npm run wp-build
 
 # Expose ports
 EXPOSE 5050
 EXPOSE 80
+EXPOSE 443
 
 # Create settable enviornment variables
-ENV SCRIPT="run_dev.sh"
+ARG SCRIPT="run_dev.sh"
 ENV PORT="5050"
 
 # Run the start server command 
