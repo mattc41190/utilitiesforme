@@ -112,7 +112,7 @@ npm run styleit
 - Page Scraper V-N
 - Timer ✅
 - GIF database V-2
-- Move to DO for all the things
+- Move to DO for all the things 🧗
 
 ## Ideas For App 
 
