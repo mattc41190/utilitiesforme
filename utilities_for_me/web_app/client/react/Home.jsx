@@ -112,7 +112,7 @@ const UtilityPanes = ({ theme }) => {
         theme={theme}
         link='/breakout'
         title='Breakout'
-        description="Wanna target a ball to see if you can hit rectangles that look a lot like bricks? 🧱"
+        description='Wanna target a ball to see if you can hit rectangles that look a lot like bricks? 🧱'
       />
     </div>
   )
