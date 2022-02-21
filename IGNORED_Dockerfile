@@ -25,6 +25,8 @@ EXPOSE 443
 # Create settable enviornment variables
 ARG SCRIPT="run_dev.sh"
 ENV PORT="5050"
+ENV FLASK_APP="utilities_for_me.web_app.server"
+ENV FLASK_ENV="development"
 
 # Run the start server command 
-CMD sh $SCRIPT
+CMD [ "sh", "-c", "flask run --host=0.0.0.0 --port=$PORT"]
