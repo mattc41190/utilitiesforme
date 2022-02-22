@@ -22,7 +22,7 @@ def create_app(test_config=None):
     static_root = ""
     trying_do = True
     if trying_do:
-        static_root = "https://utilities-for-me.nyc3.digitaloceanspaces.com"
+        static_root = "https://utilities-for-me.sfo3.digitaloceanspaces.com"
     elif app.config["ENV"] == "production":
         static_root = (
             "https://storage.googleapis.com/utilities-for-me"  # config based on env!
