@@ -14,7 +14,8 @@ const WelcomePane = () => {
 }
 
 const TestimonialPane = ({ theme }) => {
-  const pic = theme === 'theme-pink' ? 'unicorn.png' : 'face-circle-sm.png'
+  const pic = 'face-circle-sm.png'
+  // const pic = theme === 'theme-pink' ? 'unicorn.png' : 'face-circle-sm.png'
 
   return (
     <section className='md:flex bg-theme-comp-primary-fill rounded-xl p-8 md:p-2 shadow-inner'>
